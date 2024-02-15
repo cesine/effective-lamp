@@ -15,7 +15,7 @@ type Props = {
   isRevealing?: boolean
 }
 
-export const Key = ({
+export const Letter = ({
   children,
   status,
   width = 40,

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
 import { getStatuses } from '../../lib/statuses'
 import { localeAwareUpperCase } from '../../lib/words'
-import { Key } from './Key'
+import { Letter } from './Letter'
 
 type Props = {
   onChar: (value: string) => void
@@ -14,7 +14,7 @@ type Props = {
   isRevealing?: boolean
 }
 
-export const Keyboard = ({
+export const Alphabet = ({
   onChar,
   onDelete,
   onEnter,
@@ -58,7 +58,7 @@ export const Keyboard = ({
     <div>
       <div className="mb-1 flex justify-center">
         {['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'].map((key) => (
-          <Key
+          <Letter
             value={key}
             key={key}
             onClick={onClick}
@@ -69,7 +69,7 @@ export const Keyboard = ({
       </div>
       <div className="mb-1 flex justify-center">
         {['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'].map((key) => (
-          <Key
+          <Letter
             value={key}
             key={key}
             onClick={onClick}
@@ -79,11 +79,11 @@ export const Keyboard = ({
         ))}
       </div>
       <div className="flex justify-center">
-        <Key width={65.4} value="ENTER" onClick={onClick}>
+        <Letter width={65.4} value="ENTER" onClick={onClick}>
           {ENTER_TEXT}
-        </Key>
+        </Letter>
         {['Z', 'X', 'C', 'V', 'B', 'N', 'M'].map((key) => (
-          <Key
+          <Letter
             value={key}
             key={key}
             onClick={onClick}
@@ -91,9 +91,9 @@ export const Keyboard = ({
             isRevealing={isRevealing}
           />
         ))}
-        <Key width={65.4} value="DELETE" onClick={onClick}>
+        <Letter width={65.4} value="DELETE" onClick={onClick}>
           {DELETE_TEXT}
-        </Key>
+        </Letter>
       </div>
     </div>
   )
