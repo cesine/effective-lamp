@@ -1,44 +1,37 @@
 import { MAX_CHALLENGES } from '../../constants/settings'
+import { Letter } from '../alphabet/Letter'
 import { DecryptedLine } from './DecryptedLine'
 import { EmptyRow } from './EmptyRow'
 import { CompletedRow } from './EncryptedRow'
 
 type Props = {
   solution: string
-  guesses: string[]
-  currentGuess: string
+
   isRevealing?: boolean
   currentRowClassName: string
 }
 
 export const Cryptogram = ({
   solution,
-  guesses,
-  currentGuess,
+
   isRevealing,
   currentRowClassName,
 }: Props) => {
-  const empties =
-    guesses.length < MAX_CHALLENGES - 1
-      ? Array.from(Array(MAX_CHALLENGES - 1 - guesses.length))
-      : []
-
   return (
-    <>
-      {guesses.map((guess, i) => (
-        <CompletedRow
-          key={i}
-          solution={solution}
-          guess={guess}
-          isRevealing={isRevealing && guesses.length - 1 === i}
-        />
-      ))}
-      {guesses.length < MAX_CHALLENGES && (
-        <DecryptedLine guess={currentGuess} className={currentRowClassName} />
-      )}
-      {empties.map((_, i) => (
-        <EmptyRow key={i} />
-      ))}
-    </>
+    <div className="mb-1 flex flex-wrap justify-center">
+      {solution.split('').map(function renderLetter(value) {
+        if (/\s/.test(value)) {
+          return <div style={{ width: '40px' }}>{value}</div>
+        }
+
+        return (
+          <Letter
+            encryptedValue={null}
+            value={value.toLocaleUpperCase()}
+            onClick={console.log}
+          ></Letter>
+        )
+      })}
+    </div>
   )
 }

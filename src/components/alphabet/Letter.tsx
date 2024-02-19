@@ -6,8 +6,12 @@ import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 import { solution } from '../../lib/words'
 
+const isPunctuation = (value: string) => {
+  return /\W/.test(value)
+}
 type Props = {
   children?: ReactNode
+  encryptedValue: string | null
   value: string
   width?: number
   status?: CharStatus
@@ -19,12 +23,14 @@ export const Letter = ({
   children,
   status,
   width = 40,
+  encryptedValue = '',
   value,
   onClick,
   isRevealing,
 }: Props) => {
   const keyDelayMs = REVEAL_TIME_MS * solution.length
   const isHighContrast = getStoredIsHighContrastMode()
+  const displayButton = !isPunctuation(value)
 
   const classes = classnames(
     'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
@@ -69,12 +75,12 @@ export const Letter = ({
   return (
     <div>
       <button
-        style={styles}
+        style={displayButton ? styles : stylesLetter}
         aria-label={`${value}${status ? ' ' + status : ''}`}
-        className={classes}
+        className={displayButton ? classes : classesLetter}
         onClick={handleClick}
       >
-        {children || ''}
+        {children || encryptedValue}
       </button>
       <span style={stylesLetter} className={classesLetter}>
         {value}

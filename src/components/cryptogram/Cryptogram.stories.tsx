@@ -9,15 +9,13 @@ export default {
 
 export const Default = () => (
   <Cryptogram
-    solution="flame"
-    guesses={['grist', 'devote']}
-    currentGuess="brawn"
+    solution="The early bird, catches the worm."
     isRevealing={true}
     currentRowClassName="example-class"
   />
 )
 
-export const WithoutRevealing = () => (
+/*export const WithoutRevealing = () => (
   <Cryptogram
     solution="flame"
     guesses={['grist', 'devote']}
@@ -25,4 +23,4 @@ export const WithoutRevealing = () => (
     isRevealing={false}
     currentRowClassName="example-class"
   />
-)
+) */
