@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { Keyboard } from './Keyboard'
+import { Alphabet } from './Alphabet'
 
 export default {
-  title: 'Keyboard',
-  component: Keyboard,
+  title: 'Alphabet',
+  component: Alphabet,
 }
 
 export const Default = () => (
-  <Keyboard
+  <Alphabet
     onChar={(value) => console.log('onChar', value)}
     onDelete={() => console.log('onDelete')}
     onEnter={() => console.log('onEnter')}

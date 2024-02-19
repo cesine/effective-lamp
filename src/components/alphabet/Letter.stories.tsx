@@ -1,19 +1,19 @@
 // Key.stories.tsx
 import React from 'react'
 
-import { Key } from './Key'
+import { Letter } from './Letter'
 
 export default {
-  title: 'Key',
-  component: Key,
+  title: 'Letter',
+  component: Letter,
 }
 
 export const Default = () => (
-  <Key value="A" onClick={(value) => console.log('onClick', value)} />
+  <Letter value="A" onClick={(value) => console.log('onClick', value)} />
 )
 
 export const WithStatusAbsent = () => (
-  <Key
+  <Letter
     value="B"
     status={'absent'}
     onClick={(value) => console.log('onClick', value)}
@@ -21,7 +21,7 @@ export const WithStatusAbsent = () => (
 )
 
 export const WithStatusPresent = () => (
-  <Key
+  <Letter
     value="B"
     status={'present'}
     onClick={(value) => console.log('onClick', value)}
@@ -29,7 +29,7 @@ export const WithStatusPresent = () => (
 )
 
 export const WithStatusCorrect = () => (
-  <Key
+  <Letter
     value="B"
     status={'correct'}
     onClick={(value) => console.log('onClick', value)}
@@ -37,7 +37,7 @@ export const WithStatusCorrect = () => (
 )
 
 export const WithChildren = () => (
-  <Key value="C" onClick={(value) => console.log('onClick', value)}>
+  <Letter value="C" onClick={(value) => console.log('onClick', value)}>
     <span>Child</span>
-  </Key>
+  </Letter>
 )

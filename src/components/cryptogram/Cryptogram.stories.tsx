@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { Grid } from './Grid'
+import { Cryptogram } from './Cryptogram'
 
 export default {
-  title: 'Grid',
-  component: Grid,
+  title: 'Cryptogram',
+  component: Cryptogram,
 }
 
 export const Default = () => (
-  <Grid
+  <Cryptogram
     solution="flame"
     guesses={['grist', 'devote']}
     currentGuess="brawn"
@@ -18,7 +18,7 @@ export const Default = () => (
 )
 
 export const WithoutRevealing = () => (
-  <Grid
+  <Cryptogram
     solution="flame"
     guesses={['grist', 'devote']}
     currentGuess="brawn"
