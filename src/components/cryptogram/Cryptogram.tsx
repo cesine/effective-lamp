@@ -2,7 +2,8 @@ import { NewLineKind } from 'typescript'
 
 import { MAX_CHALLENGES } from '../../constants/settings'
 import { newCipher } from '../../lib/cipher'
-import { Letter } from '../alphabet/Letter'
+import { Cell } from './Cell'
+//import { Letter } from '../alphabet/Letter'
 import { DecryptedLine } from './DecryptedLine'
 import { EmptyRow } from './EmptyRow'
 import { CompletedRow } from './EncryptedRow'
@@ -37,13 +38,7 @@ export const Cryptogram = ({
             )
           }
 
-          return (
-            <Letter
-              encryptedValue={cipher[value]}
-              value={value}
-              onClick={console.log}
-            ></Letter>
-          )
+          return <Cell encryptedValue={cipher[value]} value={value}></Cell>
         })}
     </div>
   )
