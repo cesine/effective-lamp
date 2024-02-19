@@ -44,7 +44,19 @@ export const Letter = ({
     }
   )
 
+  const classesLetter = classnames(
+    'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
+    {
+      'transition ease-in-out': isRevealing,
+    }
+  )
+
   const styles = {
+    transitionDelay: isRevealing ? `${keyDelayMs}ms` : 'unset',
+    width: `${width}px`,
+  }
+
+  const stylesLetter = {
     transitionDelay: isRevealing ? `${keyDelayMs}ms` : 'unset',
     width: `${width}px`,
   }
@@ -55,13 +67,18 @@ export const Letter = ({
   }
 
   return (
-    <button
-      style={styles}
-      aria-label={`${value}${status ? ' ' + status : ''}`}
-      className={classes}
-      onClick={handleClick}
-    >
-      {children || value}
-    </button>
+    <div>
+      <button
+        style={styles}
+        aria-label={`${value}${status ? ' ' + status : ''}`}
+        className={classes}
+        onClick={handleClick}
+      >
+        {children || ''}
+      </button>
+      <span style={stylesLetter} className={classesLetter}>
+        {value}
+      </span>
+    </div>
   )
 }
