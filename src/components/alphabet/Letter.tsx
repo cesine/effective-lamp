@@ -80,10 +80,11 @@ export const Letter = ({
         className={displayButton ? classes : classesLetter}
         onClick={handleClick}
       >
-        {children || encryptedValue}
+        {children || value}
       </button>
+
       <span style={stylesLetter} className={classesLetter}>
-        {value}
+        {encryptedValue}
       </span>
     </div>
   )

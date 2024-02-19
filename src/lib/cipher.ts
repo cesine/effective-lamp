@@ -1,7 +1,7 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const keys = [...alphabet]
 
-type Cypher = {
+export type Cypher = {
   [key: string]: string
 }
 

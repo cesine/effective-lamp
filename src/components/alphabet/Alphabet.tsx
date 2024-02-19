@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 
 import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
+import { Cypher } from '../../lib/cipher'
 import { getStatuses } from '../../lib/statuses'
 import { localeAwareUpperCase } from '../../lib/words'
 import { Letter } from './Letter'
 
 type Props = {
+  cipher: Cypher
   onChar: (value: string) => void
   onDelete: () => void
   onEnter: () => void
@@ -15,6 +17,7 @@ type Props = {
 }
 
 export const Alphabet = ({
+  cipher,
   onChar,
   onDelete,
   onEnter,
@@ -85,6 +88,7 @@ export const Alphabet = ({
           'Z',
         ].map((key) => (
           <Letter
+            encryptedValue={cipher[key]}
             value={key}
             key={key}
             onClick={onClick}
