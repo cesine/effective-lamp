@@ -1,8 +1,14 @@
+import { NewLineKind } from 'typescript'
+
 import { MAX_CHALLENGES } from '../../constants/settings'
+import { newCipher } from '../../lib/cipher'
 import { Letter } from '../alphabet/Letter'
 import { DecryptedLine } from './DecryptedLine'
 import { EmptyRow } from './EmptyRow'
 import { CompletedRow } from './EncryptedRow'
+
+const cipher = newCipher()
+console.log('cipher is', cipher)
 
 type Props = {
   solution: string
@@ -19,19 +25,26 @@ export const Cryptogram = ({
 }: Props) => {
   return (
     <div className="mb-1 flex flex-wrap justify-center">
-      {solution.split('').map(function renderLetter(value) {
-        if (/\s/.test(value)) {
-          return <div style={{ width: '40px' }}>{value}</div>
-        }
+      {solution
+        .toLocaleUpperCase()
+        .split('')
+        .map(function renderLetter(value, i) {
+          if (/\s/.test(value)) {
+            return (
+              <div key={`${i}${value}`} style={{ width: '40px' }}>
+                {value}
+              </div>
+            )
+          }
 
-        return (
-          <Letter
-            encryptedValue={null}
-            value={value.toLocaleUpperCase()}
-            onClick={console.log}
-          ></Letter>
-        )
-      })}
+          return (
+            <Letter
+              encryptedValue={cipher[value]}
+              value={value}
+              onClick={console.log}
+            ></Letter>
+          )
+        })}
     </div>
   )
 }

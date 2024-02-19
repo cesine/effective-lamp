@@ -1,14 +1,18 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const keys = [...alphabet]
 
-type Cypher = Array<{ key: string; value: string }>
+type Cypher = {
+  [key: string]: string
+}
 
 export const newCipher = () => {
   const values = alphabet.sort(() => (Math.random() > 0.5 ? 1 : -1))
 
-  let cipher: Cypher = []
+  let cipher: Cypher = {}
   for (let index in keys) {
-    cipher = [...cipher, { key: keys[index], value: values[index] }]
+    console.log('looking at ', index)
+    const i = parseInt(index, 10)
+    cipher[keys[i]] = values[i]
   }
 
   return cipher
@@ -24,8 +28,7 @@ export const encodePhrase = ({
   const encoded = phrase.toLocaleUpperCase().split('')
   for (let index in encoded) {
     const letter = encoded[index]
-    const encodedLetter =
-      cypher.find(({ key }) => key === letter)?.value || letter
+    const encodedLetter = cypher[letter] || letter
     encoded[index] = encodedLetter
   }
   return encoded.join('')
