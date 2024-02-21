@@ -38,7 +38,9 @@ export const Cryptogram = ({
             )
           }
 
-          return <Cell encryptedValue={cipher[value]} value={value}></Cell>
+          return (
+            <Cell encryptedValue={cipher[value] || value} value={value}></Cell>
+          )
         })}
     </div>
   )
