@@ -20,28 +20,43 @@ type Props = {
 
 export const Cryptogram = ({
   solution,
-
   isRevealing,
   currentRowClassName,
 }: Props) => {
-  return (
-    <div className="mb-1 flex flex-wrap justify-center">
-      {solution
-        .toLocaleUpperCase()
-        .split('')
-        .map(function renderLetter(value, i) {
-          if (/\s/.test(value)) {
-            return (
-              <div key={`${i}${value}`} style={{ width: '40px' }}>
-                {value}
-              </div>
-            )
-          }
+  const words = solution.toLocaleUpperCase().split(/\s/)
+  console.log('words are', words)
 
-          return (
-            <Cell encryptedValue={cipher[value] || value} value={value}></Cell>
-          )
-        })}
+  function renderLetter(value: string, i: number) {
+    if (/\s/.test(value)) {
+      return <div test-id="letter">{value}</div>
+    }
+
+    return (
+      //<span test-id="letter"> {value}</span>
+      <Cell encryptedValue={cipher[value] || value} value={value}></Cell>
+    )
+  }
+
+  function renderWord(word: string) {
+    console.log('renderword', word)
+    return (
+      <div test-id="word" className="mr-4 whitespace-nowrap">
+        {word.split('').map(renderLetter)}
+      </div>
+    )
+  }
+
+  const stylePhrase = {
+    width: '100%',
+  }
+
+  return (
+    <div
+      test-id="phrase"
+      className="mb-1 flex flex-wrap justify-center"
+      style={stylePhrase}
+    >
+      {words.map(renderWord)}
     </div>
   )
 }

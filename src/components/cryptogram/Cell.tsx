@@ -76,17 +76,16 @@ export const Cell = ({
   const styles = {
     fontFamily: 'Courier New',
     animationDelay,
+    minHeight: '1em',
   }
 
   return (
-    <div>
+    <div className="inline-flex flex-col">
       <div
         className={shouldDisplayDecrypted ? classesDecrypted : classes}
         style={styles}
       >
-        <div className="letter-container" style={styles}>
-          {shouldDisplayDecrypted ? value : null}
-        </div>
+        {shouldDisplayDecrypted ? value : value}
       </div>
 
       <div style={styles} className={classes}>
