@@ -73,22 +73,23 @@ export const Cell = ({
     }
   )
 
-  const stylesLetter = {
-    width: `40px`,
+  const styles = {
+    fontFamily: 'Courier New',
+    animationDelay,
   }
 
   return (
     <div>
       <div
         className={shouldDisplayDecrypted ? classesDecrypted : classes}
-        style={{ animationDelay }}
+        style={styles}
       >
-        <div className="letter-container" style={{ animationDelay }}>
+        <div className="letter-container" style={styles}>
           {shouldDisplayDecrypted ? value : null}
         </div>
       </div>
 
-      <div style={{ animationDelay }} className={classes}>
+      <div style={styles} className={classes}>
         {encryptedValue}
       </div>
     </div>
