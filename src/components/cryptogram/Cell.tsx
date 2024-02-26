@@ -1,4 +1,6 @@
 import classnames from 'classnames'
+import { useEffect, useState } from 'react'
+import { isNonNullExpression } from 'typescript'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
@@ -25,6 +27,12 @@ export const Cell = ({
   isCompleted,
   position = 0,
 }: Props) => {
+  const [revealLetter, setRevealLetter] = useState(false)
+  const toggleRevealLetter = () => {
+    setRevealLetter(!revealLetter)
+  }
+  const [guess, setGuess] = useState('')
+
   const isFilled = value && !isCompleted
   const shouldReveal = isRevealing && isCompleted
   const animationDelay = `${position * REVEAL_TIME_MS}ms`
@@ -82,14 +90,40 @@ export const Cell = ({
     animationDelay,
     minHeight: '1em',
   }
+  const cellOnClick = () => {
+    console.log('inside the onclick')
+    window.addEventListener('keydown', handleKeyDown)
+  }
 
+  function handleKeyDown(this: Window, ev: KeyboardEvent) {
+    console.log(ev.key, value)
+
+    if (ev.key.toLocaleUpperCase() === value) {
+      setRevealLetter(true)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }
   return (
-    <div className="inline-flex flex-col">
+    /*<div className="inline-flex flex-col">
       <div
         className={shouldDisplayDecrypted ? classesDecrypted : classes}
         style={styles}
       >
         {shouldDisplayDecrypted ? value : value}
+      </div>
+
+      <div style={styles} className={classes}>
+        {encryptedValue}
+      </div>
+    </div>*/
+
+    <div className="inline-flex flex-col">
+      <div
+        onClick={cellOnClick}
+        className={shouldDisplayDecrypted ? classesDecrypted : classes}
+        style={styles}
+      >
+        {shouldDisplayDecrypted && revealLetter ? value : ' '}
       </div>
 
       <div style={styles} className={classes}>
