@@ -73,6 +73,10 @@ export const Cell = ({
     }
   )
 
+  /*const replaceApostrophes = (quote: string) => {
+     return quote.replace(/'/g, '&rsquo;');
+   }; */
+
   const styles = {
     fontFamily: 'Courier New',
     animationDelay,
