@@ -81,10 +81,6 @@ export const Cell = ({
     }
   )
 
-  /*const replaceApostrophes = (quote: string) => {
-     return quote.replace(/'/g, '&rsquo;');
-   }; */
-
   const styles = {
     fontFamily: 'Courier New',
     animationDelay,
@@ -97,33 +93,18 @@ export const Cell = ({
 
   function handleKeyDown(this: Window, ev: KeyboardEvent) {
     console.log(ev.key, value)
-
-    if (ev.key.toLocaleUpperCase() === value) {
-      setRevealLetter(true)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
+    setGuess(ev.key.toLocaleUpperCase())
+    setRevealLetter(true)
+    window.removeEventListener('keydown', handleKeyDown)
   }
   return (
-    /*<div className="inline-flex flex-col">
-      <div
-        className={shouldDisplayDecrypted ? classesDecrypted : classes}
-        style={styles}
-      >
-        {shouldDisplayDecrypted ? value : value}
-      </div>
-
-      <div style={styles} className={classes}>
-        {encryptedValue}
-      </div>
-    </div>*/
-
     <div className="inline-flex flex-col">
       <div
         onClick={cellOnClick}
         className={shouldDisplayDecrypted ? classesDecrypted : classes}
         style={styles}
       >
-        {shouldDisplayDecrypted && revealLetter ? value : ' '}
+        {guess}
       </div>
 
       <div style={styles} className={classes}>
