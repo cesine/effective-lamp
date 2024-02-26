@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => (
   <Cryptogram
-    solution="The early bird, catches the worm."
+    solution=' "It&rsquo;s the friends you can call up at 4 a.m. that matter." Marlene Dietrich'
     isRevealing={true}
     currentRowClassName="example-class"
   />
