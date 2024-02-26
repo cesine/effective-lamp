@@ -19,8 +19,8 @@ export const Default = () => (
   <Cryptogram
     solution="flame"
     guesses={['grist', 'devote']}
-    currentGuess="brawn"
-    isRevealing={false}
-    currentRowClassName="example-class"
+currentGuess = "brawn"
+isRevealing = { false}
+currentRowClassName = "example-class"
   />
 ) */

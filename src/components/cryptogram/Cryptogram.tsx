@@ -13,7 +13,6 @@ console.log('cipher is', cipher)
 
 type Props = {
   solution: string
-
   isRevealing?: boolean
   currentRowClassName: string
 }
