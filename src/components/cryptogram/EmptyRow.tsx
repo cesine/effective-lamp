@@ -7,7 +7,7 @@ export const EmptyRow = () => {
   return (
     <div className="mb-1 flex justify-center">
       {emptyCells.map((_, i) => (
-        <Cell key={i} />
+        <Cell encryptedValue="" value="" key={i} />
       ))}
     </div>
   )

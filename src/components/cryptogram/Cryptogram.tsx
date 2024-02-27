@@ -3,10 +3,8 @@ import { NewLineKind } from 'typescript'
 import { MAX_CHALLENGES } from '../../constants/settings'
 import { newCipher } from '../../lib/cipher'
 import { Cell } from './Cell'
+
 //import { Letter } from '../alphabet/Letter'
-import { DecryptedLine } from './DecryptedLine'
-import { EmptyRow } from './EmptyRow'
-import { CompletedRow } from './EncryptedRow'
 
 const cipher = newCipher()
 console.log('cipher is', cipher)

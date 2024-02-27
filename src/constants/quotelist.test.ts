@@ -7,7 +7,7 @@ describe('quotelist', () => {
   test('quotes are unique', () => {
     const uniqueQuotes = Array.from(new Set(QUOTES))
 
-    expect(QUOTES.length).toEqual(uniqueQUOTES.length)
+    expect(QUOTES.length).toEqual(uniqueQuotes.length)
 
     if (uniqueQuotes.length !== QUOTES.length) {
       uniqueQuotes.forEach((p) => {
