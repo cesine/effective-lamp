@@ -7,6 +7,8 @@ export default {
   component: Cell,
 }
 
-export const Default = () => <Cell value="A" />
+export const Default = () => <Cell encryptedValue="E" value="A" />
 
-export const WithStatus = () => <Cell value="B" status={'correct'} />
+export const WithStatus = () => (
+  <Cell encryptedValue="E" value="B" status={'correct'} />
+)

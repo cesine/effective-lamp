@@ -16,6 +16,7 @@ export const CompletedRow = ({ solution, guess, isRevealing }: Props) => {
     <div className="mb-1 flex justify-center">
       {splitGuess.map((letter, i) => (
         <Cell
+          encryptedValue={guess}
           key={i}
           value={letter}
           status={statuses[i]}

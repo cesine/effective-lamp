@@ -72,8 +72,8 @@ describe('solutionIndex', () => {
 
   test('quote of the day', () => {
     expect(() => getQuoteOfDay(-1)).toThrowError('Invalid index')
-    expect(getQuoteOfDay(0)).toEqual('WHICH')
-    expect(getQuoteOfDay(1)).toEqual('THERE')
-    expect(getQuoteOfDay(255)).toEqual('SHEEP')
+    expect(getQuoteOfDay(0)).toEqual('THE EARLY BIRD CATCHES THE WORM')
+    expect(getQuoteOfDay(1)).toEqual('BITE THE BULLET')
+    expect(getQuoteOfDay(255)).toEqual('THE BALL IS IN YOUR COURT')
   })
 })
