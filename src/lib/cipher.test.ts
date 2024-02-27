@@ -17,6 +17,15 @@ describe('cipher', () => {
         .map((value: string) => value as string) // Cast the values to string
       expect(values.length).toBe(uniqueValues.length)
     })
+
+    it('shuffled letter should not match original letter', () => {
+      const cipher = newCipher()
+      Object.keys(cipher).map((key: string) => {
+        if (key === cipher[key].decrypted) {
+          expect(cipher[key].decrypted).not.toEqual(key)
+        }
+      })
+    })
   })
 
   describe('encodePhrase', () => {

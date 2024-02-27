@@ -7,8 +7,27 @@ export type Cipher = {
   }
 }
 
+function isOriginalPosition(shuffled: string[], original: string[]) {
+  for (var i = 0; i < shuffled.length; i++) {
+    if (shuffled[i] === original[i]) {
+      console.log('this letter is matching', i, original[i])
+      return true // Letter is in its original position
+    }
+  }
+  return false // No letters in their original positions
+}
+
 export const newCipher = () => {
-  const randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+  let randomKey: string[] = [...ALPHABET].sort(() =>
+    Math.random() > 0.5 ? 1 : -1
+  )
+
+  while (isOriginalPosition(randomKey, ALPHABET)) {
+    console.log('regenerating randomKey', randomKey)
+    randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+  }
+
+  //const randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
 
   let cipher: Cipher = {}
   for (let index in ALPHABET) {
