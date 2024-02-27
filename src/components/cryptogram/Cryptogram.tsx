@@ -1,21 +1,18 @@
 import { NewLineKind } from 'typescript'
 
 import { MAX_CHALLENGES } from '../../constants/settings'
-import { newCipher } from '../../lib/cipher'
+import { Cypher, newCipher } from '../../lib/cipher'
 import { Cell } from './Cell'
 
-//import { Letter } from '../alphabet/Letter'
-
-const cipher = newCipher()
-console.log('cipher is', cipher)
-
 type Props = {
+  cipher: Cypher
   solution: string
   isRevealing?: boolean
   currentRowClassName: string
 }
 
 export const Cryptogram = ({
+  cipher,
   solution,
   isRevealing,
   currentRowClassName,
