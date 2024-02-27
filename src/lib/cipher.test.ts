@@ -10,7 +10,7 @@ describe('cipher', () => {
     it('should return a cipher with unique values', () => {
       const cipher = newCipher()
       const values = Object.keys(cipher).map((key) => {
-        return cipher[key]
+        return cipher[key].decrypted
       })
       const uniqueValues: string[] = values
         .filter((value: string) => value !== undefined) // Filter out undefined values

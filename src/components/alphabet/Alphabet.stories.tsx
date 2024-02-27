@@ -16,8 +16,6 @@ export const Default = () => (
     onChar={(value) => console.log('onChar', value)}
     onDelete={() => console.log('onDelete')}
     onEnter={() => console.log('onEnter')}
-    solution="solution"
-    guesses={['guess1', 'guess2']}
     isRevealing={true}
   />
 )

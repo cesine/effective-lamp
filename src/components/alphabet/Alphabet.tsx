@@ -11,8 +11,6 @@ type Props = {
   onChar: (value: string) => void
   onDelete: () => void
   onEnter: () => void
-  solution: string
-  guesses: string[]
   isRevealing?: boolean
 }
 
@@ -21,12 +19,8 @@ export const Alphabet = ({
   onChar,
   onDelete,
   onEnter,
-  solution,
-  guesses,
   isRevealing,
 }: Props) => {
-  const charStatuses = getStatuses(solution, guesses)
-
   const onClick = (value: string) => {
     if (value === 'ENTER') {
       onEnter()
@@ -89,11 +83,11 @@ export const Alphabet = ({
           'Z',
         ].map((key) => (
           <Letter
-            alphabetLine={cipher[key]}
-            randomKey={key}
+            alphabetLine={key}
+            randomKey={cipher[key].guesses[0]}
             key={key}
             onClick={onClick}
-            status={charStatuses[key]}
+            // status={charStatuses[key]}
             isRevealing={isRevealing}
           />
         ))}

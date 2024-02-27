@@ -6,38 +6,47 @@ import { Cell } from './Cell'
 
 type Props = {
   cipher: Cipher
-  solution: string
+  encryptedQuote: string
   isRevealing?: boolean
   currentRowClassName: string
 }
 
 export const Cryptogram = ({
   cipher,
-  solution,
+  encryptedQuote: encryptedQuote,
   isRevealing,
   currentRowClassName,
 }: Props) => {
-  const words = solution.toLocaleUpperCase().split(/\s/)
-  console.log('words are', words)
+  const words = encryptedQuote.toLocaleUpperCase().split(/\s/)
+  // console.log('words are', words)
 
   function renderLetter(value: string, i: number) {
     if (/\s/.test(value)) {
-      return <div test-id="letter">{value}</div>
+      return (
+        <div key={`${value}-${i}`} test-id="letter">
+          {value}
+        </div>
+      )
     }
 
     return (
       //<span test-id="letter"> {value}</span>
       <Cell
-        encryptedValue={cipher[value] || value}
-        decryptedValue={value}
+        key={`${value}-${i}`}
+        encryptedValue={value}
+        decryptedValue={cipher[value].guesses[0]}
       ></Cell>
     )
   }
 
-  function renderWord(word: string) {
-    console.log('renderword', word)
+  function renderWord(word: string, i: number) {
+    // console.log('renderword', word)
     return (
-      <div test-id="word" className="mr-4 whitespace-nowrap">
+      <div
+        key={`${word}-${i}`}
+        test-id="word"
+        className="mr-4 whitespace-nowrap"
+      >
         {word.split('').map(renderLetter)}
       </div>
     )

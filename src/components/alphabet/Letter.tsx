@@ -23,8 +23,8 @@ export const Letter = ({
   children,
   status,
   width = 40,
-  alphabetLine: alphabetLine = '',
-  randomKey: randomKey,
+  alphabetLine = '',
+  randomKey,
   onClick,
   isRevealing,
 }: Props) => {

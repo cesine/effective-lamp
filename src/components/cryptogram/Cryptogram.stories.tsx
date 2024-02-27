@@ -16,7 +16,7 @@ const cipher = newCipher()
 export const Default = () => (
   <Cryptogram
     cipher={cipher}
-    solution={solution}
+    encryptedQuote={solution}
     isRevealing={true}
     currentRowClassName="example-class"
   />
