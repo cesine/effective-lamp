@@ -14,7 +14,7 @@ export const DecryptedLine = ({ guess, className }: Props) => {
   return (
     <div className={classes}>
       {splitGuess.map((letter, i) => (
-        <Cell key={i} encryptedValue={guess} value={letter} />
+        <Cell key={i} encryptedValue={guess} decryptedValue={letter} />
       ))}
       {emptyCells.map((_, i) => (
         <Cell encryptedValue="" key={i} />

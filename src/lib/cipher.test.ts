@@ -23,7 +23,7 @@ describe('cipher', () => {
     it('should encode the phrase ', () => {
       const phrase = 'Break a leg'
       const cipher = newCipher()
-      const encodedPhrase = encodePhrase({ cypher: cipher, phrase })
+      const encodedPhrase = encodePhrase({ cipher: cipher, phrase })
       expect(encodedPhrase).not.toBe(phrase)
       expect(encodedPhrase.length).toEqual(phrase.length)
       expect(encodedPhrase[5]).toEqual(' ')

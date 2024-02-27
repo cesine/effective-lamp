@@ -6,16 +6,16 @@ import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 import { solution } from '../../lib/words'
 
-const isPunctuation = (value: string) => {
-  return /\W/.test(value)
+const isPunctuation = (randomKey: string) => {
+  return /\W/.test(randomKey)
 }
 type Props = {
   children?: ReactNode
-  encryptedValue: string | null
-  value: string
+  alphabetLine: string | null
+  randomKey: string
   width?: number
   status?: CharStatus
-  onClick: (value: string) => void
+  onClick: (randomKey: string) => void
   isRevealing?: boolean
 }
 
@@ -23,14 +23,14 @@ export const Letter = ({
   children,
   status,
   width = 40,
-  encryptedValue = '',
-  value,
+  alphabetLine: alphabetLine = '',
+  randomKey: randomKey,
   onClick,
   isRevealing,
 }: Props) => {
   const keyDelayMs = REVEAL_TIME_MS * solution.length
   const isHighContrast = getStoredIsHighContrastMode()
-  const displayButton = !isPunctuation(value)
+  const displayButton = !isPunctuation(randomKey)
 
   const classes = classnames(
     'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
@@ -68,7 +68,7 @@ export const Letter = ({
   }
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick(value)
+    onClick(randomKey)
     event.currentTarget.blur()
   }
 
@@ -76,15 +76,15 @@ export const Letter = ({
     <div>
       <button
         style={displayButton ? styles : stylesLetter}
-        aria-label={`${value}${status ? ' ' + status : ''}`}
+        aria-label={`${randomKey}${status ? ' ' + status : ''}`}
         className={displayButton ? classes : classesLetter}
         onClick={handleClick}
       >
-        {children || value}
+        {children || randomKey}
       </button>
 
       <span style={stylesLetter} className={classesLetter}>
-        {encryptedValue}
+        {alphabetLine}
       </span>
     </div>
   )

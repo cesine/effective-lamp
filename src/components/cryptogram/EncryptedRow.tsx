@@ -18,7 +18,7 @@ export const CompletedRow = ({ solution, guess, isRevealing }: Props) => {
         <Cell
           encryptedValue={guess}
           key={i}
-          value={letter}
+          decryptedValue={letter}
           status={statuses[i]}
           position={i}
           isRevealing={isRevealing}

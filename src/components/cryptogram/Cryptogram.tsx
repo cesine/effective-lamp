@@ -1,11 +1,11 @@
 import { NewLineKind } from 'typescript'
 
 import { MAX_CHALLENGES } from '../../constants/settings'
-import { Cypher, newCipher } from '../../lib/cipher'
+import { Cipher, newCipher } from '../../lib/cipher'
 import { Cell } from './Cell'
 
 type Props = {
-  cipher: Cypher
+  cipher: Cipher
   solution: string
   isRevealing?: boolean
   currentRowClassName: string
@@ -27,7 +27,10 @@ export const Cryptogram = ({
 
     return (
       //<span test-id="letter"> {value}</span>
-      <Cell encryptedValue={cipher[value] || value} value={value}></Cell>
+      <Cell
+        encryptedValue={cipher[value] || value}
+        decryptedValue={value}
+      ></Cell>
     )
   }
 

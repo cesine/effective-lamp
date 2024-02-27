@@ -10,16 +10,16 @@ export default {
 
 export const Default = () => (
   <Letter
-    encryptedValue="E"
-    value="A"
+    alphabetLine="E"
+    randomKey="A"
     onClick={(value) => console.log('onClick', value)}
   />
 )
 
 export const WithStatusAbsent = () => (
   <Letter
-    encryptedValue="A"
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'absent'}
     onClick={(value) => console.log('onClick', value)}
   />
@@ -27,8 +27,8 @@ export const WithStatusAbsent = () => (
 
 export const WithStatusPresent = () => (
   <Letter
-    encryptedValue="A"
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'present'}
     onClick={(value) => console.log('onClick', value)}
   />
@@ -36,8 +36,8 @@ export const WithStatusPresent = () => (
 
 export const WithStatusCorrect = () => (
   <Letter
-    encryptedValue="A"
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'correct'}
     onClick={(value) => console.log('onClick', value)}
   />
@@ -45,8 +45,8 @@ export const WithStatusCorrect = () => (
 
 export const WithChildren = () => (
   <Letter
-    encryptedValue="A"
-    value="C"
+    alphabetLine="A"
+    randomKey="C"
     onClick={(value) => console.log('onClick', value)}
   >
     <span>Child</span>
