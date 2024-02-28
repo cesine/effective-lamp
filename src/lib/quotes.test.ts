@@ -72,8 +72,14 @@ describe('solutionIndex', () => {
 
   test('quote of the day', () => {
     expect(() => getQuoteOfDay(-1)).toThrowError('Invalid index')
-    expect(getQuoteOfDay(0)).toEqual('THE EARLY BIRD CATCHES THE WORM')
-    expect(getQuoteOfDay(1)).toEqual('BITE THE BULLET')
-    expect(getQuoteOfDay(255)).toEqual('THE BALL IS IN YOUR COURT')
+    expect(getQuoteOfDay(0)).toEqual(
+      '"SURROUND YOURSELF WITH ONLY PEOPLE WHO ARE GOING TO LIFT YOU HIGHER." OPRAH WINFREY'
+    )
+    expect(getQuoteOfDay(1)).toEqual(
+      '"IT\'S THE FRIENDS YOU CAN CALL UP AT 4 A.M. THAT MATTER." MARLENE DIETRICH'
+    )
+    expect(getQuoteOfDay(255)).toEqual(
+      '"MANY PEOPLE WILL WALK IN AND OUT OF YOUR LIFE, BUT ONLY TRUE FRIENDS WILL LEAVE FOOTPRINTS IN YOUR HEART." ELEANOR ROOSEVELT'
+    )
   })
 })
