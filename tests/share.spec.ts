@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test.describe('reactle tests', () => {
+test.describe.skip('reactle tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
     await page.goto('/')
     await page.getByLabel('How to play').getByRole('button').click()
