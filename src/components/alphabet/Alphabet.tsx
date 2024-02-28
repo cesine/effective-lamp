@@ -8,7 +8,7 @@ import { Letter } from './Letter'
 
 type Props = {
   cipher: Cipher
-  onChar: (value: string) => void
+  onChar: (input: string, ariaLabel: string) => void
   onDelete: () => void
   onEnter: () => void
   isRevealing?: boolean
@@ -21,13 +21,13 @@ export const Alphabet = ({
   onEnter,
   isRevealing,
 }: Props) => {
-  const onClick = (value: string) => {
-    if (value === 'ENTER') {
+  const onClick = (input: string, ariaLabel: string) => {
+    if (input === 'ENTER') {
       onEnter()
-    } else if (value === 'DELETE') {
+    } else if (input === 'DELETE') {
       onDelete()
     } else {
-      onChar(value)
+      onChar(input, ariaLabel)
     }
   }
 

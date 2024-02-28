@@ -15,7 +15,7 @@ type Props = {
   randomKey: string
   width?: number
   status?: CharStatus
-  onClick: (randomKey: string) => void
+  onClick: (input: string, ariaLabel: string) => void
   isRevealing?: boolean
 }
 
@@ -68,7 +68,9 @@ export const Letter = ({
   }
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick(randomKey)
+    const label = (event?.target as HTMLButtonElement)?.ariaLabel || ''
+
+    onClick(randomKey, label)
     event.currentTarget.blur()
   }
 

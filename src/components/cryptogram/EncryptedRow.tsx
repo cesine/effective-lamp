@@ -12,10 +12,15 @@ export const CompletedRow = ({ solution, guess, isRevealing }: Props) => {
   const statuses = getGuessStatuses(solution, guess)
   const splitGuess = unicodeSplit(guess)
 
+  const onClick = (input: string, ariaLabel: string) => {
+    alert(`You clicked on ${ariaLabel}`)
+  }
+
   return (
     <div className="mb-1 flex justify-center">
       {splitGuess.map((letter, i) => (
         <Cell
+          onClick={onClick}
           encryptedValue={guess}
           key={i}
           decryptedValue={letter}
