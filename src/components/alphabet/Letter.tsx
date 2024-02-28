@@ -76,14 +76,18 @@ export const Letter = ({
     <div>
       <button
         style={displayButton ? styles : stylesLetter}
-        aria-label={`${randomKey}${status ? ' ' + status : ''}`}
+        aria-label={alphabetLine || ''}
         className={displayButton ? classes : classesLetter}
         onClick={handleClick}
       >
         {children || randomKey}
       </button>
 
-      <span style={stylesLetter} className={classesLetter}>
+      <span
+        aria-label={alphabetLine || ''}
+        style={stylesLetter}
+        className={classesLetter}
+      >
         {alphabetLine}
       </span>
     </div>

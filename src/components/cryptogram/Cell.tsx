@@ -73,7 +73,7 @@ export const Cell = ({
   }
   const cellOnClick = () => {
     console.log('inside the onclick')
-    window.addEventListener('keydown', handleKeyDown)
+    // window.addEventListener('keydown', handleKeyDown)
   }
 
   function handleKeyDown(this: Window, ev: KeyboardEvent) {
@@ -84,11 +84,20 @@ export const Cell = ({
   }
   return (
     <div className="inline-flex flex-col">
-      <div onClick={cellOnClick} className={classesDecrypted} style={styles}>
+      <div
+        aria-label={encryptedValue}
+        onClick={cellOnClick}
+        className={classesDecrypted}
+        style={styles}
+      >
         {decryptedValue}
       </div>
 
-      <div style={styles} className={classesEncrypted}>
+      <div
+        aria-label={encryptedValue}
+        style={styles}
+        className={classesEncrypted}
+      >
         {encryptedValue}
       </div>
     </div>
