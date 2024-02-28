@@ -8,10 +8,10 @@ import {
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 import queryString from 'query-string'
 
+import { QUOTES } from '../constants/quotelist'
 import { ENABLE_ARCHIVED_GAMES } from '../constants/settings'
 import { NOT_CONTAINED_MESSAGE, WRONG_SPOT_MESSAGE } from '../constants/strings'
 import { VALID_GUESSES } from '../constants/validGuesses'
-import { WORDS } from '../constants/wordlist'
 import { getToday } from './dateutils'
 import { getGuessStatuses } from './statuses'
 
@@ -19,21 +19,21 @@ import { getGuessStatuses } from './statuses'
 export const firstGameDate = new Date(2022, 0)
 export const periodInDays = 1
 
-export const isWordInWordList = (word: string) => {
+export const isQuoteInQuoteList = (quote: string) => {
   return (
-    WORDS.includes(localeAwareLowerCase(word)) ||
-    VALID_GUESSES.includes(localeAwareLowerCase(word))
+    QUOTES.includes(localeAwareLowerCase(quote)) ||
+    VALID_GUESSES.includes(localeAwareLowerCase(quote))
   )
 }
 
-export const isWinningWord = (word: string) => {
-  return solution === word
+export const isWinningQuote = (quote: string) => {
+  return solution === quote
 }
 
 // build a set of previously revealed letters - present and correct
 // guess must use correct letters in that space and any other revealed letters
 // also check if all revealed instances of a letter are used (i.e. two C's)
-export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
+export const findFirstUnusedReveal = (quote: string, guesses: string[]) => {
   if (guesses.length === 0) {
     return false
   }
@@ -41,14 +41,14 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   const lettersLeftArray = new Array<string>()
   const guess = guesses[guesses.length - 1]
   const statuses = getGuessStatuses(solution, guess)
-  const splitWord = unicodeSplit(word)
+  const splitQuote = unicodeSplit(quote)
   const splitGuess = unicodeSplit(guess)
 
   for (let i = 0; i < splitGuess.length; i++) {
     if (statuses[i] === 'correct' || statuses[i] === 'present') {
       lettersLeftArray.push(splitGuess[i])
     }
-    if (statuses[i] === 'correct' && splitWord[i] !== splitGuess[i]) {
+    if (statuses[i] === 'correct' && splitQuote[i] !== splitGuess[i]) {
       return WRONG_SPOT_MESSAGE(splitGuess[i], i + 1)
     }
   }
@@ -56,7 +56,7 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   // check for the first unused letter, taking duplicate letters
   // into account - see issue #198
   let n
-  for (const letter of splitWord) {
+  for (const letter of splitQuote) {
     n = lettersLeftArray.indexOf(letter)
     if (n !== -1) {
       lettersLeftArray.splice(n, 1)
@@ -69,12 +69,12 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   return false
 }
 
-export const unicodeSplit = (word: string) => {
-  return new GraphemeSplitter().splitGraphemes(word)
+export const unicodeSplit = (quote: string) => {
+  return new GraphemeSplitter().splitGraphemes(quote)
 }
 
-export const unicodeLength = (word: string) => {
-  return unicodeSplit(word).length
+export const unicodeLength = (quote: string) => {
+  return unicodeSplit(quote).length
 }
 
 export const localeAwareLowerCase = (text: string) => {
@@ -118,20 +118,20 @@ export const getIndex = (gameDate: Date) => {
   return index
 }
 
-export const getWordOfDay = (index: number) => {
+export const getQuoteOfDay = (index: number) => {
   if (index < 0) {
     throw new Error('Invalid index')
   }
 
-  return localeAwareUpperCase(WORDS[index % WORDS.length])
+  return localeAwareUpperCase(QUOTES[index % QUOTES.length])
 }
 
 export const getSolution = (gameDate: Date) => {
   const nextGameDate = getNextGameDate(gameDate)
   const index = getIndex(gameDate)
-  const wordOfTheDay = getWordOfDay(index)
+  const quoteOfTheDay = getQuoteOfDay(index)
   return {
-    solution: wordOfTheDay,
+    solution: quoteOfTheDay,
     solutionGameDate: gameDate,
     solutionIndex: index,
     tomorrow: nextGameDate.valueOf(),
