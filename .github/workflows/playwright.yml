@@ -4,6 +4,12 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    paths:
+      - '.env'
+      - '*.{json|js|jsx|ts|tsx}'
+      - 'src/**'
+      - 'public/**'
+      - 'tests/**'
 jobs:
   test:
     timeout-minutes: 10

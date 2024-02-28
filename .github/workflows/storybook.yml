@@ -1,4 +1,4 @@
-name: Build and Deploy Storybook
+name: Storybook
 
 on:
   push:
@@ -7,9 +7,13 @@ on:
   pull_request:
     paths:
       - '.github/workflows/storybook.yml'
-      - 'src/**/*.tsx'
+      - 'src/**/*.{json|js|jsx|ts|tsx}'
+      - 'src/stories/**'
+      - '.storybook/**'
+      - '.github/workflows/storybook.yml'
+
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,7 +25,24 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      #     - name: Archive artifacts
+      #       uses: actions/upload-artifact@v2
+      #       with:
+      #         name: compiled-code
+      #         path: ./storybook-static
+      # deploy:
+      #   needs: build
+      #   runs-on: ubuntu-latest
+      #   # if: github.ref == 'refs/heads/main'
+      #   steps:
+      #     - name: Download artifacts
+      #       uses: actions/download-artifact@v2
+      #       with:
+      #         name: compiled-code
+      # TODO actions-gh-pages doesnt find (any) dir when we use download artifacts
+
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
