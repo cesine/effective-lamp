@@ -3,8 +3,8 @@ import { getGuessStatuses } from './statuses'
 const mockSolutionGetter = jest.fn()
 
 beforeEach(() => {
-  jest.mock('./words', () => ({
-    ...jest.requireActual('./words'),
+  jest.mock('./quotes', () => ({
+    ...jest.requireActual('./quotes'),
     get solution() {
       return mockSolutionGetter()
     },
