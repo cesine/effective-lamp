@@ -17,6 +17,7 @@ type Props = {
   isRevealing?: boolean
   isCompleted?: boolean
   position?: number
+  onClick: (input: string, ariaLabel: string) => void
 }
 
 export const Cell = ({
@@ -25,6 +26,7 @@ export const Cell = ({
   status,
   isRevealing,
   isCompleted,
+  onClick,
   position = 0,
 }: Props) => {
   const [revealLetter, setRevealLetter] = useState(false)
@@ -71,9 +73,11 @@ export const Cell = ({
     animationDelay,
     minHeight: '1em',
   }
-  const cellOnClick = () => {
-    console.log('inside the onclick')
-    // window.addEventListener('keydown', handleKeyDown)
+  const cellOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    const label = (event?.target as HTMLDivElement)?.ariaLabel || ''
+
+    onClick('', label)
+    event.currentTarget.blur()
   }
 
   function handleKeyDown(this: Window, ev: KeyboardEvent) {

@@ -7,8 +7,19 @@ export default {
   component: Cell,
 }
 
-export const Default = () => <Cell encryptedValue="E" decryptedValue="A" />
+const onClick = (input: string, ariaLabel: string) => {
+  alert(`You clicked on ${ariaLabel}`)
+}
+
+export const Default = () => (
+  <Cell encryptedValue="E" decryptedValue="A" onClick={onClick} />
+)
 
 export const WithStatus = () => (
-  <Cell encryptedValue="E" decryptedValue="B" status={'correct'} />
+  <Cell
+    encryptedValue="E"
+    decryptedValue="B"
+    status={'correct'}
+    onClick={onClick}
+  />
 )

@@ -5,6 +5,7 @@ import { Cipher, newCipher } from '../../lib/cipher'
 import { Cell } from './Cell'
 
 type Props = {
+  onChar: (input: string, ariaLabel: string) => void
   cipher: Cipher
   encryptedQuote: string
   isRevealing?: boolean
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export const Cryptogram = ({
+  onChar,
   cipher,
   encryptedQuote: encryptedQuote,
   isRevealing,
@@ -32,6 +34,7 @@ export const Cryptogram = ({
     return (
       //<span test-id="letter"> {value}</span>
       <Cell
+        onClick={onChar}
         key={`${value}-${i}`}
         encryptedValue={value}
         decryptedValue={cipher[value] ? cipher[value].guesses[0] : value}
