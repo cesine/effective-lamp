@@ -34,7 +34,7 @@ export const Cryptogram = ({
       <Cell
         key={`${value}-${i}`}
         encryptedValue={value}
-        decryptedValue={cipher[value].guesses[0]}
+        decryptedValue={cipher[value] ? cipher[value].guesses[0] : value}
       ></Cell>
     )
   }
