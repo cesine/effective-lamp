@@ -1,4 +1,4 @@
-import { solution, unicodeSplit } from '../../lib/words'
+import { solution, unicodeSplit } from '../../lib/quotes'
 import { Cell } from './Cell'
 
 type Props = {

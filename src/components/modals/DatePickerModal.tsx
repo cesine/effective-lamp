@@ -15,7 +15,7 @@ import {
   getLastGameDate,
   isValidGameDate,
   periodInDays,
-} from '../../lib/words'
+} from '../../lib/quotes'
 import { BaseModal } from './BaseModal'
 
 type Props = {

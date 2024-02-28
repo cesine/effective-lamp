@@ -1,5 +1,5 @@
+import { unicodeSplit } from '../../lib/quotes'
 import { getGuessStatuses } from '../../lib/statuses'
-import { unicodeSplit } from '../../lib/words'
 import { Cell } from './Cell'
 
 type Props = {

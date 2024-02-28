@@ -3,8 +3,8 @@ import { ReactNode } from 'react'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
+import { solution } from '../../lib/quotes'
 import { CharStatus } from '../../lib/statuses'
-import { solution } from '../../lib/words'
 
 const isPunctuation = (randomKey: string) => {
   return /\W/.test(randomKey)

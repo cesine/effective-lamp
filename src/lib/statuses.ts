@@ -1,4 +1,4 @@
-import { unicodeSplit } from './words'
+import { unicodeSplit } from './quotes'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 

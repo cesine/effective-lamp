@@ -2,8 +2,8 @@ import { UAParser } from 'ua-parser-js'
 
 import { MAX_CHALLENGES } from '../constants/settings'
 import { GAME_TITLE } from '../constants/strings'
+import { solutionIndex, unicodeSplit } from './quotes'
 import { getGuessStatuses } from './statuses'
-import { solutionIndex, unicodeSplit } from './words'
 
 const webShareApiDeviceTypes: string[] = ['mobile', 'smarttv', 'wearable']
 const parser = new UAParser()

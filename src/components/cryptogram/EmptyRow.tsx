@@ -1,4 +1,4 @@
-import { solution } from '../../lib/words'
+import { solution } from '../../lib/quotes'
 import { Cell } from './Cell'
 
 export const EmptyRow = () => {
