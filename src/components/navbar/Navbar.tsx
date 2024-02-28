@@ -26,11 +26,13 @@ export const Navbar = ({
       <div className="navbar-content px-5 short:h-auto">
         <div className="flex">
           <InformationCircleIcon
+            aria-label="Open Info Modal"
             className="h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsInfoModalOpen(true)}
           />
           {ENABLE_ARCHIVED_GAMES && (
             <CalendarIcon
+              aria-label="Open Archived Games"
               className="ml-3 h-6 w-6 cursor-pointer dark:stroke-white"
               onClick={() => setIsDatePickerModalOpen(true)}
             />
@@ -39,10 +41,12 @@ export const Navbar = ({
         <p className="text-xl font-bold dark:text-white">{GAME_TITLE}</p>
         <div className="right-icons">
           <ChartBarIcon
+            aria-label="Open Stats"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsStatsModalOpen(true)}
           />
           <CogIcon
+            aria-label="Open Settings"
             className="h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsSettingsModalOpen(true)}
           />

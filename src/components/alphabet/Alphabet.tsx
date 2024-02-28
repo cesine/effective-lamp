@@ -33,7 +33,7 @@ export const Alphabet = ({
 
   return (
     <div>
-      <div className="mb-1 flex justify-center">
+      <div className="mb-1 flex flex-wrap justify-center">
         {[
           'A',
           'B',

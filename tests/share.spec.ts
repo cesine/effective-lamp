@@ -1,36 +1,30 @@
 import { expect, test } from '@playwright/test'
 
-test.describe.skip('reactle tests', () => {
+test.describe('cryptogram tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
     await page.goto('/')
     await page.getByLabel('How to play').getByRole('button').click()
 
-    await page.keyboard.type('devote')
-    await page.waitForTimeout(100)
-    await page.getByLabel('ENTER').click()
+    // await page
+    //   .locator('div')
+    //   .filter({ hasText: /^""T$/ })
+    //   .getByLabel('T')
+    //   .first()
+    //   .click()
+    // await page.keyboard.type('a')
+    // expect(
+    //   page
+    //     .locator('div')
+    //     .filter({ hasText: /^""AT$/ })
+    //     .getByLabel('T')
+    //     .first()
+    // ).toHaveText('A')
 
-    await page.waitForTimeout(100)
-    await page.keyboard.type('flame')
-    await page.getByLabel('ENTER').click()
+    await page.getByRole('button', { name: 'F' }).click()
+    await page.keyboard.type('o')
+    expect(page.getByRole('button', { name: 'F' })).toHaveText('O')
 
-    await page.keyboard.type('grist')
-    await page.waitForTimeout(100)
-    await page.getByLabel('ENTER').click()
-
-    await page.keyboard.type('quirk')
-    await page.waitForTimeout(100)
-    await page.getByLabel('ENTER').click()
-
-    await page.keyboard.type('brawn')
-    await page.waitForTimeout(100)
-    await page.getByLabel('ENTER').click()
-
-    await page.keyboard.type('hymns')
-    await page.waitForTimeout(100)
-    await page.getByLabel('ENTER').click()
-
-    await page.locator('body').press('Enter')
-
+    /*
     await page.getByRole('button', { name: 'Share' }).click()
     let shareClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
@@ -59,5 +53,27 @@ test.describe.skip('reactle tests', () => {
       'navigator.clipboard.readText()'
     )
     expect(shareFromIconClipboardText).toContain('Reactle')
+
+    */
+
+    await page.getByLabel('Open Stats').click()
+    await page.getByRole('button', { name: 'Transfer' }).click()
+    await page.getByRole('button', { name: 'Copy' }).click()
+    let shareFromIconClipboardText = await page.evaluate(
+      'navigator.clipboard.readText()'
+    )
+    expect(shareFromIconClipboardText).toContain('P/')
+    await page
+      .getByLabel('Transfer your statistics')
+      .getByRole('button')
+      .first()
+      .click()
+
+    await page.getByLabel('Open Settings').click()
+    await page.getByLabel('Dark Mode').click()
+    await page
+      .getByLabel('Settings', { exact: true })
+      .getByRole('button')
+      .click()
   })
 })

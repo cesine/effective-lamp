@@ -49,6 +49,12 @@ export const Cell = ({
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
       'border-white dark:border-black': !status,
+    }
+  )
+
+  const classesDecrypted = classnames(
+    'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white',
+    {
       'absent shadowed bg-slate-400 dark:bg-slate-700 text-white border-slate-400 dark:border-slate-700':
         status === 'absent',
       'correct shadowed bg-orange-500 text-white border-orange-500':
@@ -64,14 +70,15 @@ export const Cell = ({
     }
   )
 
-  const classesDecrypted = classnames(
-    'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white'
-  )
-
-  const styles = {
+  const stylesDecrypted = {
     fontFamily: 'Courier New',
     animationDelay,
     minHeight: '1em',
+  }
+
+  const stylesEncrypted = {
+    ...stylesDecrypted,
+    marginBottom: '40px',
   }
   const cellOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
     const label = (event?.target as HTMLDivElement)?.ariaLabel || ''
@@ -92,14 +99,14 @@ export const Cell = ({
         aria-label={encryptedValue}
         onClick={cellOnClick}
         className={classesDecrypted}
-        style={styles}
+        style={stylesDecrypted}
       >
         {decryptedValue}
       </div>
 
       <div
         aria-label={encryptedValue}
-        style={styles}
+        style={stylesEncrypted}
         className={classesEncrypted}
       >
         {encryptedValue}
