@@ -9,12 +9,17 @@ export default {
 }
 
 export const Default = () => (
-  <Letter value="A" onClick={(value) => console.log('onClick', value)} />
+  <Letter
+    alphabetLine="E"
+    randomKey="A"
+    onClick={(value) => console.log('onClick', value)}
+  />
 )
 
 export const WithStatusAbsent = () => (
   <Letter
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'absent'}
     onClick={(value) => console.log('onClick', value)}
   />
@@ -22,7 +27,8 @@ export const WithStatusAbsent = () => (
 
 export const WithStatusPresent = () => (
   <Letter
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'present'}
     onClick={(value) => console.log('onClick', value)}
   />
@@ -30,14 +36,19 @@ export const WithStatusPresent = () => (
 
 export const WithStatusCorrect = () => (
   <Letter
-    value="B"
+    alphabetLine="A"
+    randomKey="B"
     status={'correct'}
     onClick={(value) => console.log('onClick', value)}
   />
 )
 
 export const WithChildren = () => (
-  <Letter value="C" onClick={(value) => console.log('onClick', value)}>
+  <Letter
+    alphabetLine="A"
+    randomKey="C"
+    onClick={(value) => console.log('onClick', value)}
+  >
     <span>Child</span>
   </Letter>
 )

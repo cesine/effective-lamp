@@ -1,11 +1,18 @@
 import classnames from 'classnames'
+import { useEffect, useState } from 'react'
+import { isNonNullExpression } from 'typescript'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 
+const isPunctuation = (decryptedValue: string) => {
+  return /\W/.test(decryptedValue)
+}
+
 type Props = {
-  value?: string
+  encryptedValue: string
+  decryptedValue?: string
   status?: CharStatus
   isRevealing?: boolean
   isCompleted?: boolean
@@ -13,23 +20,33 @@ type Props = {
 }
 
 export const Cell = ({
-  value,
+  encryptedValue,
+  decryptedValue,
   status,
   isRevealing,
   isCompleted,
   position = 0,
 }: Props) => {
-  const isFilled = value && !isCompleted
+  const [revealLetter, setRevealLetter] = useState(false)
+  const toggleRevealLetter = () => {
+    setRevealLetter(!revealLetter)
+  }
+  const [guess, setGuess] = useState('')
+
+  const isFilled = decryptedValue && !isCompleted
   const shouldReveal = isRevealing && isCompleted
   const animationDelay = `${position * REVEAL_TIME_MS}ms`
   const isHighContrast = getStoredIsHighContrastMode()
+  const shouldDisplayDecrypted = decryptedValue
+    ? !isPunctuation(decryptedValue)
+    : false
 
-  const classes = classnames(
+  const classesEncrypted = classnames(
     'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white',
     {
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
-      'border-black dark:border-slate-100': value && !status,
+      'border-white dark:border-black': !status,
       'absent shadowed bg-slate-400 dark:bg-slate-700 text-white border-slate-400 dark:border-slate-700':
         status === 'absent',
       'correct shadowed bg-orange-500 text-white border-orange-500':
@@ -45,10 +62,43 @@ export const Cell = ({
     }
   )
 
+  const classesDecrypted = classnames(
+    'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white'
+  )
+
+  const styles = {
+    fontFamily: 'Courier New',
+    animationDelay,
+    minHeight: '1em',
+  }
+  const cellOnClick = () => {
+    console.log('inside the onclick')
+    // window.addEventListener('keydown', handleKeyDown)
+  }
+
+  function handleKeyDown(this: Window, ev: KeyboardEvent) {
+    console.log(ev.key, decryptedValue)
+    setGuess(ev.key.toLocaleUpperCase())
+    setRevealLetter(true)
+    window.removeEventListener('keydown', handleKeyDown)
+  }
   return (
-    <div className={classes} style={{ animationDelay }}>
-      <div className="letter-container" style={{ animationDelay }}>
-        {value}
+    <div className="inline-flex flex-col">
+      <div
+        aria-label={encryptedValue}
+        onClick={cellOnClick}
+        className={classesDecrypted}
+        style={styles}
+      >
+        {decryptedValue}
+      </div>
+
+      <div
+        aria-label={encryptedValue}
+        style={styles}
+        className={classesEncrypted}
+      >
+        {encryptedValue}
       </div>
     </div>
   )

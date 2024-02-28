@@ -1,32 +1,61 @@
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
-const keys = [...alphabet]
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-type Cypher = Array<{ key: string; value: string }>
+export type Cipher = {
+  [key: string]: {
+    decrypted: string
+    guesses: string[]
+  }
+}
+
+function isOriginalPosition(shuffled: string[], original: string[]) {
+  for (var i = 0; i < shuffled.length; i++) {
+    if (shuffled[i] === original[i]) {
+      console.log('this letter is matching', i, original[i])
+      return true // Letter is in its original position
+    }
+  }
+  return false // No letters in their original positions
+}
 
 export const newCipher = () => {
-  const values = alphabet.sort(() => (Math.random() > 0.5 ? 1 : -1))
+  let randomKey: string[] = [...ALPHABET].sort(() =>
+    Math.random() > 0.5 ? 1 : -1
+  )
 
-  let cipher: Cypher = []
-  for (let index in keys) {
-    cipher = [...cipher, { key: keys[index], value: values[index] }]
+  while (isOriginalPosition(randomKey, ALPHABET)) {
+    console.log('regenerating randomKey', randomKey)
+    randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+  }
+
+  //const randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+
+  let cipher: Cipher = {}
+  for (let index in ALPHABET) {
+    // console.log('looking at ', index)
+    const i = parseInt(index, 10)
+    cipher[randomKey[i]] = {
+      decrypted: ALPHABET[i],
+      guesses: [],
+    }
   }
 
   return cipher
 }
 
 export const encodePhrase = ({
-  cypher,
+  cipher: cipher,
   phrase,
 }: {
-  cypher: Cypher
+  cipher: Cipher
   phrase: string
 }) => {
-  const encoded = phrase.toLocaleUpperCase().split('')
-  for (let index in encoded) {
-    const letter = encoded[index]
-    const encodedLetter =
-      cypher.find(({ key }) => key === letter)?.value || letter
-    encoded[index] = encodedLetter
+  const encryptedPhrase = phrase.toLocaleUpperCase().split('')
+  for (let index in encryptedPhrase) {
+    const letter = encryptedPhrase[index]
+    const encryptedPhraseLetter =
+      Object.keys(cipher).find((key) => cipher[key].decrypted === letter) ||
+      letter
+    encryptedPhrase[index] = encryptedPhraseLetter
   }
-  return encoded.join('')
+  return encryptedPhrase.join('')
 }

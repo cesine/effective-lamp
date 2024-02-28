@@ -1,44 +1,68 @@
+import { NewLineKind } from 'typescript'
+
 import { MAX_CHALLENGES } from '../../constants/settings'
-import { DecryptedLine } from './DecryptedLine'
-import { EmptyRow } from './EmptyRow'
-import { CompletedRow } from './EncryptedRow'
+import { Cipher, newCipher } from '../../lib/cipher'
+import { Cell } from './Cell'
 
 type Props = {
-  solution: string
-  guesses: string[]
-  currentGuess: string
+  cipher: Cipher
+  encryptedQuote: string
   isRevealing?: boolean
   currentRowClassName: string
 }
 
 export const Cryptogram = ({
-  solution,
-  guesses,
-  currentGuess,
+  cipher,
+  encryptedQuote: encryptedQuote,
   isRevealing,
   currentRowClassName,
 }: Props) => {
-  const empties =
-    guesses.length < MAX_CHALLENGES - 1
-      ? Array.from(Array(MAX_CHALLENGES - 1 - guesses.length))
-      : []
+  const words = encryptedQuote.toLocaleUpperCase().split(/\s/)
+  // console.log('words are', words)
+
+  function renderLetter(value: string, i: number) {
+    if (/\s/.test(value)) {
+      return (
+        <div key={`${value}-${i}`} test-id="letter">
+          {value}
+        </div>
+      )
+    }
+
+    return (
+      //<span test-id="letter"> {value}</span>
+      <Cell
+        key={`${value}-${i}`}
+        encryptedValue={value}
+        decryptedValue={cipher[value] ? cipher[value].guesses[0] : value}
+      ></Cell>
+    )
+  }
+
+  function renderWord(word: string, i: number) {
+    // console.log('renderword', word)
+    return (
+      <div
+        key={`${word}-${i}`}
+        test-id="word"
+        className="mr-4 flex whitespace-nowrap"
+      >
+        {word.split('').map(renderLetter)}
+      </div>
+    )
+  }
+
+  const stylePhrase = {
+    width: '100%',
+  }
 
   return (
-    <>
-      {guesses.map((guess, i) => (
-        <CompletedRow
-          key={i}
-          solution={solution}
-          guess={guess}
-          isRevealing={isRevealing && guesses.length - 1 === i}
-        />
-      ))}
-      {guesses.length < MAX_CHALLENGES && (
-        <DecryptedLine guess={currentGuess} className={currentRowClassName} />
-      )}
-      {empties.map((_, i) => (
-        <EmptyRow key={i} />
-      ))}
-    </>
+    <div
+      test-id="phrase"
+      className="mb-1 flex flex-wrap justify-center"
+      style={stylePhrase}
+    >
+      {words.map(renderWord)}
+    </div>
   )
 }

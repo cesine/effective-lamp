@@ -6,12 +6,16 @@ import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 import { solution } from '../../lib/words'
 
+const isPunctuation = (randomKey: string) => {
+  return /\W/.test(randomKey)
+}
 type Props = {
   children?: ReactNode
-  value: string
+  alphabetLine: string | null
+  randomKey: string
   width?: number
   status?: CharStatus
-  onClick: (value: string) => void
+  onClick: (randomKey: string) => void
   isRevealing?: boolean
 }
 
@@ -19,12 +23,14 @@ export const Letter = ({
   children,
   status,
   width = 40,
-  value,
+  alphabetLine = '',
+  randomKey,
   onClick,
   isRevealing,
 }: Props) => {
   const keyDelayMs = REVEAL_TIME_MS * solution.length
   const isHighContrast = getStoredIsHighContrastMode()
+  const displayButton = !isPunctuation(randomKey)
 
   const classes = classnames(
     'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
@@ -44,24 +50,46 @@ export const Letter = ({
     }
   )
 
+  const classesLetter = classnames(
+    'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
+    {
+      'transition ease-in-out': isRevealing,
+    }
+  )
+
   const styles = {
     transitionDelay: isRevealing ? `${keyDelayMs}ms` : 'unset',
     width: `${width}px`,
   }
 
+  const stylesLetter = {
+    transitionDelay: isRevealing ? `${keyDelayMs}ms` : 'unset',
+    width: `${width}px`,
+  }
+
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick(value)
+    onClick(randomKey)
     event.currentTarget.blur()
   }
 
   return (
-    <button
-      style={styles}
-      aria-label={`${value}${status ? ' ' + status : ''}`}
-      className={classes}
-      onClick={handleClick}
-    >
-      {children || value}
-    </button>
+    <div>
+      <button
+        style={displayButton ? styles : stylesLetter}
+        aria-label={alphabetLine || ''}
+        className={displayButton ? classes : classesLetter}
+        onClick={handleClick}
+      >
+        {children || randomKey}
+      </button>
+
+      <span
+        aria-label={alphabetLine || ''}
+        style={stylesLetter}
+        className={classesLetter}
+      >
+        {alphabetLine}
+      </span>
+    </div>
   )
 }
