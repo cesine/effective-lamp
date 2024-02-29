@@ -11,6 +11,7 @@ on:
       - 'src/stories/**'
       - '.storybook/**'
       - '.github/workflows/storybook.yml'
+      - 'package.json'
 
 jobs:
   build:
