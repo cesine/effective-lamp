@@ -25,6 +25,7 @@ export const Alert = ({
 
   return (
     <Transition
+      aria-label={message}
       show={isOpen}
       as={Fragment}
       enter="ease-out duration-300 transition"
