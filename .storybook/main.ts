@@ -1,14 +1,12 @@
 import type { StorybookConfig } from '@storybook/react-webpack5'
+import path from 'path'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(mjs|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-onboarding',
-    '@storybook/addon-interactions',
-  ],
+  addons: ['@storybook/preset-create-react-app'],
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
   framework: {
     name: '@storybook/react-webpack5',
     options: {
@@ -17,6 +15,7 @@ const config: StorybookConfig = {
       },
     },
   },
+
   docs: {
     autodocs: 'tag',
   },
