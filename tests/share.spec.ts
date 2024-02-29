@@ -29,7 +29,7 @@ test.describe('cryptogram tests', () => {
     let shareClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
     )
-    expect(shareClipboardText).toContain('Reactle')
+    expect(shareClipboardText).toContain('Clueright\'s Cryptogram')
     expect(shareClipboardText).toContain('⬜')
     expect(shareClipboardText).toContain('🟨')
     expect(shareClipboardText).toContain('🟩')
@@ -52,8 +52,7 @@ test.describe('cryptogram tests', () => {
     let shareFromIconClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
     )
-    expect(shareFromIconClipboardText).toContain('Reactle')
-
+    expect(shareFromIconClipboardText).toContain('Clueright\'s Cryptogram')
     */
 
     await page.getByLabel('Open Stats').click()

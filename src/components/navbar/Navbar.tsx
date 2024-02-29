@@ -38,7 +38,12 @@ export const Navbar = ({
             />
           )}
         </div>
-        <p className="text-xl font-bold dark:text-white">{GAME_TITLE}</p>
+        <p className="block truncate text-xl font-bold dark:text-white md:hidden">
+          Cryptogram
+        </p>
+        <p className="hidden truncate text-xl font-bold dark:text-white md:block">
+          {GAME_TITLE}
+        </p>
         <div className="right-icons">
           <ChartBarIcon
             aria-label="Open Stats"
