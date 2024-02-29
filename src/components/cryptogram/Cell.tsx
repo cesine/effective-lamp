@@ -6,8 +6,8 @@ import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 
-const isPunctuation = (decryptedValue: string) => {
-  return /\W/.test(decryptedValue)
+const isaLetter = (decryptedValue: string) => {
+  return /[a-zA-Z]+/.test(decryptedValue)
 }
 
 type Props = {
@@ -39,9 +39,7 @@ export const Cell = ({
   const shouldReveal = isRevealing && isCompleted
   const animationDelay = `${position * REVEAL_TIME_MS}ms`
   const isHighContrast = getStoredIsHighContrastMode()
-  const shouldDisplayDecrypted = decryptedValue
-    ? !isPunctuation(decryptedValue)
-    : false
+  const shouldDisplayDecrypted = isaLetter(encryptedValue)
 
   const classesEncrypted = classnames(
     'xxshort:w-4 xxshort:h-4 short:text-2xl short:w-6 short:h-6 w-8 h-8 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-thin rounded dark:text-white',
@@ -98,10 +96,10 @@ export const Cell = ({
       <div
         aria-label={encryptedValue}
         onClick={cellOnClick}
-        className={classesDecrypted}
+        className={shouldDisplayDecrypted ? classesDecrypted : classesEncrypted}
         style={stylesDecrypted}
       >
-        {decryptedValue}
+        {shouldDisplayDecrypted ? decryptedValue : null}
       </div>
 
       <div
