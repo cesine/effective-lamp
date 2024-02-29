@@ -22,10 +22,10 @@ export const Alert = ({
       'bg-blue-500 text-white': variant === 'success',
     }
   )
+  console.log('showing Alert', message)
 
   return (
     <Transition
-      aria-label={message}
       show={isOpen}
       as={Fragment}
       enter="ease-out duration-300 transition"
@@ -37,7 +37,12 @@ export const Alert = ({
     >
       <div className={classes}>
         <div className="p-2">
-          <p className="text-center text-sm font-medium">{message}</p>
+          <p
+            aria-label="There is an message"
+            className="text-center text-sm font-medium"
+          >
+            {message}
+          </p>
         </div>
       </div>
     </Transition>
