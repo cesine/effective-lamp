@@ -54,12 +54,17 @@ export const AlertProvider = ({ children }: Props) => {
         durationMs = ALERT_TIME_MS,
       } = options || {}
 
+      console.log('will show in ', delayMs)
+
       setTimeout(() => {
+        console.log('showing ', showStatus, newMessage)
         setStatus(showStatus)
         setMessage(newMessage)
         setIsVisible(true)
 
         if (!persist) {
+          console.log('persist is false', persist, message)
+
           setTimeout(() => {
             setIsVisible(false)
             if (onClose) {

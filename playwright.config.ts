@@ -29,6 +29,9 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: BASE_URL,
 
+    /* Show the browser if we are not in CI */
+    headless: !!process.env.CI,
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
   },
