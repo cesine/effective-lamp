@@ -1,7 +1,7 @@
 import type { Page, TestInfo } from '@playwright/test'
 import fs from 'fs'
 
-const browserLogFilePath = 'playwright-report/browser.txt'
+const browserLogFilePath = 'browser.txt'
 
 export const collectConsole = (
   { page }: { page: Page },
