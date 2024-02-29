@@ -3,6 +3,7 @@ const archiveGameStateKey = 'archiveGameState'
 const highContrastKey = 'highContrast'
 
 export type StoredGameState = {
+  gameWasWon: boolean
   guesses: string[]
   solution: string
 }
