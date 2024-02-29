@@ -7,6 +7,37 @@ export type Cipher = {
   }
 }
 
+function generateCryptogramHint(
+  key: string,
+  cryptogram: string,
+  index: number
+) {
+  var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  var hints = {}
+
+  var startIndex = index % alphabet.length
+
+  var availableLetters =
+    alphabet.substring(startIndex) + alphabet.substring(0, startIndex)
+
+  // Iterate through the available letters
+  for (var i = 0; i < availableLetters.length; i++) {
+    var keyLetter = availableLetters.charAt(i)
+    // Logger.log(keyLetter);
+
+    // Check if the letter is in the cryptogram
+    if (cryptogram.indexOf(keyLetter) !== -1) {
+      // Find the original letter it corresponds to in the key
+      var originalLetter = alphabet.charAt(key.indexOf(keyLetter))
+      // Logger.log("#" + cryptogramNumber + ": " + keyLetter + " = " + originalLetter);
+      return '#' + index + ': ' + keyLetter + ' = ' + originalLetter
+    }
+  }
+
+  // If no letter was found, return null
+  return null
+}
+
 function isOriginalPosition(shuffled: string[], original: string[]) {
   for (var i = 0; i < shuffled.length; i++) {
     if (shuffled[i] === original[i]) {
