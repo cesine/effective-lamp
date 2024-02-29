@@ -30,7 +30,7 @@ export default defineConfig({
     baseURL: BASE_URL,
 
     /* Show the browser if we are not in CI */
-    headless: process.env.CI,
+    headless: !!process.env.CI,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
