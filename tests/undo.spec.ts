@@ -6,7 +6,9 @@ test.describe('undo tests', () => {
   test.beforeEach(({ page }, testInfo) => {
     collectConsole({ page }, testInfo)
   })
-  test('undo', async ({ page }) => {
+  test('As a user I want to undo a guess by clicking on a cell', async ({
+    page,
+  }) => {
     await page.goto('/')
     await page.getByLabel('How to play').getByRole('button').click()
 
