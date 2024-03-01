@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useEffect, useState } from 'react'
+import { RefObject, createRef, useEffect, useState } from 'react'
 import { isNonNullExpression } from 'typescript'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
@@ -77,11 +77,14 @@ export const Cell = ({
     ...stylesDecrypted,
     marginBottom: '40px',
   }
+  const hiddenInputRef: RefObject<HTMLInputElement> = createRef()
+
   const cellOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
     const label = (event?.target as HTMLDivElement)?.ariaLabel || ''
 
     onClick('', label)
     event.currentTarget.blur()
+    hiddenInputRef?.current?.focus()
   }
 
   function handleKeyDown(this: Window, ev: KeyboardEvent) {
@@ -99,6 +102,11 @@ export const Cell = ({
         style={stylesDecrypted}
       >
         {shouldDisplayDecrypted ? decryptedValue : null}
+        <input
+          ref={hiddenInputRef}
+          style={{ position: 'absolute', top: '-9999px' }}
+          type="text"
+        />
       </div>
 
       <div

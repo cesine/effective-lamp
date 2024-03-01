@@ -22,6 +22,9 @@ export const Alert = ({
       'bg-blue-500 text-white': variant === 'success',
     }
   )
+  if (!isOpen) {
+    return <></>
+  }
   console.log('showing Alert', message)
 
   return (
