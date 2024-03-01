@@ -105,6 +105,7 @@ export const Cell = ({
         <input
           ref={hiddenInputRef}
           style={{ position: 'absolute', top: '-9999px' }}
+          type="text"
         />
       </div>
 
