@@ -3,7 +3,7 @@ import React from 'react'
 import { newCipher } from '../../lib/cipher'
 import { Alphabet } from './Alphabet'
 
-const cipher = newCipher()
+const cipher = newCipher(3)
 
 export default {
   title: 'Alphabet',

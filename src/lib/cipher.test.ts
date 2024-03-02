@@ -3,12 +3,12 @@ import { encodePhrase, newCipher } from './cipher'
 describe('cipher', () => {
   describe('newCipher', () => {
     it('should return a cipher of length 26', () => {
-      const cipher = newCipher()
+      const cipher = newCipher(3)
       expect(Object.keys(cipher).length).toBe(26)
     })
 
     it('should return a cipher with unique values', () => {
-      const cipher = newCipher()
+      const cipher = newCipher(3)
       const values = Object.keys(cipher).map((key) => {
         return cipher[key].decrypted
       })
@@ -19,7 +19,7 @@ describe('cipher', () => {
     })
 
     it('shuffled letter should not match original letter', () => {
-      const cipher = newCipher()
+      const cipher = newCipher(3)
       Object.keys(cipher).map((key: string) => {
         if (key === cipher[key].decrypted) {
           expect(cipher[key].decrypted).not.toEqual(key)
@@ -31,7 +31,7 @@ describe('cipher', () => {
   describe('encodePhrase', () => {
     it('should encode the phrase ', () => {
       const phrase = 'Break a leg'
-      const cipher = newCipher()
+      const cipher = newCipher(3)
       const encodedPhrase = encodePhrase({ cipher: cipher, phrase })
       expect(encodedPhrase).not.toBe(phrase)
       expect(encodedPhrase.length).toEqual(phrase.length)
