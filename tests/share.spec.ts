@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
     await page.goto(
-      '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0fQ=='
+      '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0LCJtZXNzYWdlIjoiYSB0b3Agc2VjcmV0IG1lc3NhZ2UgZnJvbSBhIHNoYXJlIn0='
     )
 
     await page.getByRole('button', { name: 'F' }).click()
@@ -12,7 +12,7 @@ test.describe('cryptogram tests', () => {
 
     await page.getByRole('button', { name: 'K' }).click()
     await page.keyboard.type('h')
-    expect(page.getByRole('button', { name: 'K' })).toHaveText('h')
+    expect(page.getByRole('button', { name: 'K' })).toHaveText('H')
 
     /*
     await page.getByRole('button', { name: 'Share' }).click()
@@ -43,6 +43,7 @@ test.describe('cryptogram tests', () => {
       'navigator.clipboard.readText()'
     )
     expect(shareFromIconClipboardText).toContain('Clueright\'s Cryptogram')
+    expect(shareFromIconClipboardText).toContain('a top secret message from a share 4')
     */
 
     await page.getByLabel('Open Stats').click()

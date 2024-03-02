@@ -2,7 +2,7 @@ import { UAParser } from 'ua-parser-js'
 
 import { MAX_CHALLENGES } from '../constants/settings'
 import { GAME_TITLE } from '../constants/strings'
-import { solutionIndex, unicodeSplit } from './quotes'
+import { message, solutionIndex, unicodeSplit } from './quotes'
 import { getGuessStatuses } from './statuses'
 
 const webShareApiDeviceTypes: string[] = ['mobile', 'smarttv', 'wearable']
@@ -21,7 +21,7 @@ export const shareStatus = (
   handleShareFailure: () => void
 ) => {
   const textToShare =
-    `${GAME_TITLE} ${solutionIndex} ${
+    `${GAME_TITLE} ${message} ${solutionIndex} ${
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(
@@ -64,25 +64,7 @@ export const generateEmojiGrid = (
   guesses: string[],
   tiles: string[]
 ) => {
-  return guesses
-    .map((guess) => {
-      const status = getGuessStatuses(solution, guess)
-      const splitGuess = unicodeSplit(guess)
-
-      return splitGuess
-        .map((_, i) => {
-          switch (status[i]) {
-            case 'correct':
-              return tiles[0]
-            case 'present':
-              return tiles[1]
-            default:
-              return tiles[2]
-          }
-        })
-        .join('')
-    })
-    .join('\n')
+  return guesses.join('')
 }
 
 const attemptShare = (shareData: object) => {

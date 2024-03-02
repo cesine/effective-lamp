@@ -138,6 +138,7 @@ export const getSolution = (gameDate: Date) => {
     ? gameFromQueryParams.solution
     : getQuoteOfDay(index)
   return {
+    message: gameFromQueryParams.message ? gameFromQueryParams.message : '',
     solution: quoteOfTheDay,
     solutionGameDate: gameDate,
     solutionIndex: index,
@@ -186,6 +187,7 @@ export const getIsLatestGame = () => {
 export type QueryParamGameState = {
   guesses: string[]
   index: number
+  message?: string
   solution: string
 }
 
@@ -210,5 +212,5 @@ export const loadGameStateFromQueryParam = (
   return emptyGame
 }
 
-export const { solution, solutionGameDate, solutionIndex, tomorrow } =
+export const { message, solution, solutionGameDate, solutionIndex, tomorrow } =
   getSolution(getGameDate())
