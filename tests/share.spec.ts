@@ -6,6 +6,8 @@ test.describe('cryptogram tests', () => {
       '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0LCJtZXNzYWdlIjoiYSB0b3Agc2VjcmV0IG1lc3NhZ2UgZnJvbSBhIHNoYXJlIn0='
     )
 
+    await page.getByLabel('How to play').getByRole('button').click()
+
     await page.getByRole('button', { name: 'F' }).click()
     await page.keyboard.type('i')
     expect(page.getByRole('button', { name: 'F' })).toHaveText('I')
