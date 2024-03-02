@@ -11,6 +11,9 @@ export const Default = () => (
   <Navbar
     setHint={(value) => console.log('setHint', value)}
     setIsInfoModalOpen={(value) => console.log('setIsInfoModalOpen', value)}
+    setIsSendMessageModalOpen={(value) =>
+      console.log('setIsSendMessageModalOpen', value)
+    }
     setIsStatsModalOpen={(value) => console.log('setIsStatsModalOpen', value)}
     setIsDatePickerModalOpen={(value) =>
       console.log('setIsDatePickerModalOpen', value)

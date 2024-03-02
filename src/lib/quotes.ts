@@ -127,10 +127,18 @@ export const getQuoteOfDay = (index: number) => {
 }
 
 export const getSolution = (gameDate: Date) => {
+  const queryParams = new URLSearchParams(window.location.search)
+  const gameFromQueryParams = loadGameStateFromQueryParam(queryParams)
+
   const nextGameDate = getNextGameDate(gameDate)
-  const index = getIndex(gameDate)
-  const quoteOfTheDay = getQuoteOfDay(index)
+  const index = gameFromQueryParams.index
+    ? gameFromQueryParams.index
+    : getIndex(gameDate)
+  const quoteOfTheDay = gameFromQueryParams.solution
+    ? gameFromQueryParams.solution
+    : getQuoteOfDay(index)
   return {
+    message: gameFromQueryParams.message ? gameFromQueryParams.message : '',
     solution: quoteOfTheDay,
     solutionGameDate: gameDate,
     solutionIndex: index,
@@ -176,5 +184,33 @@ export const getIsLatestGame = () => {
   return parsed === null || !('d' in parsed)
 }
 
-export const { solution, solutionGameDate, solutionIndex, tomorrow } =
+export type QueryParamGameState = {
+  guesses: string[]
+  index: number
+  message?: string
+  solution: string
+}
+
+const emptyGame = { guesses: [], index: 1, solution: '' }
+
+export const loadGameStateFromQueryParam = (
+  queryParams: URLSearchParams
+): QueryParamGameState => {
+  try {
+    const code = queryParams.get('code')
+    const stateString = code ? atob(code) : '{}'
+    const state = stateString
+      ? (JSON.parse(stateString) as QueryParamGameState)
+      : emptyGame
+    if (state.solution) {
+      console.log('Loaded a game from query params', state)
+    }
+    return state
+  } catch (err) {
+    console.warn('Error laoding game from query params, ignoring it', err)
+  }
+  return emptyGame
+}
+
+export const { message, solution, solutionGameDate, solutionIndex, tomorrow } =
   getSolution(getGameDate())

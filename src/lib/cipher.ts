@@ -51,7 +51,7 @@ function isOriginalPosition(shuffled: string[], original: string[]) {
   return false // No letters in their original positions
 }
 
-export const newCipher = () => {
+export const newCipher = (seed: number) => {
   let randomKey: string[] = [...ALPHABET].sort(() =>
     Math.random() > 0.5 ? 1 : -1
   )

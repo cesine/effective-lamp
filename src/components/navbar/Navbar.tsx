@@ -1,6 +1,7 @@
 import {
   CalendarIcon,
   ChartBarIcon,
+  ChatBubbleOvalLeftIcon,
   CogIcon,
   InformationCircleIcon,
   PuzzlePieceIcon,
@@ -12,6 +13,7 @@ import { GAME_TITLE } from '../../constants/strings'
 type Props = {
   setHint: (value: boolean) => void
   setIsInfoModalOpen: (value: boolean) => void
+  setIsSendMessageModalOpen: (value: boolean) => void
   setIsStatsModalOpen: (value: boolean) => void
   setIsDatePickerModalOpen: (value: boolean) => void
   setIsSettingsModalOpen: (value: boolean) => void
@@ -20,6 +22,7 @@ type Props = {
 export const Navbar = ({
   setHint,
   setIsInfoModalOpen,
+  setIsSendMessageModalOpen,
   setIsStatsModalOpen,
   setIsDatePickerModalOpen,
   setIsSettingsModalOpen,
@@ -49,6 +52,13 @@ export const Navbar = ({
           {GAME_TITLE}
         </p>
         <div className="right-icons">
+          <ChatBubbleOvalLeftIcon
+            aria-label="Send an encrypted message"
+            className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
+            onClick={() => setIsSendMessageModalOpen(true)}
+            title="Click to write an encrypted message"
+          />
+
           <PuzzlePieceIcon
             aria-label="Show Hint"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"

@@ -9,7 +9,7 @@ export default {
   component: Cryptogram,
 }
 const solution = getQuoteOfDay(11)
-const cipher = newCipher()
+const cipher = newCipher(3)
 
 //const solution = ' "It\'s the friends you can call up at 4 a.m. that matter." -Marlene Dietrich'
 const onChar = (input: string, ariaLabel: string) => {
