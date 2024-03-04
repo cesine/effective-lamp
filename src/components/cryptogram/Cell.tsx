@@ -1,6 +1,5 @@
 import classnames from 'classnames'
-import { RefObject, createRef, useEffect, useState } from 'react'
-import { isNonNullExpression } from 'typescript'
+import { RefObject, createRef } from 'react'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
@@ -29,11 +28,10 @@ export const Cell = ({
   onClick,
   position = 0,
 }: Props) => {
-  const [revealLetter, setRevealLetter] = useState(false)
-  const toggleRevealLetter = () => {
-    setRevealLetter(!revealLetter)
-  }
-  const [guess, setGuess] = useState('')
+  // const [revealLetter, setRevealLetter] = useState(isRevealing)
+  // const toggleRevealLetter = () => {
+  //   setRevealLetter(!revealLetter)
+  // }
 
   const isFilled = decryptedValue && !isCompleted
   const shouldReveal = isRevealing && isCompleted
@@ -87,12 +85,6 @@ export const Cell = ({
     hiddenInputRef?.current?.focus()
   }
 
-  function handleKeyDown(this: Window, ev: KeyboardEvent) {
-    console.log(ev.key, decryptedValue)
-    setGuess(ev.key.toLocaleUpperCase())
-    setRevealLetter(true)
-    window.removeEventListener('keydown', handleKeyDown)
-  }
   return (
     <div className="inline-flex flex-col">
       <div

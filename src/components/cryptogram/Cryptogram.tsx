@@ -1,7 +1,4 @@
-import { NewLineKind } from 'typescript'
-
-import { MAX_CHALLENGES } from '../../constants/settings'
-import { Cipher, newCipher } from '../../lib/cipher'
+import { Cipher } from '../../lib/cipher'
 import { Cell } from './Cell'
 
 type Props = {
@@ -9,15 +6,13 @@ type Props = {
   cipher: Cipher
   encryptedQuote: string
   isRevealing?: boolean
-  currentRowClassName: string
 }
 
 export const Cryptogram = ({
   onChar,
   cipher,
-  encryptedQuote: encryptedQuote,
+  encryptedQuote,
   isRevealing,
-  currentRowClassName,
 }: Props) => {
   const words = encryptedQuote.toLocaleUpperCase().split(/\s/)
   // console.log('words are', words)
@@ -38,6 +33,7 @@ export const Cryptogram = ({
         key={`${value}-${i}`}
         encryptedValue={value}
         decryptedValue={cipher[value] ? cipher[value].guesses[0] : value}
+        isRevealing={isRevealing}
       ></Cell>
     )
   }

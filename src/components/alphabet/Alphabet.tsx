@@ -1,9 +1,4 @@
-import { useEffect } from 'react'
-
-import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
 import { Cipher } from '../../lib/cipher'
-import { localeAwareUpperCase } from '../../lib/quotes'
-import { getStatuses } from '../../lib/statuses'
 import { Letter } from './Letter'
 
 type Props = {

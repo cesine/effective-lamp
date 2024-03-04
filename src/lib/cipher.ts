@@ -13,7 +13,6 @@ export function generateCryptogramHint(
   index: number
 ) {
   var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  var hints = {}
 
   var startIndex = index % alphabet.length
 
@@ -77,7 +76,7 @@ export const newCipher = (seed: number) => {
 }
 
 export const encodePhrase = ({
-  cipher: cipher,
+  cipher,
   phrase,
 }: {
   cipher: Cipher
