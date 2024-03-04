@@ -57,20 +57,21 @@ function seededRandom(seed: number) {
 
 export const newCipher = (seed: number) => {
   console.log('todays seed', seed)
-  let closeSeed = seed
+  let whileCount = 0
+
   let randomKey: string[] = [...ALPHABET].sort(() =>
     seededRandom(seed) > 0.5 ? 1 : -1
   )
 
-  while (isOriginalPosition(randomKey, ALPHABET)) {
+  while (whileCount < 10 && isOriginalPosition(randomKey, ALPHABET)) {
+    whileCount++
     console.log('regenerating randomKey', randomKey)
+    // eslint-disable-next-line no-loop-func
     randomKey = [...ALPHABET].sort(() =>
-      seededRandom(closeSeed++) > 0.5 ? 1 : -1
+      seededRandom(seed + whileCount) > 0.5 ? 1 : -1
     )
-    console.log('trying with next seed', closeSeed)
+    console.log('trying with next seed whileCount', whileCount, seed)
   }
-
-  //const randomKey = [...ALPHABET].sort(() => (seededRandom() > 0.5 ? 1 : -1))
 
   let cipher: Cipher = {}
   for (let index in ALPHABET) {

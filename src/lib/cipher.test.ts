@@ -20,7 +20,7 @@ describe('cipher', () => {
 
     it('should use the same cipher for the same seed', () => {
       const cipher = newCipher(8)
-      expect(cipher['A'].decrypted).toEqual('K')
+      expect(cipher['A'].decrypted).toEqual('Z')
     })
 
     it('shuffled letter should not match original letter', () => {
