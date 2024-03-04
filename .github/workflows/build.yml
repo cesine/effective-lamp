@@ -4,6 +4,8 @@ on:
     paths:
       - 'src/**'
       - '*.{json|js|ts}'
+      - '.github/workflows/build.yml'
+
   push:
     branches:
       - main
