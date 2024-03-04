@@ -8,13 +8,13 @@ test.describe('cryptogram tests', () => {
 
     await page.getByLabel('How to play').getByRole('button').click()
 
-    await page.getByRole('button', { name: 'M' }).click()
+    await page.getByRole('button', { name: 'R' }).click()
     await page.keyboard.type('i')
-    expect(page.getByRole('button', { name: 'M' })).toHaveText('I')
+    expect(page.getByRole('button', { name: 'R' })).toHaveText('I')
 
-    await page.getByRole('button', { name: 'Y' }).click()
+    await page.getByRole('button', { name: 'S' }).click()
     await page.keyboard.type('h')
-    expect(page.getByRole('button', { name: 'Y' })).toHaveText('H')
+    expect(page.getByRole('button', { name: 'S' })).toHaveText('H')
 
     // Winning dialog should show
     await page.getByRole('button', { name: 'Share' }).click()
@@ -61,5 +61,9 @@ test.describe('cryptogram tests', () => {
       .getByLabel('Settings', { exact: true })
       .getByRole('button')
       .click()
+
+    await page.reload()
+    expect(page.getByRole('button', { name: 'R' })).toHaveText('I')
+    expect(page.getByRole('button', { name: 'S' })).toHaveText('H')
   })
 })

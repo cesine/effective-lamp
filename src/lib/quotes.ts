@@ -9,7 +9,6 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import queryString from 'query-string'
 
 import { QUOTES } from '../constants/quotelist'
-import { ENABLE_ARCHIVED_GAMES } from '../constants/settings'
 import { NOT_CONTAINED_MESSAGE, WRONG_SPOT_MESSAGE } from '../constants/strings'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { getToday } from './dateutils'
@@ -177,10 +176,8 @@ export const setGameDate = (d: Date) => {
 }
 
 export const getIsLatestGame = () => {
-  if (!ENABLE_ARCHIVED_GAMES) {
-    return true
-  }
   const parsed = queryString.parse(window.location.search)
+  // TODO use URLparams and return true if no d or code is set
   return parsed === null || !('d' in parsed)
 }
 
