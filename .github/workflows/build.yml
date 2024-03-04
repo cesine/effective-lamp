@@ -17,7 +17,7 @@ jobs:
       - run: |
           npm install
       - run: |
-          PUBLIC_URL=/crytpogram npm run build
+          PUBLIC_URL=/cryptogram npm run build
 
       - name: Deploy to branch
         # if: github.ref == 'refs/heads/main'
