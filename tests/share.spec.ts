@@ -61,5 +61,9 @@ test.describe('cryptogram tests', () => {
       .getByLabel('Settings', { exact: true })
       .getByRole('button')
       .click()
+
+    await page.reload()
+    expect(page.getByRole('button', { name: 'R' })).toHaveText('I')
+    expect(page.getByRole('button', { name: 'S' })).toHaveText('H')
   })
 })
