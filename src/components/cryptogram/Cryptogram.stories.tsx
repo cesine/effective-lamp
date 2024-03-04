@@ -22,7 +22,6 @@ export const Default = () => (
     cipher={cipher}
     encryptedQuote={solution}
     isRevealing={true}
-    currentRowClassName="example-class"
   />
 )
 
@@ -32,6 +31,5 @@ export const Default = () => (
     guesses={['grist', 'devote']}
 currentGuess = "brawn"
 isRevealing = { false}
-currentRowClassName = "example-class"
   />
 ) */

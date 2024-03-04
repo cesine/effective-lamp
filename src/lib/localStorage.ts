@@ -1,5 +1,3 @@
-import { URLSearchParams } from 'url'
-
 const gameStateKey = 'gameState'
 const archiveGameStateKey = 'archiveGameState'
 const highContrastKey = 'highContrast'

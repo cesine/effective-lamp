@@ -63,7 +63,7 @@ export const AlertProvider = ({ children }: Props) => {
         setIsVisible(true)
 
         if (!persist) {
-          console.log('persist is false', persist, message)
+          console.log('persist is false', persist, newMessage)
 
           setTimeout(() => {
             setIsVisible(false)
