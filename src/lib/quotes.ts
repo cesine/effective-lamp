@@ -177,10 +177,8 @@ export const setGameDate = (d: Date) => {
 }
 
 export const getIsLatestGame = () => {
-  if (!ENABLE_ARCHIVED_GAMES) {
-    return true
-  }
   const parsed = queryString.parse(window.location.search)
+  // TODO use URLparams and return true if no d or code is set
   return parsed === null || !('d' in parsed)
 }
 
