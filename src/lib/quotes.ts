@@ -164,15 +164,18 @@ export const getGameDate = () => {
 }
 
 export const setGameDate = (d: Date) => {
+  const path = window.location.pathname
   try {
     if (d < getToday()) {
-      window.location.href = '/?d=' + formatISO(d, { representation: 'date' })
+      window.location.href = `${path}?d=${formatISO(d, {
+        representation: 'date',
+      })}`
       return
     }
   } catch (e) {
     console.log(e)
   }
-  window.location.href = '/'
+  window.location.href = path
 }
 
 export const getIsLatestGame = () => {
