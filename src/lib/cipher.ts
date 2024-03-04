@@ -51,17 +51,27 @@ function isOriginalPosition(shuffled: string[], original: string[]) {
   return false // No letters in their original positions
 }
 
+function seededRandom(seed: number) {
+  const x = Math.sin(seed++) * 10000
+  return x - Math.floor(x)
+}
+
 export const newCipher = (seed: number) => {
+  console.log('todays seed', seed)
+  let closeSeed = seed
   let randomKey: string[] = [...ALPHABET].sort(() =>
-    Math.random() > 0.5 ? 1 : -1
+    seededRandom(seed) > 0.5 ? 1 : -1
   )
 
   while (isOriginalPosition(randomKey, ALPHABET)) {
     console.log('regenerating randomKey', randomKey)
-    randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+    randomKey = [...ALPHABET].sort(() =>
+      seededRandom(closeSeed++) > 0.5 ? 1 : -1
+    )
+    console.log('trying with next seed', closeSeed)
   }
 
-  //const randomKey = [...ALPHABET].sort(() => (Math.random() > 0.5 ? 1 : -1))
+  //const randomKey = [...ALPHABET].sort(() => (seededRandom() > 0.5 ? 1 : -1))
 
   let cipher: Cipher = {}
   for (let index in ALPHABET) {

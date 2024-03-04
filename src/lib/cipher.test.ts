@@ -18,6 +18,11 @@ describe('cipher', () => {
       expect(values.length).toBe(uniqueValues.length)
     })
 
+    it('should use the same cipher for the same seed', () => {
+      const cipher = newCipher(8)
+      expect(cipher['A'].decrypted).toEqual('K')
+    })
+
     it('shuffled letter should not match original letter', () => {
       const cipher = newCipher(3)
       Object.keys(cipher).map((key: string) => {

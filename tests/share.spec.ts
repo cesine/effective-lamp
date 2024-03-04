@@ -8,23 +8,25 @@ test.describe('cryptogram tests', () => {
 
     await page.getByLabel('How to play').getByRole('button').click()
 
-    await page.getByRole('button', { name: 'F' }).click()
+    await page.getByRole('button', { name: 'M' }).click()
     await page.keyboard.type('i')
-    expect(page.getByRole('button', { name: 'F' })).toHaveText('I')
+    expect(page.getByRole('button', { name: 'M' })).toHaveText('I')
 
-    await page.getByRole('button', { name: 'K' }).click()
+    await page.getByRole('button', { name: 'Y' }).click()
     await page.keyboard.type('h')
-    expect(page.getByRole('button', { name: 'K' })).toHaveText('H')
+    expect(page.getByRole('button', { name: 'Y' })).toHaveText('H')
 
-    /*
+    // Winning dialog should show
     await page.getByRole('button', { name: 'Share' }).click()
     let shareClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
     )
-    expect(shareClipboardText).toContain('Clueright\'s Cryptogram')
-    expect(shareClipboardText).toContain('⬜')
-    expect(shareClipboardText).toContain('🟨')
-    expect(shareClipboardText).toContain('🟩')
+    expect(shareClipboardText).toContain("Clueright's Cryptogram")
+    expect(shareClipboardText).toContain('a top secret message from a share 4')
+    expect(shareClipboardText).toContain('IH')
+    // expect(shareClipboardText).toContain('⬜')
+    // expect(shareClipboardText).toContain('🟨')
+    // expect(shareClipboardText).toContain('🟩')
 
     await page.getByRole('button', { name: 'Transfer' }).click()
     await page.getByRole('button', { name: 'Copy' }).click()
@@ -39,22 +41,14 @@ test.describe('cryptogram tests', () => {
       .getByRole('button')
       .first()
       .click()
-    await page.locator('svg').nth(1).click()
-    await page.getByRole('button', { name: 'Share' }).click()
-    let shareFromIconClipboardText = await page.evaluate(
-      'navigator.clipboard.readText()'
-    )
-    expect(shareFromIconClipboardText).toContain('Clueright\'s Cryptogram')
-    expect(shareFromIconClipboardText).toContain('a top secret message from a share 4')
-    */
 
     await page.getByLabel('Open Stats').click()
     await page.getByRole('button', { name: 'Transfer' }).click()
     await page.getByRole('button', { name: 'Copy' }).click()
-    let shareFromIconClipboardText = await page.evaluate(
+    let shareFromTransferClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
     )
-    expect(shareFromIconClipboardText).toContain('P/')
+    expect(shareFromTransferClipboardText).toContain('P/')
     await page
       .getByLabel('Transfer your statistics')
       .getByRole('button')
