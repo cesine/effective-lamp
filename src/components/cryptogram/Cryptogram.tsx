@@ -6,6 +6,7 @@ type Props = {
   cipher: Cipher
   encryptedQuote: string
   isRevealing?: boolean
+  isHardMode?: boolean
 }
 
 export const Cryptogram = ({
@@ -13,6 +14,7 @@ export const Cryptogram = ({
   cipher,
   encryptedQuote,
   isRevealing,
+  isHardMode = true,
 }: Props) => {
   const words = encryptedQuote.toLocaleUpperCase().split(/\s/)
   // console.log('words are', words)
@@ -34,7 +36,7 @@ export const Cryptogram = ({
         encryptedValue={value}
         decryptedValue={cipher[value] ? cipher[value].guesses[0] : value}
         isRevealing={isRevealing}
-        status={cipher[value] ? cipher[value].status : undefined}
+        status={cipher[value] && !isHardMode ? cipher[value].status : undefined}
       ></Cell>
     )
   }

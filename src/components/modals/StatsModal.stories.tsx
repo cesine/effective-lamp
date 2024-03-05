@@ -12,7 +12,7 @@ export const Default = () => (
     isOpen={true}
     handleClose={() => console.log('handleClose')}
     solution="solution"
-    guesses={['guess1', 'guess2']}
+    guesses={[{ input: 'G' }, { input: 'K' }]}
     gameStats={{
       totalGames: 10,
       successRate: 50,

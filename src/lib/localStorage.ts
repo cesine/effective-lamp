@@ -1,11 +1,19 @@
+import { CharStatus } from './statuses'
+
 const gameStateKey = 'gameState'
 const archiveGameStateKey = 'archiveGameState'
 const highContrastKey = 'highContrast'
 
+export type Guess = {
+  input: string
+  label?: string
+  status?: CharStatus
+}
+
 export type StoredGameState = {
   gameWasWon: boolean
-  guesses: string[]
-  incorrectGuesses: string[]
+  guesses: Guess[]
+  incorrectGuesses: Guess[]
   solution: string
 }
 
