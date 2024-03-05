@@ -14,7 +14,7 @@ import {
   SHARE_TEXT,
   STATISTICS_TITLE,
 } from '../../constants/strings'
-import { GameStats } from '../../lib/localStorage'
+import { GameStats, Guess } from '../../lib/localStorage'
 import { solutionGameDate, tomorrow } from '../../lib/quotes'
 import { shareStatus } from '../../lib/share'
 import { Histogram } from '../stats/Histogram'
@@ -26,7 +26,7 @@ type Props = {
   isOpen: boolean
   handleClose: () => void
   solution: string
-  guesses: string[]
+  guesses: Guess[]
   gameStats: GameStats
   isLatestGame: boolean
   isGameLost: boolean

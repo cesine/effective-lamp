@@ -1,9 +1,12 @@
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+import { CharStatus } from './statuses'
+
+export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 export type Cipher = {
   [key: string]: {
     decrypted: string
     guesses: string[]
+    status?: CharStatus
   }
 }
 

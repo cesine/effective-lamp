@@ -8,6 +8,17 @@ test.describe('cryptogram tests', () => {
 
     await page.getByLabel('How to play').getByRole('button').click()
 
+    await page.getByLabel('Open Settings').click()
+    await page.getByLabel('Hard Mode').click()
+    await page
+      .getByLabel('Settings', { exact: true })
+      .getByRole('button')
+      .click()
+
+    await page.getByRole('button', { name: 'R' }).click()
+    await page.keyboard.type('o')
+    expect(page.getByRole('button', { name: 'R' })).toHaveText('O')
+
     await page.getByRole('button', { name: 'R' }).click()
     await page.keyboard.type('i')
     expect(page.getByRole('button', { name: 'R' })).toHaveText('I')
@@ -23,10 +34,8 @@ test.describe('cryptogram tests', () => {
     )
     expect(shareClipboardText).toContain("Clueright's Cryptogram")
     expect(shareClipboardText).toContain('a top secret message from a share 4')
-    expect(shareClipboardText).toContain('IH')
-    // expect(shareClipboardText).toContain('⬜')
-    // expect(shareClipboardText).toContain('🟨')
-    // expect(shareClipboardText).toContain('🟩')
+    expect(shareClipboardText).toContain('OIH')
+    expect(shareClipboardText).toContain('⬜🟩🟩')
 
     await page.getByRole('button', { name: 'Transfer' }).click()
     await page.getByRole('button', { name: 'Copy' }).click()
