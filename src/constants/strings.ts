@@ -9,6 +9,10 @@ export const HARD_MODE_ALERT_MESSAGE =
 export const HARD_MODE_DESCRIPTION =
   'Any revealed hints must be used in subsequent guesses'
 export const HIGH_CONTRAST_MODE_DESCRIPTION = 'For improved color vision'
+export const YOU_HAVE_ALREADY_GUESSED_MESSAGE = (
+  input: string,
+  decryptedLetter: string
+) => `You have already guessed this letter: ${input} for ${decryptedLetter}.`
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
   `The quote was ${solution}`
 export const WRONG_SPOT_MESSAGE = (guess: string, position: number) =>
