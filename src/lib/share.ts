@@ -68,6 +68,7 @@ export const generateEmojiGrid = (guesses: Guess[], tiles: string[]) => {
         } else if (status === 'absent') {
           return tiles[2]
         }
+        return ' '
       })
       .join('')
   )

@@ -8,7 +8,7 @@ describe('generateEmojiGrid', () => {
 
     const grid = generateEmojiGrid(guesses, tiles)
     const gridParts = grid.split('\n')
-    expect(gridParts[0]).toBe(guesses.join(''))
+    expect(gridParts[0]).toBe('EWA')
   })
   test('generates grid with status', () => {
     const guesses = [
@@ -20,14 +20,17 @@ describe('generateEmojiGrid', () => {
 
     const grid = generateEmojiGrid(guesses as Guess[], tiles)
     const gridParts = grid.split('\n')
-    expect(gridParts[0]).toBe(guesses.join(''))
+    expect(gridParts[0]).toBe('EWA')
   })
   test('generates grid for emoji', () => {
-    const guesses = [{ input: '5️⃣4️⃣3️⃣2️⃣1️⃣♠️♥️♦️♣️🔔1️⃣2️⃣3️⃣4️⃣5️⃣' }]
+    const guesses: Guess[] = [
+      { input: '5️⃣4️⃣3️⃣2️⃣1️⃣♠️♥️♦️♣️🔔1️⃣2️⃣3️⃣4️⃣5️⃣', status: 'present' },
+    ]
     const tiles = getEmojiTiles(false, false)
 
     const grid = generateEmojiGrid(guesses, tiles)
     const gridParts = grid.split('\n')
-    expect(gridParts[0]).toBe(guesses.join(''))
+    expect(gridParts[0]).toBe('5️⃣4️⃣3️⃣2️⃣1️⃣♠️♥️♦️♣️🔔1️⃣2️⃣3️⃣4️⃣5️⃣')
+    expect(gridParts[1]).toBe('🟨')
   })
 })
