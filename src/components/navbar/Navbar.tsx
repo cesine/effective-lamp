@@ -1,4 +1,5 @@
 import {
+  BugAntIcon,
   CalendarIcon,
   ChartBarIcon,
   ChatBubbleOvalLeftIcon,
@@ -67,7 +68,24 @@ export const Navbar = ({
         >
           {GAME_TITLE}
         </h1>
+
         <div className="right-icons">
+          <a
+            href="https://forms.gle/zRP8pAE1JrTEA5bWA"
+            target="blank"
+            rel="noopener noreferrer"
+          >
+            <BugAntIcon
+              aria-label="Send a bug report"
+              className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
+              onClick={() => {
+                window.gtag('event', 'unlock_achievement', {
+                  achievement_id: 'click_send_a_bug_report',
+                })
+              }}
+              title="Click to send me a bug report"
+            />
+          </a>
           <ChatBubbleOvalLeftIcon
             aria-label="Send an encrypted message"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"

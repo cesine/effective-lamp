@@ -1,4 +1,5 @@
 import { MAX_CHALLENGES } from '../constants/settings'
+import { GAME_TITLE } from '../constants/strings'
 import {
   GameStats,
   loadStatsFromLocalStorage,
@@ -18,12 +19,12 @@ export const addStatsForCompletedGame = (
   stats.totalGames += 1
   window.gtag('event', 'level_up', {
     level: stats.totalGames,
-    character: "Clueright's Cryptogram",
+    character: GAME_TITLE,
   })
   window.gtag('event', 'post_score', {
     score: count,
     level: stats.totalGames,
-    character: "Clueright's Cryptogram",
+    character: GAME_TITLE,
   })
 
   if (count >= MAX_CHALLENGES) {
