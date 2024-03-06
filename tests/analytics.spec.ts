@@ -63,7 +63,7 @@ test.describe('cryptogram tests', () => {
     //  get window.dataLayer and check events
     await page.waitForTimeout(300)
     const dataLayer = await page.evaluate(() => window.dataLayer)
-    console.log('dataLayer', dataLayer)
+    // console.log('dataLayer', dataLayer)
     const events = dataLayer
       .filter((e) => !!e.event)
       .map((event) => event.event)
