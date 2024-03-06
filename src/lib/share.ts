@@ -11,8 +11,8 @@ const browser = parser.getBrowser()
 const device = parser.getDevice()
 
 export const shareStatus = (
-  solution: string,
   guesses: Guess[],
+  incorrectGuesses: Guess[],
   lost: boolean,
   isHardMode: boolean,
   isDarkMode: boolean,
@@ -21,10 +21,11 @@ export const shareStatus = (
   handleShareFailure: () => void
 ) => {
   const textToShare =
-    `${GAME_TITLE} ${message} ${solutionIndex} ${
-      lost ? 'X' : guesses.length
+    `I solved ${GAME_TITLE} ${message} ${solutionIndex} ${
+      lost ? 'X' : incorrectGuesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
-    generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode))
+    generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode)) +
+    `\n${window.location.href}`
 
   const shareData = { text: textToShare }
 

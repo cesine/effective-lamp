@@ -11,8 +11,11 @@ export const Default = () => (
   <StatsModal
     isOpen={true}
     handleClose={() => console.log('handleClose')}
-    solution="solution"
-    guesses={[{ input: 'G' }, { input: 'K' }]}
+    guesses={[
+      { input: 'G', status: 'present' },
+      { input: 'K', status: 'correct' },
+    ]}
+    incorrectGuesses={[]}
     gameStats={{
       totalGames: 10,
       successRate: 50,

@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 
 test.describe('cryptogram tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
-    await page.goto(
+    const path =
       '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0LCJtZXNzYWdlIjoiYSB0b3Agc2VjcmV0IG1lc3NhZ2UgZnJvbSBhIHNoYXJlIn0='
-    )
+    await page.goto(path)
 
     await page.getByLabel('How to play').getByRole('button').click()
 
@@ -32,10 +32,13 @@ test.describe('cryptogram tests', () => {
     let shareClipboardText = await page.evaluate(
       'navigator.clipboard.readText()'
     )
-    expect(shareClipboardText).toContain("Clueright's Cryptogram")
+    expect(shareClipboardText).toContain("I solved Clueright's Cryptogram")
     expect(shareClipboardText).toContain('a top secret message from a share 4')
     expect(shareClipboardText).toContain('OIH')
     expect(shareClipboardText).toContain('⬜🟩🟩')
+    expect(shareClipboardText).toContain(path)
+    const url = await page.url()
+    expect(shareClipboardText).toContain(url)
 
     await page.getByRole('button', { name: 'Transfer' }).click()
     await page.getByRole('button', { name: 'Copy' }).click()

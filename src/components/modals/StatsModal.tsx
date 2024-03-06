@@ -25,8 +25,8 @@ import { BaseModal } from './BaseModal'
 type Props = {
   isOpen: boolean
   handleClose: () => void
-  solution: string
   guesses: Guess[]
+  incorrectGuesses: Guess[]
   gameStats: GameStats
   isLatestGame: boolean
   isGameLost: boolean
@@ -43,9 +43,9 @@ type Props = {
 export const StatsModal = ({
   isOpen,
   handleClose,
-  solution,
   guesses,
   gameStats,
+  incorrectGuesses,
   isLatestGame,
   isGameLost,
   isGameWon,
@@ -119,8 +119,8 @@ export const StatsModal = ({
               className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-base"
               onClick={() => {
                 shareStatus(
-                  solution,
                   guesses,
+                  incorrectGuesses,
                   isGameLost,
                   isHardMode,
                   isDarkMode,
