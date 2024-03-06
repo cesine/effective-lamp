@@ -56,6 +56,9 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
     const textarea = document.getElementById(
       'immigration-code'
     ) as HTMLInputElement
+    window.gtag('event', 'unlock_achievement', {
+      achievement_id: 'share_encrypted_message',
+    })
     if (
       textarea &&
       window.confirm(
@@ -71,6 +74,9 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
 
       const code = btoa(JSON.stringify(state))
       console.log('code', code)
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'open_shared_encrypted_message',
+      })
       window.location.replace(`?code=${code}`)
     }
   }

@@ -19,6 +19,8 @@ type Props = {
   onClick: (input: string, ariaLabel: string) => void
 }
 
+let userHasInteractedWithCell = false
+
 export const Cell = ({
   encryptedValue,
   decryptedValue,
@@ -78,6 +80,12 @@ export const Cell = ({
   const hiddenInputRef: RefObject<HTMLInputElement> = createRef()
 
   const cellOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (!userHasInteractedWithCell) {
+      userHasInteractedWithCell = true
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'click_cryptogram_cell',
+      })
+    }
     const label = (event?.target as HTMLDivElement)?.ariaLabel || ''
 
     onClick('', label)
