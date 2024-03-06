@@ -75,11 +75,8 @@ test.describe('cryptogram tests', () => {
       .click()
 
     await page.reload()
-    await page.getByLabel('Statistics').getByRole('button').first()
+    await page.getByLabel('Statistics').getByRole('button').first().click()
 
-    await page
-      .getByRole('heading', { name: "Clueright's Cryptogram - Beta" })
-      .click()
     expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
     expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
   })
