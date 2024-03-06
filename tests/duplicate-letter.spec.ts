@@ -10,14 +10,14 @@ test.describe('cryptogram tests', () => {
 
     await page.getByRole('button', { name: 'R' }).click()
     await page.keyboard.type('H')
-    expect(page.getByRole('button', { name: 'R' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'R' })).toHaveText('H')
 
     await page.getByRole('button', { name: 'S' }).click()
     await page.keyboard.type('H')
-    expect(page.getByRole('button', { name: 'S' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
 
-    expect(page.getByLabel('There is an message')).toBeVisible()
-    expect(page.getByLabel('There is an message')).toHaveText(
+    expect(await page.getByLabel('There is an message')).toBeVisible()
+    expect(await page.getByLabel('There is an message')).toHaveText(
       'You have already guessed this letter: H for R.'
     )
   })

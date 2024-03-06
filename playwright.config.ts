@@ -31,6 +31,10 @@ export default defineConfig({
 
     /* Show the browser if we are not in CI */
     headless: !!process.env.CI,
+    launchOptions: {
+      /* Slow down Playwright operations by the given amount of milliseconds. */
+      slowMo: 500,
+    },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',

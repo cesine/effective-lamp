@@ -55,12 +55,18 @@ export const Navbar = ({
             />
           )}
         </div>
-        <p className="block truncate text-xl font-bold dark:text-white md:hidden">
+        <h1
+          aria-label={GAME_TITLE}
+          className="block truncate text-xl font-bold dark:text-white md:hidden"
+        >
           Cryptogram
-        </p>
-        <p className="hidden truncate text-xl font-bold dark:text-white md:block">
+        </h1>
+        <h1
+          aria-label={GAME_TITLE}
+          className="hidden truncate text-xl font-bold dark:text-white md:block"
+        >
           {GAME_TITLE}
-        </p>
+        </h1>
         <div className="right-icons">
           <ChatBubbleOvalLeftIcon
             aria-label="Send an encrypted message"

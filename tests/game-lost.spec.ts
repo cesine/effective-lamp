@@ -46,6 +46,6 @@ test.describe('game lost', () => {
     // TODO Alert never shows in browser maybe because of transition
     // await page.waitForTimeout(200000)
     // await page.screenshot({ path: `game-lost-${Date.now()}.png` })
-    // expect(page.getByLabel('There is an message')).toHaveText('The quote was')
+    // expect( await page.getByLabel('There is an message')).toHaveText('The quote was')
   })
 })
