@@ -75,6 +75,8 @@ test.describe('cryptogram tests', () => {
       .click()
 
     await page.reload()
+    await page.getByLabel('Statistics').getByRole('button').first()
+
     await page
       .getByRole('heading', { name: "Clueright's Cryptogram - Beta" })
       .click()
