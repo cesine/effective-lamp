@@ -211,7 +211,7 @@ export const loadGameStateFromQueryParam = (
     if (state.solution) {
       console.log('Loaded a game from query params', state)
       window.gtag('event', 'unlock_achievement', {
-        achievement_id: 'open_shared_message',
+        achievement_id: 'open_shared_encrypted_message',
       })
     }
     return state

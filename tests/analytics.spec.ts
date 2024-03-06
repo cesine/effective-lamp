@@ -85,13 +85,12 @@ test.describe('cryptogram tests', () => {
     console.log('gameEvents', gameEvents)
 
     expect(gameEvents).toEqual([
-      'unlock_achievement: open_shared_message',
+      'unlock_achievement: open_shared_encrypted_message',
       'level_start: Cryptogram 794 hi',
       'sign_up: Anonymous',
       'login: Anonymous',
       'unlock_achievement: click_alphabet_letter',
       'unlock_achievement: make_incorrect_guess',
-      'unlock_achievement: make_correct_guess',
       'unlock_achievement: make_correct_guess',
       'level_up: 1',
       'post_score: 1',
