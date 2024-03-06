@@ -46,8 +46,21 @@ export const saveStatsToLocalStorage = (gameStats: GameStats) => {
   localStorage.setItem(gameStatKey, JSON.stringify(gameStats))
 }
 
+declare global {
+  interface Window {
+    gtag: any
+  }
+}
+
+let firstGame = true
 export const loadStatsFromLocalStorage = () => {
   const stats = localStorage.getItem(gameStatKey)
+  if (!stats && firstGame) {
+    firstGame = false
+    window.gtag('event', 'sign_up', {
+      method: 'Anonymous',
+    })
+  }
   return stats ? (JSON.parse(stats) as GameStats) : null
 }
 

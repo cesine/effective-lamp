@@ -54,8 +54,11 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
 
   const handleSaveButton = () => {
     const textarea = document.getElementById(
-      'immigration-code'
+      'share-message'
     ) as HTMLInputElement
+    window.gtag('event', 'unlock_achievement', {
+      achievement_id: 'share_encrypted_message',
+    })
     if (
       textarea &&
       window.confirm(
@@ -71,6 +74,9 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
 
       const code = btoa(JSON.stringify(state))
       console.log('code', code)
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'open_shared_encrypted_message',
+      })
       window.location.replace(`?code=${code}`)
     }
   }
@@ -90,7 +96,7 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
         </label>
         <textarea
           onChange={(e) => handleImmigrationCodeChange(e)}
-          id="immigration-code"
+          id="share-message"
           rows={8}
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
         ></textarea>

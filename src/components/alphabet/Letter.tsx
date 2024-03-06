@@ -9,6 +9,9 @@ import { CharStatus } from '../../lib/statuses'
 const isPunctuation = (randomKey: string) => {
   return /\W/.test(randomKey)
 }
+
+let userHasInteractedWithLetter = false
+
 type Props = {
   children?: ReactNode
   alphabetLine: string | null
@@ -68,6 +71,12 @@ export const Letter = ({
   }
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    if (!userHasInteractedWithLetter) {
+      userHasInteractedWithLetter = true
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'click_alphabet_letter',
+      })
+    }
     const label = (event?.target as HTMLButtonElement)?.ariaLabel || ''
 
     onClick(randomKey, label)

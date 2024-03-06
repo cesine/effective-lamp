@@ -21,6 +21,9 @@ export const EmigratePanel = () => {
   const emigrationCode = encrypt(JSON.stringify(migrationStats))
 
   const copyEmigrationCodeToClipboard = () => {
+    window.gtag('event', 'unlock_achievement', {
+      achievement_id: 'exported_stats',
+    })
     copyTextToClipboard(emigrationCode)
     setCopyButtonText('Copied!')
     setIsCopyButtonEnabled(false)

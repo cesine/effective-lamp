@@ -35,6 +35,11 @@ export const shareStatus = (
     if (attemptShare(shareData)) {
       navigator.share(shareData)
       shareSuccess = true
+      window.gtag('event', 'share', {
+        method: 'Navigator Share API',
+        content_type: 'text',
+        item_id: `${message} ${solutionIndex}`,
+      })
     }
   } catch (error) {
     shareSuccess = false
@@ -45,8 +50,18 @@ export const shareStatus = (
       if (navigator.clipboard) {
         navigator.clipboard
           .writeText(textToShare)
-          .then(handleShareToClipboard)
-          .catch(handleShareFailure)
+          .then(() => {
+            window.gtag('event', 'share', {
+              method: 'Navigator Clipboard API',
+              content_type: 'text',
+              item_id: `${message} ${solutionIndex}`,
+            })
+            handleShareToClipboard()
+          })
+          .catch(() => {
+            // TODO capture errors in gtag
+            handleShareFailure()
+          })
       } else {
         handleShareFailure()
       }

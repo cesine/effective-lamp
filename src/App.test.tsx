@@ -24,4 +24,8 @@ test('renders App component', () => {
   render(<App />)
   const linkElement = screen.getByText(GAME_TITLE)
   expect(linkElement).toBeInTheDocument()
+
+  expect(window.gtag).toHaveBeenCalledWith('event', 'sign_up', {
+    method: `Anonymous`,
+  })
 })

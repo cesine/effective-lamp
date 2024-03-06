@@ -136,11 +136,17 @@ export const getSolution = (gameDate: Date) => {
   const quoteOfTheDay = gameFromQueryParams.solution
     ? gameFromQueryParams.solution
     : getQuoteOfDay(index)
+
+  const solutionName = `${index} ${quoteOfTheDay}`.slice(0, 50)
+  window.gtag('event', 'level_start', {
+    level_name: `Cryptogram ${solutionName}`,
+  })
   return {
     message: gameFromQueryParams.message ? gameFromQueryParams.message : '',
     solution: quoteOfTheDay,
     solutionGameDate: gameDate,
     solutionIndex: index,
+    solutionName,
     tomorrow: nextGameDate.valueOf(),
   }
 }
@@ -204,6 +210,9 @@ export const loadGameStateFromQueryParam = (
       : emptyGame
     if (state.solution) {
       console.log('Loaded a game from query params', state)
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'open_shared_encrypted_message',
+      })
     }
     return state
   } catch (err) {
@@ -212,5 +221,11 @@ export const loadGameStateFromQueryParam = (
   return emptyGame
 }
 
-export const { message, solution, solutionGameDate, solutionIndex, tomorrow } =
-  getSolution(getGameDate())
+export const {
+  message,
+  solution,
+  solutionGameDate,
+  solutionIndex,
+  solutionName,
+  tomorrow,
+} = getSolution(getGameDate())

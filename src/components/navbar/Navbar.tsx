@@ -34,14 +34,24 @@ export const Navbar = ({
           <InformationCircleIcon
             aria-label="Open Info Modal"
             className="h-6 w-6 cursor-pointer dark:stroke-white"
-            onClick={() => setIsInfoModalOpen(true)}
+            onClick={() => {
+              window.gtag('event', 'unlock_achievement', {
+                achievement_id: 'open_info_modal',
+              })
+              setIsInfoModalOpen(true)
+            }}
             title="Show how to play"
           />
           {ENABLE_ARCHIVED_GAMES && (
             <CalendarIcon
               aria-label="Open Archived Games"
               className="ml-3 h-6 w-6 cursor-pointer dark:stroke-white"
-              onClick={() => setIsDatePickerModalOpen(true)}
+              onClick={() => {
+                window.gtag('event', 'unlock_achievement', {
+                  achievement_id: 'open_archived_games',
+                })
+                setIsDatePickerModalOpen(true)
+              }}
             />
           )}
         </div>
@@ -55,27 +65,47 @@ export const Navbar = ({
           <ChatBubbleOvalLeftIcon
             aria-label="Send an encrypted message"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
-            onClick={() => setIsSendMessageModalOpen(true)}
+            onClick={() => {
+              window.gtag('event', 'unlock_achievement', {
+                achievement_id: 'click_send_a_message',
+              })
+              setIsSendMessageModalOpen(true)
+            }}
             title="Click to write an encrypted message"
           />
 
           <PuzzlePieceIcon
             aria-label="Show Hint"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
-            onClick={() => setHint(true)}
+            onClick={() => {
+              window.gtag('event', 'unlock_achievement', {
+                achievement_id: 'click_show_hint',
+              })
+              setHint(true)
+            }}
             title="Click to insert the hint"
           />
 
           <ChartBarIcon
             aria-label="Open Stats"
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
-            onClick={() => setIsStatsModalOpen(true)}
+            onClick={() => {
+              window.gtag('event', 'unlock_achievement', {
+                achievement_id: 'open_stats',
+              })
+              setIsStatsModalOpen(true)
+            }}
             title="Show stats"
           />
           <CogIcon
             aria-label="Open Settings"
             className="h-6 w-6 cursor-pointer dark:stroke-white"
-            onClick={() => setIsSettingsModalOpen(true)}
+            onClick={() => {
+              window.gtag('event', 'unlock_achievement', {
+                achievement_id: 'open_settings',
+              })
+              setIsSettingsModalOpen(true)
+            }}
             title="Open Settings"
           />
         </div>
