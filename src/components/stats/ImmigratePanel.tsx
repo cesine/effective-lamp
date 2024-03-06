@@ -52,6 +52,9 @@ export const ImmigratePanel = () => {
     const textarea = document.getElementById(
       'immigration-code'
     ) as HTMLInputElement
+    window.gtag('event', 'unlock_achievement', {
+      achievement_id: 'click_import_stats',
+    })
     if (
       textarea &&
       window.confirm(
@@ -70,6 +73,9 @@ export const ImmigratePanel = () => {
       if (migrationStats.statistics) {
         saveStatsToLocalStorage(migrationStats.statistics)
       }
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'imported_stats',
+      })
 
       alert('The site will now reload.')
 

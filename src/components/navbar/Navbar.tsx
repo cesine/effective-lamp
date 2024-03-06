@@ -36,7 +36,7 @@ export const Navbar = ({
             className="h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => {
               window.gtag('event', 'unlock_achievement', {
-                achievement_id: 'click_open_info_modal',
+                achievement_id: 'open_info_modal',
               })
               setIsInfoModalOpen(true)
             }}
@@ -48,7 +48,7 @@ export const Navbar = ({
               className="ml-3 h-6 w-6 cursor-pointer dark:stroke-white"
               onClick={() => {
                 window.gtag('event', 'unlock_achievement', {
-                  achievement_id: 'click_open_archived_games',
+                  achievement_id: 'open_archived_games',
                 })
                 setIsDatePickerModalOpen(true)
               }}
@@ -91,7 +91,7 @@ export const Navbar = ({
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => {
               window.gtag('event', 'unlock_achievement', {
-                achievement_id: 'click_open_stats',
+                achievement_id: 'open_stats',
               })
               setIsStatsModalOpen(true)
             }}
@@ -102,7 +102,7 @@ export const Navbar = ({
             className="h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => {
               window.gtag('event', 'unlock_achievement', {
-                achievement_id: 'click_open_settings',
+                achievement_id: 'open_settings',
               })
               setIsSettingsModalOpen(true)
             }}
