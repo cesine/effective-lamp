@@ -6,12 +6,12 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('How to play').getByRole('button').click()
 
     // Switch to easy mode
-    await page.getByLabel('Open Settings').click()
-    await page.getByLabel('Hard Mode').click()
-    await page
-      .getByLabel('Settings', { exact: true })
-      .getByRole('button')
-      .click()
+    // await page.getByLabel('Open Settings').click()
+    // await page.getByLabel('Hard Mode').click()
+    // await page
+    //   .getByLabel('Settings', { exact: true })
+    //   .getByRole('button')
+    //   .click()
 
     await page.getByLabel('Show Hint').click()
     await page.getByLabel('Show Hint').click()
