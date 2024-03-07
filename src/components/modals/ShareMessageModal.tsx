@@ -69,7 +69,10 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
         guesses: [],
         index: solutionIndex,
         message: 'An encrypted message',
-        solution: textarea.value,
+        solution: {
+          author: '',
+          quote: textarea.value,
+        },
       }
 
       const code = btoa(JSON.stringify(state))

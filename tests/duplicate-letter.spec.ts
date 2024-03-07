@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should be warned if I re-use a letter', async ({ page }) => {
     await page.goto(
-      '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0LCJtZXNzYWdlIjoiYSB0b3Agc2VjcmV0IG1lc3NhZ2UgZnJvbSBhIHNoYXJlIn0='
+      '/?code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
     )
 
     await page.getByLabel('How to play').getByRole('button').click()

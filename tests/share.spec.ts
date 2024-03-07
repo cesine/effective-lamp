@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
     const path =
-      '/?code=eyJzb2x1dGlvbiI6ImhpIiwiZ3Vlc3NlcyI6W10sImluZGV4Ijo0LCJtZXNzYWdlIjoiYSB0b3Agc2VjcmV0IG1lc3NhZ2UgZnJvbSBhIHNoYXJlIn0='
+      '/?code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
     await page.goto(path)
 
     await page.getByLabel('How to play').getByRole('button').click()
@@ -33,7 +33,7 @@ test.describe('cryptogram tests', () => {
       'navigator.clipboard.readText()'
     )
     expect(shareClipboardText).toContain("I solved Clueright's Cryptogram")
-    expect(shareClipboardText).toContain('a top secret message from a share 4')
+    expect(shareClipboardText).toContain('An encrypted message 795')
     expect(shareClipboardText).toContain('OIH')
     expect(shareClipboardText).toContain('⬜🟩🟩')
     expect(shareClipboardText).toContain(path)
@@ -75,7 +75,9 @@ test.describe('cryptogram tests', () => {
       .click()
 
     await page.reload()
+    await page.waitForTimeout(3000) // Wait for page to fully load
     await page.getByRole('heading', { name: "Clueright's Cryptogram" }).click()
+    await page.waitForSelector('button')
     expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
     expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
   })

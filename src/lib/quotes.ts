@@ -87,7 +87,7 @@ export const getSolution = (gameDate: Date) => {
     ? gameFromQueryParams.solution
     : getQuoteOfDay(index)
 
-  const solutionName = `${index} ${quoteOfTheDay}`.slice(0, 50)
+  const solutionName = `${index} ${quoteOfTheDay.quote}`.slice(0, 50)
   window.gtag('event', 'level_start', {
     level_name: `Cryptogram ${solutionName}`,
   })

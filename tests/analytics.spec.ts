@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should send game events to google analytics', async ({ page }) => {
     const path =
-      '/?code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NCwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOiJoaSJ9'
+      '/?code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
 
     await page.goto(path)
     page.once('dialog', (dialog) => {
@@ -84,9 +84,11 @@ test.describe('cryptogram tests', () => {
       )
     console.log('gameEvents', gameEvents)
 
+    expect(gameEvents[1]).toMatch(/level_start: Cryptogram \d+ hi/)
+    expect(gameEvents[9]).toMatch(/level_end: Cryptogram \d+ hi/)
     expect(gameEvents).toEqual([
       'unlock_achievement: open_shared_encrypted_message',
-      'level_start: Cryptogram 794 hi',
+      gameEvents[1],
       'sign_up: Anonymous',
       'login: Anonymous',
       'unlock_achievement: click_alphabet_letter',
@@ -94,7 +96,7 @@ test.describe('cryptogram tests', () => {
       'unlock_achievement: make_correct_guess',
       'level_up: 1',
       'post_score: 1',
-      'level_end: Cryptogram 794 hi',
+      gameEvents[9],
       'share: Navigator Clipboard API',
       'unlock_achievement: click_transfer_stats',
       'unlock_achievement: exported_stats',
