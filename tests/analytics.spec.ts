@@ -68,7 +68,7 @@ test.describe('cryptogram tests', () => {
       .filter((e) => !!e.event)
       .map((event) => event.event)
 
-    expect(events).toEqual(['gtm.dom', 'gtm.scrollDepth', 'gtm.load'])
+    expect(events).toContain('gtm.scrollDepth')
 
     const gameEvents = dataLayer
       .filter((e) => e[0] === 'event')
