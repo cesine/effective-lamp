@@ -67,6 +67,7 @@ export const Cryptogram = ({
       style={stylePhrase}
     >
       {words.map(renderWord)}
+      <div style={{ width: '100%' }} /> {/* This will create a line break */}
       {author.map(renderWord)}
     </div>
   )
