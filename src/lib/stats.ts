@@ -30,17 +30,9 @@ export const addStatsForCompletedGame = (
     // A fail situation
     stats.currentStreak = 0
     stats.gamesFailed += 1
-    window.gtag('event', 'level_end', {
-      level_name: `Cryptogram ${gameName}`,
-      success: false,
-    })
   } else {
     stats.winDistribution[count] += 1
     stats.currentStreak += 1
-    window.gtag('event', 'level_end', {
-      level_name: `Cryptogram ${gameName}`,
-      success: true,
-    })
 
     if (stats.bestStreak < stats.currentStreak) {
       stats.bestStreak = stats.currentStreak
