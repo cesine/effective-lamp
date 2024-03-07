@@ -13,7 +13,8 @@
       }
       gtag('js', new Date())
 
-      gtag('config', 'G-GMGFZEXX43')
+      var debugMode = window.location.hostname === 'localhost'
+      gtag('config', 'G-GMGFZEXX43', { debug_mode: debugMode })
     </script>
 
     <meta charset="utf-8" />
