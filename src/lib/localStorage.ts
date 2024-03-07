@@ -1,3 +1,4 @@
+import { Solution } from './quotes'
 import { CharStatus } from './statuses'
 
 const gameStateKey = 'gameState'
@@ -14,7 +15,7 @@ export type StoredGameState = {
   gameWasWon: boolean
   guesses: Guess[]
   incorrectGuesses: Guess[]
-  solution: string
+  solution: Solution
 }
 
 export const saveGameStateToLocalStorage = (

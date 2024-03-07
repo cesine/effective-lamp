@@ -31,7 +31,7 @@ export const Letter = ({
   onClick,
   isRevealing,
 }: Props) => {
-  const keyDelayMs = REVEAL_TIME_MS * solution.length
+  const keyDelayMs = REVEAL_TIME_MS
   const isHighContrast = getStoredIsHighContrastMode()
   const displayButton = !isPunctuation(randomKey)
 

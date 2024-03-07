@@ -12,7 +12,7 @@ export type Cipher = {
 
 export function generateCryptogramHint(
   key: Cipher,
-  cryptogram: string,
+  encryptedLetters: string[],
   index: number
 ) {
   var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -28,7 +28,7 @@ export function generateCryptogramHint(
     // Logger.log(keyLetter);
 
     // Check if the letter is in the cryptogram
-    if (cryptogram.indexOf(keyLetter) !== -1) {
+    if (encryptedLetters.includes(keyLetter)) {
       // Find the original letter it corresponds to in the key
       var originalLetter = key[keyLetter].decrypted
       return {

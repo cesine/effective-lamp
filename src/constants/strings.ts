@@ -1,3 +1,5 @@
+import { Solution } from '../lib/quotes'
+
 export const GAME_TITLE = process.env.REACT_APP_GAME_NAME!
 
 export const WIN_MESSAGES = ['Great Job!', 'Awesome', 'Well done!']
@@ -13,12 +15,10 @@ export const YOU_HAVE_ALREADY_GUESSED_MESSAGE = (
   input: string,
   decryptedLetter: string
 ) => `You have already guessed this letter: ${input} for ${decryptedLetter}.`
-export const CORRECT_WORD_MESSAGE = (solution: string) =>
-  `The quote was ${solution}`
+export const CORRECT_WORD_MESSAGE = (solution: Solution) =>
+  `The quote was ${solution.quote}  - ${solution.author}`
 export const WRONG_SPOT_MESSAGE = (guess: string, position: number) =>
   `Must use ${guess} in position ${position}`
-export const NOT_CONTAINED_MESSAGE = (letter: string) =>
-  `Guess must contain ${letter}`
 export const ENTER_TEXT = 'Enter'
 export const DELETE_TEXT = 'Delete'
 export const STATISTICS_TITLE = 'Statistics'

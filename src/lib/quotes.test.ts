@@ -72,14 +72,14 @@ describe('solutionIndex', () => {
 
   test('quote of the day', () => {
     expect(() => getQuoteOfDay(-1)).toThrowError('Invalid index')
-    expect(getQuoteOfDay(0)).toEqual(
-      '"SURROUND YOURSELF WITH ONLY PEOPLE WHO ARE GOING TO LIFT YOU HIGHER." OPRAH WINFREY'
+    expect(getQuoteOfDay(0).quote).toEqual(
+      '"SURROUND YOURSELF WITH ONLY PEOPLE WHO ARE GOING TO LIFT YOU HIGHER."'
     )
-    expect(getQuoteOfDay(1)).toEqual(
-      '"IT\'S THE FRIENDS YOU CAN CALL UP AT 4 A.M. THAT MATTER." MARLENE DIETRICH'
+    expect(getQuoteOfDay(1).quote).toEqual(
+      '"IT\'S THE FRIENDS YOU CAN CALL UP AT 4 A.M. THAT MATTER."'
     )
-    expect(getQuoteOfDay(255)).toEqual(
-      '"MANY PEOPLE WILL WALK IN AND OUT OF YOUR LIFE, BUT ONLY TRUE FRIENDS WILL LEAVE FOOTPRINTS IN YOUR HEART." ELEANOR ROOSEVELT'
+    expect(getQuoteOfDay(255).quote).toEqual(
+      '"MANY PEOPLE WILL WALK IN AND OUT OF YOUR LIFE, BUT ONLY TRUE FRIENDS WILL LEAVE FOOTPRINTS IN YOUR HEART."'
     )
   })
 })
