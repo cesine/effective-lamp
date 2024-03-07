@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
-import { solution } from '../../lib/quotes'
 import { CharStatus } from '../../lib/statuses'
 
 const isPunctuation = (randomKey: string) => {
