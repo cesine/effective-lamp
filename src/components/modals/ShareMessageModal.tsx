@@ -80,7 +80,7 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
       const queryParams = new URLSearchParams(window.location.search)
       queryParams.set('code', code)
       window.location.replace(
-        `${window.location.pathname}${queryParams.toString()}`
+        `${window.location.pathname}?${queryParams.toString()}`
       )
     }
   }
