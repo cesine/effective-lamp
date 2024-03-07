@@ -80,7 +80,11 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
       window.gtag('event', 'unlock_achievement', {
         achievement_id: 'open_shared_encrypted_message',
       })
-      window.location.replace(`?code=${code}`)
+      const queryParams = new URLSearchParams(window.location.search)
+      queryParams.set('code', code)
+      window.location.replace(
+        `${window.location.pathname}?${queryParams.toString()}`
+      )
     }
   }
 

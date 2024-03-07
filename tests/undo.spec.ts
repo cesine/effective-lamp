@@ -9,7 +9,7 @@ test.describe('undo tests', () => {
   test('As a user I want to undo a guess by pushing backspace', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/?beta=true')
     await page.getByLabel('How to play').getByRole('button').click()
 
     await page.getByRole('button', { name: 'A' }).click()
@@ -37,7 +37,7 @@ test.describe('undo tests', () => {
   test('As a user I want to undo a guess by clicking on a cell', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/?beta=true')
     await page.getByLabel('How to play').getByRole('button').click()
 
     await page.getByRole('button', { name: 'A' }).click()

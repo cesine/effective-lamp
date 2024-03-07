@@ -9,7 +9,7 @@ test.describe('game lost', () => {
   test('As a user I want the challenge of guessing the puzzle within x guesses', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/?beta=true')
     await page.getByLabel('How to play').getByRole('button').click()
 
     await page.getByRole('button', { name: 'A' }).click()

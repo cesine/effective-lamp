@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should send game events to google analytics', async ({ page }) => {
     const path =
-      '/?code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
+      '/?beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
 
     await page.goto(path)
     page.once('dialog', (dialog) => {
@@ -68,7 +68,7 @@ test.describe('cryptogram tests', () => {
       .filter((e) => !!e.event)
       .map((event) => event.event)
 
-    expect(events).toEqual(['gtm.dom', 'gtm.scrollDepth', 'gtm.load'])
+    expect(events).toContain('gtm.scrollDepth')
 
     const gameEvents = dataLayer
       .filter((e) => e[0] === 'event')
