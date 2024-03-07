@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
-import { solution } from '../../lib/quotes'
 import { CharStatus } from '../../lib/statuses'
 
 const isPunctuation = (randomKey: string) => {
@@ -31,7 +30,7 @@ export const Letter = ({
   onClick,
   isRevealing,
 }: Props) => {
-  const keyDelayMs = REVEAL_TIME_MS * solution.length
+  const keyDelayMs = REVEAL_TIME_MS
   const isHighContrast = getStoredIsHighContrastMode()
   const displayButton = !isPunctuation(randomKey)
 

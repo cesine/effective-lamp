@@ -9,64 +9,11 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import queryString from 'query-string'
 
 import { QUOTES } from '../constants/quotelist'
-import { NOT_CONTAINED_MESSAGE, WRONG_SPOT_MESSAGE } from '../constants/strings'
-import { VALID_GUESSES } from '../constants/validGuesses'
 import { getToday } from './dateutils'
-import { getGuessStatuses } from './statuses'
 
 // 1 January 2022 Game Epoch
 export const firstGameDate = new Date(2022, 0)
 export const periodInDays = 1
-
-export const isQuoteInQuoteList = (quote: string) => {
-  return (
-    QUOTES.includes(localeAwareLowerCase(quote)) ||
-    VALID_GUESSES.includes(localeAwareLowerCase(quote))
-  )
-}
-
-export const isWinningQuote = (quote: string) => {
-  return solution === quote
-}
-
-// build a set of previously revealed letters - present and correct
-// guess must use correct letters in that space and any other revealed letters
-// also check if all revealed instances of a letter are used (i.e. two C's)
-export const findFirstUnusedReveal = (quote: string, guesses: string[]) => {
-  if (guesses.length === 0) {
-    return false
-  }
-
-  const lettersLeftArray = new Array<string>()
-  const guess = guesses[guesses.length - 1]
-  const statuses = getGuessStatuses(solution, guess)
-  const splitQuote = unicodeSplit(quote)
-  const splitGuess = unicodeSplit(guess)
-
-  for (let i = 0; i < splitGuess.length; i++) {
-    if (statuses[i] === 'correct' || statuses[i] === 'present') {
-      lettersLeftArray.push(splitGuess[i])
-    }
-    if (statuses[i] === 'correct' && splitQuote[i] !== splitGuess[i]) {
-      return WRONG_SPOT_MESSAGE(splitGuess[i], i + 1)
-    }
-  }
-
-  // check for the first unused letter, taking duplicate letters
-  // into account - see issue #198
-  let n
-  for (const letter of splitQuote) {
-    n = lettersLeftArray.indexOf(letter)
-    if (n !== -1) {
-      lettersLeftArray.splice(n, 1)
-    }
-  }
-
-  if (lettersLeftArray.length > 0) {
-    return NOT_CONTAINED_MESSAGE(lettersLeftArray[0])
-  }
-  return false
-}
 
 export const unicodeSplit = (quote: string) => {
   return new GraphemeSplitter().splitGraphemes(quote)
@@ -117,12 +64,15 @@ export const getIndex = (gameDate: Date) => {
   return index
 }
 
-export const getQuoteOfDay = (index: number) => {
+export const getQuoteOfDay = (index: number): Solution => {
   if (index < 0) {
     throw new Error('Invalid index')
   }
 
-  return localeAwareUpperCase(QUOTES[index % QUOTES.length])
+  return {
+    author: localeAwareUpperCase(QUOTES[index % QUOTES.length].author),
+    quote: localeAwareUpperCase(QUOTES[index % QUOTES.length].quote),
+  }
 }
 
 export const getSolution = (gameDate: Date) => {
@@ -137,7 +87,7 @@ export const getSolution = (gameDate: Date) => {
     ? gameFromQueryParams.solution
     : getQuoteOfDay(index)
 
-  const solutionName = `${index} ${quoteOfTheDay}`.slice(0, 50)
+  const solutionName = `${index} ${quoteOfTheDay.quote}`.slice(0, 50)
   window.gtag('event', 'level_start', {
     level_name: `Cryptogram ${solutionName}`,
   })
@@ -190,14 +140,19 @@ export const getIsLatestGame = () => {
   return parsed === null || !('d' in parsed)
 }
 
+export type Solution = {
+  author?: string
+  quote: string
+}
+
 export type QueryParamGameState = {
   guesses: string[]
   index: number
   message?: string
-  solution: string
+  solution: Solution
 }
 
-const emptyGame = { guesses: [], index: 1, solution: '' }
+const emptyGame = { guesses: [], index: 1, solution: { author: '', quote: '' } }
 
 export const loadGameStateFromQueryParam = (
   queryParams: URLSearchParams

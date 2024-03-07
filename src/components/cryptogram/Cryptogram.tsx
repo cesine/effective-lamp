@@ -1,10 +1,11 @@
 import { Cipher } from '../../lib/cipher'
+import { Solution } from '../../lib/quotes'
 import { Cell } from './Cell'
 
 type Props = {
   onChar: (input: string, ariaLabel: string) => void
   cipher: Cipher
-  encryptedQuote: string
+  encryptedQuote: Solution
   isRevealing?: boolean
   isHardMode?: boolean
 }
@@ -16,7 +17,8 @@ export const Cryptogram = ({
   isRevealing,
   isHardMode = true,
 }: Props) => {
-  const words = encryptedQuote.toLocaleUpperCase().split(/\s/)
+  const words = encryptedQuote?.quote?.toLocaleUpperCase().split(/\s/) ?? []
+  const author = encryptedQuote?.author?.toLocaleUpperCase().split(/\s/) ?? []
   // console.log('words are', words)
 
   function renderLetter(value: string, i: number) {
@@ -65,6 +67,8 @@ export const Cryptogram = ({
       style={stylePhrase}
     >
       {words.map(renderWord)}
+      <div style={{ width: '100%' }} /> {/* This will create a line break */}
+      {author.map(renderWord)}
     </div>
   )
 }
