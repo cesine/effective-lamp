@@ -6,7 +6,7 @@ test.describe('cryptogram tests', () => {
       '/?beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
     await page.goto(path)
 
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByLabel('Open Settings').click()
     await page.getByLabel('Hard Mode').click()
@@ -15,17 +15,17 @@ test.describe('cryptogram tests', () => {
       .getByRole('button')
       .click()
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('O')
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('I')
 
-    await page.getByRole('button', { name: 'S' }).click()
+    await page.getByRole('button', { name: 'S' }).nth(1).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'S' }).nth(1)).toHaveText('H')
 
     // Winning dialog should show
     await page.getByRole('button', { name: 'Share' }).click()
@@ -79,7 +79,7 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Statistics').getByRole('button').first().click()
     await page.getByRole('heading', { name: "Clueright's Cryptogram" }).click()
     await page.waitForSelector('button')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
-    expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'S' }).nth(1)).toHaveText('H')
   })
 })

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test.describe('cryptogram tests', () => {
   test('should be able to get several hints', async ({ page }) => {
     await page.goto('/?beta=true')
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     // Switch to easy mode
     // await page.getByLabel('Open Settings').click()
