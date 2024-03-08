@@ -11,10 +11,10 @@ test.describe('cryptogram tests', () => {
       dialog.dismiss().catch(() => {})
     })
     await page.getByLabel('How to play').getByText('P', { exact: true }).click()
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByLabel('Open Info Modal').click()
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByLabel('Send an encrypted message').click()
     await page.locator('#share-message').click()
@@ -25,17 +25,17 @@ test.describe('cryptogram tests', () => {
     })
     await page.getByRole('button', { name: 'Save' }).click()
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('O')
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('I')
 
-    await page.getByRole('button', { name: 'S' }).click()
+    await page.getByRole('button', { name: 'S' }).nth(1).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'S' }).nth(1)).toHaveText('H')
 
     await page.getByRole('button', { name: 'Share' }).click()
     await page.getByRole('button', { name: 'Transfer' }).click()
@@ -85,7 +85,7 @@ test.describe('cryptogram tests', () => {
     console.log('gameEvents', gameEvents)
 
     expect(gameEvents[1]).toMatch(/level_start: Cryptogram \d+ hi/)
-    expect(gameEvents[9]).toMatch(/level_end: Cryptogram \d+ hi/)
+    expect(gameEvents[7]).toMatch(/level_end: Cryptogram \d+ hi/)
     expect(gameEvents).toEqual([
       'unlock_achievement: open_shared_encrypted_message',
       gameEvents[1],
@@ -94,9 +94,9 @@ test.describe('cryptogram tests', () => {
       'unlock_achievement: click_alphabet_letter',
       'unlock_achievement: make_incorrect_guess',
       'unlock_achievement: make_correct_guess',
+      gameEvents[7],
       'level_up: 1',
       'post_score: 1',
-      gameEvents[9],
       'share: Navigator Clipboard API',
       'unlock_achievement: click_transfer_stats',
       'unlock_achievement: exported_stats',
@@ -104,5 +104,8 @@ test.describe('cryptogram tests', () => {
       'unlock_achievement: choose_dark_mode',
       'unlock_achievement: choose_high_contrast',
     ])
+
+    const configEvents = dataLayer.filter((e) => e[0] === 'config')
+    expect(configEvents[0][2]).toEqual({ debug_mode: true })
   })
 })

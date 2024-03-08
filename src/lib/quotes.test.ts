@@ -79,7 +79,7 @@ describe('solutionIndex', () => {
       '"IT\'S THE FRIENDS YOU CAN CALL UP AT 4 A.M. THAT MATTER."'
     )
     expect(getQuoteOfDay(255).quote).toEqual(
-      '"MANY PEOPLE WILL WALK IN AND OUT OF YOUR LIFE, BUT ONLY TRUE FRIENDS WILL LEAVE FOOTPRINTS IN YOUR HEART."'
+      'I DON\'T GO BY THE RULE BOOK ... I LEAD FROM THE HEART, NOT THE HEAD." '
     )
   })
 })
