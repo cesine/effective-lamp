@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 
 test.describe('cryptogram tests', () => {
   test('should be able to share and transfer stats', async ({ page }) => {
-    const path =
-      '/?beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ=='
-    await page.goto(path)
+    const params =
+      'beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ'
+    await page.goto(`/?${params}`)
 
     await page.locator('.absolute').click()
 
@@ -36,9 +36,10 @@ test.describe('cryptogram tests', () => {
     expect(shareClipboardText).toContain('An encrypted message 795')
     expect(shareClipboardText).toContain('OIH')
     expect(shareClipboardText).toContain('⬜🟩🟩')
-    expect(shareClipboardText).toContain(path)
-    const url = await page.url()
-    expect(shareClipboardText).toContain(url)
+    expect(shareClipboardText).toContain(params)
+    expect(shareClipboardText).toContain(
+      'utm_source=beta_app&utm_medium=share_button&utm_campaign=share'
+    )
 
     await page.getByRole('button', { name: 'Transfer' }).click()
     await page.getByRole('button', { name: 'Copy' }).click()

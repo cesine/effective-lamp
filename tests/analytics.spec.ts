@@ -19,11 +19,9 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Send an encrypted message').click()
     await page.locator('#share-message').click()
     await page.locator('#share-message').fill('hi')
-    page.on('dialog', async (dialog) => {
-      console.log(dialog.message())
-      await dialog.accept()
-    })
-    await page.getByRole('button', { name: 'Save' }).click()
+    await page.getByRole('button', { name: 'Share' }).click()
+    await page.locator('.absolute').click()
+    // await page.getByLabel('Share this link to preview').click()
 
     await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('o')
@@ -85,16 +83,24 @@ test.describe('cryptogram tests', () => {
     console.log('gameEvents', gameEvents)
 
     expect(gameEvents[1]).toMatch(/level_start: Cryptogram \d+ hi/)
-    expect(gameEvents[7]).toMatch(/level_end: Cryptogram \d+ hi/)
+    expect(gameEvents[15]).toMatch(/level_end: Cryptogram \d+ hi/)
     expect(gameEvents).toEqual([
       'unlock_achievement: open_shared_encrypted_message',
       gameEvents[1],
       'sign_up: Anonymous',
       'login: Anonymous',
+      'tutorial_begin: undefined',
+      'unlock_achievement: click_cryptogram_cell',
+      'tutorial_complete: undefined',
+      'unlock_achievement: open_info_modal',
+      'tutorial_complete: undefined',
+      'unlock_achievement: click_send_a_message',
+      'unlock_achievement: share_encrypted_message',
+      'unlock_achievement: open_shared_encrypted_message',
       'unlock_achievement: click_alphabet_letter',
       'unlock_achievement: make_incorrect_guess',
       'unlock_achievement: make_correct_guess',
-      gameEvents[7],
+      gameEvents[15],
       'level_up: 1',
       'post_score: 1',
       'share: Navigator Clipboard API',

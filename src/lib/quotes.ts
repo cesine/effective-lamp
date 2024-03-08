@@ -159,7 +159,7 @@ export const loadGameStateFromQueryParam = (
 ): QueryParamGameState => {
   try {
     const code = queryParams.get('code')
-    const stateString = code ? atob(code) : '{}'
+    const stateString = code ? atob(decodeURIComponent(code)) : '{}'
     const state = stateString
       ? (JSON.parse(stateString) as QueryParamGameState)
       : emptyGame

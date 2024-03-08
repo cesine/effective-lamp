@@ -20,12 +20,20 @@ export const shareStatus = (
   handleShareToClipboard: () => void,
   handleShareFailure: () => void
 ) => {
+  const queryParams = new URLSearchParams(window.location.search)
+  queryParams.set('utm_source', 'beta_app')
+  queryParams.set('utm_medium', 'share_button')
+  queryParams.set('utm_campaign', 'share')
+  const link = `${window.location.origin}${
+    window.location.pathname
+  }?${queryParams.toString()}`
+
   const textToShare =
     `I solved ${GAME_TITLE} ${message} ${solutionIndex} ${
       lost ? 'X' : incorrectGuesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode)) +
-    `\n${window.location.href}`
+    `\n${link}`
 
   const shareData = { text: textToShare }
 
