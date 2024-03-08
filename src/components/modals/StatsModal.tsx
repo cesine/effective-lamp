@@ -22,6 +22,8 @@ import { MigrationIntro } from '../stats/MigrationIntro'
 import { StatBar } from '../stats/StatBar'
 import { BaseModal } from './BaseModal'
 
+const isBeta = window.location.href.includes('beta')
+
 type Props = {
   isOpen: boolean
   handleClose: () => void
@@ -81,12 +83,14 @@ export const StatsModal = ({
       <h4 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
         {GUESS_DISTRIBUTION_TEXT}
       </h4>
-      <Histogram
-        isLatestGame={isLatestGame}
-        gameStats={gameStats}
-        isGameWon={isGameWon}
-        numberOfGuessesMade={numberOfGuessesMade}
-      />
+      {isBeta ? (
+        <Histogram
+          isLatestGame={isLatestGame}
+          gameStats={gameStats}
+          isGameWon={isGameWon}
+          numberOfGuessesMade={numberOfGuessesMade}
+        />
+      ) : null}
       {(isGameLost || isGameWon) && (
         <div className="mt-5 columns-2 items-center items-stretch justify-center text-center dark:text-white sm:mt-6">
           <div className="inline-block w-full text-left">

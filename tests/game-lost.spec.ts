@@ -10,7 +10,7 @@ test.describe('game lost', () => {
     page,
   }) => {
     await page.goto('/?beta=true')
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByRole('button', { name: 'A' }).click()
     await page.keyboard.type('a')

@@ -11,10 +11,10 @@ test.describe('cryptogram tests', () => {
       dialog.dismiss().catch(() => {})
     })
     await page.getByLabel('How to play').getByText('P', { exact: true }).click()
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByLabel('Open Info Modal').click()
-    await page.getByLabel('How to play').getByRole('button').click()
+    await page.locator('.absolute').click()
 
     await page.getByLabel('Send an encrypted message').click()
     await page.locator('#share-message').click()
@@ -25,17 +25,17 @@ test.describe('cryptogram tests', () => {
     })
     await page.getByRole('button', { name: 'Save' }).click()
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('O')
 
-    await page.getByRole('button', { name: 'R' }).click()
+    await page.getByRole('button', { name: 'R' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'R' })).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'R' }).nth(1)).toHaveText('I')
 
-    await page.getByRole('button', { name: 'S' }).click()
+    await page.getByRole('button', { name: 'S' }).nth(1).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'S' })).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'S' }).nth(1)).toHaveText('H')
 
     await page.getByRole('button', { name: 'Share' }).click()
     await page.getByRole('button', { name: 'Transfer' }).click()
