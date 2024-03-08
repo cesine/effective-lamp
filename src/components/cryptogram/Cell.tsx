@@ -93,6 +93,8 @@ export const Cell = ({
     hiddenInputRef?.current?.focus()
   }
 
+  const notTabbable = shouldDisplayDecrypted ? {} : { tabIndex: -1 }
+
   return (
     <div className="inline-flex flex-col">
       <button
@@ -100,12 +102,13 @@ export const Cell = ({
         onClick={cellOnClick}
         className={shouldDisplayDecrypted ? classesDecrypted : classesEncrypted}
         style={stylesDecrypted}
+        {...notTabbable}
       >
         {shouldDisplayDecrypted ? decryptedValue : null}
         <input
-          tabIndex={-1}
           ref={hiddenInputRef}
           style={{ position: 'absolute', top: '-9999px' }}
+          tabIndex={-1}
           type="text"
         />
       </button>
