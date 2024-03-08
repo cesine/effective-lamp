@@ -22,6 +22,8 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Show Hint').click()
     await page.getByLabel('Show Hint').click()
     await page.getByLabel('Show Hint').click()
+    await page.getByLabel('Show Hint').click()
+    await page.getByLabel('Show Hint').click()
     expect(await page.getByLabel('There is an message')).toBeVisible()
     expect(await page.getByLabel('There is an message')).toHaveText(
       'No more hints available.'
