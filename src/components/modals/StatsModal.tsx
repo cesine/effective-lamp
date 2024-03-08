@@ -22,7 +22,7 @@ import { MigrationIntro } from '../stats/MigrationIntro'
 import { StatBar } from '../stats/StatBar'
 import { BaseModal } from './BaseModal'
 
-const isBeta = window.location.href.includes('beta')
+const showHistogram = false
 
 type Props = {
   isOpen: boolean
@@ -83,7 +83,7 @@ export const StatsModal = ({
       <h4 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
         {GUESS_DISTRIBUTION_TEXT}
       </h4>
-      {isBeta ? (
+      {showHistogram ? (
         <Histogram
           isLatestGame={isLatestGame}
           gameStats={gameStats}
