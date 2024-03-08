@@ -79,14 +79,14 @@ export const Cell = ({
   }
   const hiddenInputRef: RefObject<HTMLInputElement> = createRef()
 
-  const cellOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+  const cellOnClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     if (!userHasInteractedWithCell) {
       userHasInteractedWithCell = true
       window.gtag('event', 'unlock_achievement', {
         achievement_id: 'click_cryptogram_cell',
       })
     }
-    const label = (event?.target as HTMLDivElement)?.ariaLabel || ''
+    const label = (event?.target as HTMLButtonElement)?.ariaLabel || ''
 
     onClick('', label)
     event.currentTarget.blur()
@@ -95,7 +95,7 @@ export const Cell = ({
 
   return (
     <div className="inline-flex flex-col">
-      <div
+      <button
         aria-label={encryptedValue}
         onClick={cellOnClick}
         className={shouldDisplayDecrypted ? classesDecrypted : classesEncrypted}
@@ -103,11 +103,12 @@ export const Cell = ({
       >
         {shouldDisplayDecrypted ? decryptedValue : null}
         <input
+          tabIndex={-1}
           ref={hiddenInputRef}
           style={{ position: 'absolute', top: '-9999px' }}
           type="text"
         />
-      </div>
+      </button>
 
       <div
         aria-label={encryptedValue}
