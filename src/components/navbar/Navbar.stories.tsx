@@ -10,6 +10,7 @@ export default {
 export const Default = () => (
   <Navbar
     setHint={(value) => console.log('setHint', value)}
+    setIsHeartModalOpen={(value) => console.log('setIsHeartModalOpen', value)}
     setIsInfoModalOpen={(value) => console.log('setIsInfoModalOpen', value)}
     setIsSendMessageModalOpen={(value) =>
       console.log('setIsSendMessageModalOpen', value)

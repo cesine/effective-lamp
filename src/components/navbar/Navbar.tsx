@@ -4,6 +4,7 @@ import {
   ChartBarIcon,
   ChatBubbleOvalLeftIcon,
   CogIcon,
+  HeartIcon,
   InformationCircleIcon,
   PuzzlePieceIcon,
 } from '@heroicons/react/24/outline'
@@ -11,8 +12,11 @@ import {
 import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
 type Props = {
   setHint: (value: boolean) => void
+  setIsHeartModalOpen: (value: boolean) => void
   setIsInfoModalOpen: (value: boolean) => void
   setIsSendMessageModalOpen: (value: boolean) => void
   setIsStatsModalOpen: (value: boolean) => void
@@ -22,6 +26,7 @@ type Props = {
 
 export const Navbar = ({
   setHint,
+  setIsHeartModalOpen,
   setIsInfoModalOpen,
   setIsSendMessageModalOpen,
   setIsStatsModalOpen,
@@ -55,6 +60,19 @@ export const Navbar = ({
               }}
             />
           )}
+          {!isMobile ? (
+            <HeartIcon
+              aria-label="Open Heart Modal"
+              className="ml-3 h-6 w-6 cursor-pointer dark:stroke-white"
+              onClick={() => {
+                window.gtag('event', 'unlock_achievement', {
+                  achievement_id: 'open_heart_modal',
+                })
+                setIsHeartModalOpen(true)
+              }}
+              title="Learn more how to give love to this game"
+            />
+          ) : null}
         </div>
         <h1
           aria-label={GAME_TITLE}
