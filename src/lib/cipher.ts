@@ -54,7 +54,7 @@ function isOriginalPosition(shuffled: string[], original: string[]) {
 }
 
 function seededRandom(seed: number) {
-  const x = Math.sin(seed++) * 10000
+  const x = Math.sin(seed) * 10000
   return x - Math.floor(x)
 }
 
@@ -63,7 +63,7 @@ export const newCipher = (seed: number) => {
   let whileCount = 0
 
   let randomKey: string[] = [...ALPHABET].sort(() =>
-    seededRandom(seed) > 0.5 ? 1 : -1
+    seededRandom(seed++) > 0.5 ? 1 : -1
   )
 
   while (whileCount < 10 && isOriginalPosition(randomKey, ALPHABET)) {

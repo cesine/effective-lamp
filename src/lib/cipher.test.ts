@@ -23,6 +23,16 @@ describe('cipher', () => {
       expect(cipher['A'].decrypted).toEqual('Z')
     })
 
+    it('should not use the same cipher for a different seed', () => {
+      const cipher = newCipher(760)
+      expect(cipher['A'].decrypted).not.toEqual('Z')
+    })
+
+    it('should not use the same cipher for the next seed', () => {
+      const cipher = newCipher(761)
+      expect(cipher['A'].decrypted).not.toEqual('Z')
+    })
+
     it('shuffled letter should not match original letter', () => {
       const cipher = newCipher(3)
       Object.keys(cipher).map((key: string) => {
