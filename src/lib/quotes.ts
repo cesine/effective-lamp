@@ -6,7 +6,6 @@ import {
   startOfDay,
 } from 'date-fns'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
-import queryString from 'query-string'
 
 import { QUOTES } from '../constants/quotelist'
 import { getToday } from './dateutils'
@@ -106,9 +105,9 @@ export const getGameDate = () => {
     return getToday()
   }
 
-  const parsed = queryString.parse(window.location.search)
+  const parsed = new URLSearchParams(window.location.search)
   try {
-    const d = startOfDay(parseISO(parsed.d!.toString()))
+    const d = startOfDay(parseISO(parsed.get('d')!.toString()))
     if (d >= getToday() || d < firstGameDate) {
       setGameDate(getToday())
     }
@@ -135,9 +134,9 @@ export const setGameDate = (d: Date) => {
 }
 
 export const getIsLatestGame = () => {
-  const parsed = queryString.parse(window.location.search)
+  const parsed = new URLSearchParams(window.location.search)
   // TODO use URLparams and return true if no d or code is set
-  return parsed === null || !('d' in parsed)
+  return parsed === null || !parsed.get('d')
 }
 
 export type Solution = {

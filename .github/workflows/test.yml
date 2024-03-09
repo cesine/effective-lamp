@@ -4,6 +4,8 @@ on:
     paths:
       - 'src/**'
       - '*.{json|js|ts}'
+      - 'package.json'
+
   push:
     branches:
       - main
