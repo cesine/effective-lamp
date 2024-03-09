@@ -20,7 +20,7 @@ describe('cipher', () => {
 
     it('should use the same cipher for the same seed', () => {
       const cipher = newCipher(8)
-      expect(cipher['A'].decrypted).toEqual('Z')
+      expect(cipher['A'].decrypted).toEqual('R')
     })
 
     it('should not use the same cipher for a different seed', () => {
@@ -30,6 +30,11 @@ describe('cipher', () => {
 
     it('should not use the same cipher for the next seed', () => {
       const cipher = newCipher(761)
+      expect(cipher['A'].decrypted).not.toEqual('Z')
+    })
+
+    it('should not use the same cipher for seed which end in 8', () => {
+      const cipher = newCipher(768)
       expect(cipher['A'].decrypted).not.toEqual('Z')
     })
 

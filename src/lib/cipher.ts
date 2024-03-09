@@ -71,7 +71,7 @@ export const newCipher = (seed: number) => {
     console.log('regenerating randomKey', randomKey)
     // eslint-disable-next-line no-loop-func
     randomKey = [...ALPHABET].sort(() =>
-      seededRandom(seed + whileCount) > 0.5 ? 1 : -1
+      seededRandom(seed++ + whileCount) > 0.5 ? 1 : -1
     )
     console.log('trying with next seed whileCount', whileCount, seed)
   }
