@@ -20,6 +20,7 @@ type Props = {
 }
 
 let userHasInteractedWithCell = false
+const isIphone = /iPhone/i.test(navigator.userAgent)
 
 export const Cell = ({
   encryptedValue,
@@ -89,8 +90,10 @@ export const Cell = ({
     const label = (event?.target as HTMLButtonElement)?.ariaLabel || ''
 
     onClick('', label)
-    event.currentTarget.blur()
-    hiddenInputRef?.current?.focus()
+    if (isIphone) {
+      event.currentTarget.blur()
+      hiddenInputRef?.current?.focus()
+    }
   }
 
   const notTabbable = shouldDisplayDecrypted ? {} : { tabIndex: -1 }
