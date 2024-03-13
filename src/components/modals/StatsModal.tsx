@@ -80,9 +80,11 @@ export const StatsModal = ({
       handleClose={handleClose}
     >
       <StatBar gameStats={gameStats} />
-      <h4 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
-        {GUESS_DISTRIBUTION_TEXT}
-      </h4>
+      {showHistogram ? (
+        <h4 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
+          {GUESS_DISTRIBUTION_TEXT}
+        </h4>
+      ) : null}
       {showHistogram ? (
         <Histogram
           isLatestGame={isLatestGame}
