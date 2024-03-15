@@ -124,8 +124,9 @@ export const setGameDate = (d: Date) => {
     const queryParams = new URLSearchParams(window.location.search)
     if (d < getToday()) {
       queryParams.set('d', formatISO(d, { representation: 'date' }))
+    } else {
+      queryParams.delete('d')
     }
-    queryParams.delete('d')
     window.location.href = `${path}?${queryParams.toString()}`
   } catch (e) {
     console.log(e)
