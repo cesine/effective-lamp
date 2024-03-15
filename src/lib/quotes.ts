@@ -122,9 +122,9 @@ export const setGameDate = (d: Date) => {
   const path = window.location.pathname
   try {
     if (d < getToday()) {
-      window.location.href = `${path}?d=${formatISO(d, {
-        representation: 'date',
-      })}`
+      const queryParams = new URLSearchParams(window.location.search)
+      queryParams.set('d', formatISO(d, { representation: 'date' }))
+      window.location.href = `${path}?${queryParams.toString()}`
       return
     }
   } catch (e) {
