@@ -73,13 +73,13 @@ describe('solutionIndex', () => {
   test('quote of the day', () => {
     expect(() => getQuoteOfDay(-1)).toThrowError('Invalid index')
     expect(getQuoteOfDay(0).quote).toEqual(
-      '"SURROUND YOURSELF WITH ONLY PEOPLE WHO ARE GOING TO LIFT YOU HIGHER."'
+      '“IT TAKES A GREAT DEAL OF COURAGE TO STAND UP TO YOUR ENEMIES, BUT EVEN MORE TO STAND UP TO YOUR FRIENDS.”'
     )
     expect(getQuoteOfDay(1).quote).toEqual(
-      '"IT\'S THE FRIENDS YOU CAN CALL UP AT 4 A.M. THAT MATTER."'
+      '"I’VE ALWAYS THOUGHT YOU’VE GOT TO BELIEVE IN LUCK TO GET IT."'
     )
     expect(getQuoteOfDay(255).quote).toEqual(
-      'I DON\'T GO BY THE RULE BOOK ... I LEAD FROM THE HEART, NOT THE HEAD." '
+      '"CHANGE THE WORLD BY BEING YOURSELF."'
     )
   })
 })
