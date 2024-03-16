@@ -17,9 +17,9 @@ export const HeartModal = ({ isOpen, handleClose }: Props) => {
       handleClose={onCloseClick}
     >
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        If you had fun and want encourage me, you can buy my book. It's a great
-        way to support me and keep me motivated to create more games like this
-        one.
+        If you had fun and want to encourage me, you can buy my book. It's a
+        great way to support me and keep me motivated to create more games like
+        this one.
       </p>
 
       <p className="mt-2">
