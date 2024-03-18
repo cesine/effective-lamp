@@ -81,7 +81,7 @@ describe('solutionIndex', () => {
     expect(getQuoteOfDay(1).quote).toEqual(
       '"I’VE ALWAYS THOUGHT YOU’VE GOT TO BELIEVE IN LUCK TO GET IT."'
     )
-    expect(getQuoteOfDay(255).quote).toEqual(
+    expect(getQuoteOfDay(260).quote).toEqual(
       '"CHANGE THE WORLD BY BEING YOURSELF."'
     )
   })
