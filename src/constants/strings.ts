@@ -9,7 +9,7 @@ export const WORD_NOT_FOUND_MESSAGE = 'Word not found'
 export const HARD_MODE_ALERT_MESSAGE =
   'Hard Mode can be enabled only at the start!'
 export const HARD_MODE_DESCRIPTION =
-  'Any revealed hints must be used in subsequent guesses'
+  '"In hard mode, tile colors remain neutral, offering no feedback on correct or incorrect guesses." '
 export const HIGH_CONTRAST_MODE_DESCRIPTION = 'For improved color vision'
 export const YOU_HAVE_ALREADY_GUESSED_MESSAGE = (
   input: string,
