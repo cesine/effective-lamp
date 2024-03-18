@@ -350,6 +350,24 @@ export const QUOTES = [
     quote: '"It\'s not how much we give but how much love we put into giving."',
   },
   {
+    author: 'Jessica Harrelson',
+    quote: '"Spring adds new life and new beauty to all that is." ',
+  },
+  {
+    author: 'Margaret Atwood',
+    quote:
+      '"In the spring, at the end of the day, you should smell like dirt." ',
+  },
+  {
+    author: 'Anita Krizzan',
+    quote:
+      '"Spring will come and so will happiness. Hold on. Life will get warmer."',
+  },
+  {
+    author: 'Lilly Pulitzer',
+    quote: '"Despite the forecast, live like it\'s spring."',
+  },
+  {
     author: 'Coco Chanel',
     quote:
       '“I don’t care what you think about me; I don’t think about you at all!”',
