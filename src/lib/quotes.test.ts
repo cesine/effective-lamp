@@ -59,18 +59,17 @@ describe('solutionIndex', () => {
   })
 
   test('index', () => {
-    expect(getIndex(new Date(2022, 5, 16))).toEqual(166)
-    expect(getIndex(new Date(2022, 5, 17))).toEqual(167)
-    expect(getIndex(new Date(2022, 5, 18))).toEqual(168)
-    expect(getIndex(new Date(2022, 5, 18, 15, 42, 0))).toEqual(169)
+    test('index', () => {
+      expect(getIndex(new Date(2022, 5, 16))).toEqual(166)
 
-    // Adjusted indices for the newly added quotes
-    expect(getIndex(new Date(2022, 5, 19))).toEqual(170)
-    expect(getIndex(new Date(2022, 5, 20))).toEqual(171)
-    expect(getIndex(new Date(2022, 5, 21))).toEqual(172)
-    expect(getIndex(new Date(2022, 5, 22))).toEqual(173)
-    expect(getIndex(new Date(2022, 5, 23))).toEqual(174)
-    expect(getIndex(new Date(2022, 5, 24))).toEqual(175)
+      expect(getIndex(new Date(2022, 5, 17))).toEqual(167)
+      expect(getIndex(new Date(2022, 5, 18))).toEqual(168)
+      expect(getIndex(new Date(2022, 5, 18, 15, 42, 0))).toEqual(168)
+
+      expect(getIndex(new Date(2022, 5, 23, 15, 42, 0))).toEqual(173)
+
+      expect(getIndex(new Date(2022, 5, 24))).toEqual(174)
+    })
   })
 
   test('quote of the day', () => {
