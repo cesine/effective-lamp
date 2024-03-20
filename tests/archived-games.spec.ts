@@ -18,4 +18,3 @@ test.describe('cryptogram tests', () => {
     expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('O')
   })
 })
-
