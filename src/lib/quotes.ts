@@ -10,8 +10,8 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import { QUOTES } from '../constants/quotelist'
 import { getToday } from './dateutils'
 
-// 1 January 2022 Game Epoch
-export const firstGameDate = new Date(2022, 0)
+// 1 January 2024 Game Epoch
+export const firstGameDate = new Date(2024, 0)
 export const periodInDays = 1
 
 export const unicodeSplit = (quote: string) => {
