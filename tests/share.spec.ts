@@ -78,7 +78,7 @@ test.describe('cryptogram tests', () => {
     await page.reload()
     await page.waitForTimeout(3000) // Wait for page to fully load
     await page.getByLabel('Statistics').getByRole('button').first().click()
-    await page.getByRole('heading', { name: "Clueright's Cryptogram" }).click()
+    // await page.getByRole('heading', { name: "Clueright's Cryptogram" }).click()
     await page.waitForSelector('button')
     expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('I')
     expect(await page.getByRole('button', { name: 'K' }).nth(1)).toHaveText('H')
