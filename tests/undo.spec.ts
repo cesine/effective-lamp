@@ -6,7 +6,7 @@ test.describe('undo tests', () => {
   test.beforeEach(({ page }, testInfo) => {
     collectConsole({ page }, testInfo)
   })
-  test('As a user I want to undo a guess by pushing backspace', async ({
+  test('As a user I want to delete a guess by pushing backspace', async ({
     page,
   }) => {
     await page.goto('/?beta=true')
@@ -37,9 +37,7 @@ test.describe('undo tests', () => {
 
     // Undo the guesses
     await page.keyboard.press('Backspace')
-    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText(
-      'E'
-    )
+    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText('')
     await page.keyboard.press('Backspace')
     expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText('')
   })
