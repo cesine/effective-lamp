@@ -106,12 +106,12 @@ export const Navbar = ({
 
         <div className="right-icons">
           <a
+            aria-label="Send a bug report"
             href="https://forms.gle/zRP8pAE1JrTEA5bWA"
             target="blank"
             rel="noopener noreferrer"
           >
             <BugAntIcon
-              aria-label="Send a bug report"
               className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
               onClick={() => {
                 window.gtag('event', 'unlock_achievement', {
