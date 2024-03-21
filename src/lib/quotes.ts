@@ -124,8 +124,12 @@ export const setGameDate = (d: Date) => {
     const queryParams = new URLSearchParams(window.location.search)
     if (d < getToday()) {
       queryParams.set('d', formatISO(d, { representation: 'date' }))
+      // move to using the date as which puzzle to load rather than the code
+      queryParams.delete('code')
     } else {
       queryParams.delete('d')
+      // move to using the date as which puzzle to load rather than the code
+      queryParams.delete('code')
     }
     window.location.href = `${path}?${queryParams.toString()}`
   } catch (e) {
