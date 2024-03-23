@@ -13,6 +13,9 @@ test.describe('cryptogram tests', () => {
 
     await page.getByRole('button', { name: 'Choose today' }).click()
 
+    const year = new Date().getFullYear()
+    expect(await page.url()).not.toContain(`d=${year}`)
+
     await page.getByRole('button', { name: 'L' }).nth(1).click()
     await page.keyboard.type('o')
     expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('O')

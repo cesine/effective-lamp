@@ -1,12 +1,19 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('cryptogram tests', () => {
-  test('Should open the Info Modal', async ({ page }) => {
-    await page.goto(
-      'https://www.isabelleclueright.com/cryptogram/?utm_source=supersolvers&utm_medium=email&utm_campaign=beta_1&utm_id=beta_one'
-    )
+  test('should open the Info Modal', async ({ page }) => {
+    await page.goto('/?beta=true')
+    expect(
+      await page.getByRole('heading', { name: 'How to play' })
+    ).toBeVisible()
     await page.locator('.absolute').click()
+    expect(
+      await page.getByRole('heading', { name: 'How to play' })
+    ).not.toBeVisible()
     await page.getByLabel('Open Info Modal').click()
+    expect(
+      await page.getByRole('heading', { name: 'How to play' })
+    ).toBeVisible()
     await page.locator('.absolute').click()
   })
 })
