@@ -15,8 +15,13 @@ export const YOU_HAVE_ALREADY_GUESSED_MESSAGE = (
   input: string,
   decryptedLetter: string
 ) => `You have already guessed this letter: ${input} for ${decryptedLetter}.`
+export const WARNING_REMAINING_GUESSES = (
+  incorrectGuesses: number,
+  remainingGuesses: number
+) =>
+  `You have used ${incorrectGuesses} guesses - you have ${remainingGuesses} left.`
 export const CORRECT_WORD_MESSAGE = (solution: Solution) =>
-  `The quote was ${solution.quote}  - ${solution.author}`
+  `The quote was ${solution.quote}${solution.author ? ' - ' : ''}${solution.author}`
 export const WRONG_SPOT_MESSAGE = (guess: string, position: number) =>
   `Must use ${guess} in position ${position}`
 export const ENTER_TEXT = 'Enter'
