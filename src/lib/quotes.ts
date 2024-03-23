@@ -10,8 +10,8 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import { QUOTES } from '../constants/quotelist'
 import { getToday } from './dateutils'
 
-// 1 January 2022 Game Epoch
-export const firstGameDate = new Date(2022, 0)
+// 1 January 2024 Game Epoch
+export const firstGameDate = new Date(2024, 0)
 export const periodInDays = 1
 
 export const unicodeSplit = (quote: string) => {
@@ -124,8 +124,12 @@ export const setGameDate = (d: Date) => {
     const queryParams = new URLSearchParams(window.location.search)
     if (d < getToday()) {
       queryParams.set('d', formatISO(d, { representation: 'date' }))
+      // move to using the date as which puzzle to load rather than the code
+      queryParams.delete('code')
     } else {
       queryParams.delete('d')
+      // move to using the date as which puzzle to load rather than the code
+      queryParams.delete('code')
     }
     window.location.href = `${path}?${queryParams.toString()}`
   } catch (e) {
