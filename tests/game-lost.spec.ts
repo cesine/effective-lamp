@@ -27,7 +27,7 @@ test.describe('game lost', () => {
     await page.keyboard.type('l')
     await page.keyboard.type('m')
     expect(await page.getByLabel('There is an message')).toHaveText(
-      'You have used 8 guesses - you have 2 left.'
+      'You have used 9 guesses - you have 1 left.'
     )
   })
 
@@ -56,6 +56,7 @@ test.describe('game lost', () => {
     await page.keyboard.type('p')
     await page.keyboard.type('q')
     await page.keyboard.type('r')
+    await page.keyboard.type('s')
     expect(
       await page.getByRole('heading', { name: 'Statistics' })
     ).toBeVisible()
