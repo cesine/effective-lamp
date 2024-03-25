@@ -1,7 +1,7 @@
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
-import { solutionIndex } from '../..//lib/quotes'
+import { shareGameToQueryParams, solutionIndex } from '../..//lib/quotes'
 import { GameStats, StoredGameState } from '../../lib/localStorage'
 import { BaseModal } from './BaseModal'
 
@@ -63,28 +63,11 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
     window.gtag('event', 'unlock_achievement', {
       achievement_id: 'share_encrypted_message',
     })
-    const state = {
-      guesses: [],
-      index: solutionIndex,
-      message: 'An encrypted message',
-      solution: {
-        author: '',
-        quote: textarea.value,
-      },
-    }
 
-    const code = btoa(JSON.stringify(state))
-    console.log('code', code)
-    window.gtag('event', 'unlock_achievement', {
-      achievement_id: 'open_shared_encrypted_message',
+    const link = shareGameToQueryParams({
+      seed: solutionIndex,
+      message: textarea.value,
     })
-    const queryParams = new URLSearchParams(
-      '?utm_source=beta_app&utm_medium=share_button&utm_campaign=encrypted_message'
-    )
-    queryParams.set('code', encodeURIComponent(code))
-    const link = `${window.location.origin}${
-      window.location.pathname
-    }?${queryParams.toString()}`
     setShareLink(link)
 
     // setTimeout(() => {

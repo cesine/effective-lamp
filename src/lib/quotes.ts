@@ -179,6 +179,36 @@ export const loadGameStateFromQueryParam = (
   return emptyGame
 }
 
+export const shareGameToQueryParams = ({
+  seed,
+  message,
+}: {
+  seed: number
+  message: string
+}) => {
+  const state = {
+    guesses: [],
+    index: seed,
+    message: 'An encrypted message',
+    solution: {
+      author: '',
+      quote: message,
+    },
+  }
+
+  const code = btoa(JSON.stringify(state))
+  console.log('code', code, state)
+  const queryParams = new URLSearchParams(
+    '?utm_source=beta_app&utm_medium=share_button&utm_campaign=encrypted_message'
+  )
+  queryParams.set('code', encodeURIComponent(code))
+  const link = `${window.location.origin}${
+    window.location.pathname
+  }?${queryParams.toString()}`
+
+  return link
+}
+
 export const {
   message,
   solution,

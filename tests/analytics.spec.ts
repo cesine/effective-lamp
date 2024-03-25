@@ -83,7 +83,7 @@ test.describe('cryptogram tests', () => {
     console.log('gameEvents', gameEvents)
 
     expect(gameEvents[1]).toMatch(/level_start: Cryptogram \d+ hi/)
-    expect(gameEvents[15]).toMatch(/level_end: Cryptogram \d+ hi/)
+    expect(gameEvents[14]).toMatch(/level_end: Cryptogram \d+ hi/)
     expect(gameEvents).toEqual([
       'unlock_achievement: open_shared_encrypted_message',
       gameEvents[1],
@@ -96,11 +96,10 @@ test.describe('cryptogram tests', () => {
       'tutorial_complete: undefined',
       'unlock_achievement: click_send_a_message',
       'unlock_achievement: share_encrypted_message',
-      'unlock_achievement: open_shared_encrypted_message',
       'unlock_achievement: click_alphabet_letter',
       'unlock_achievement: make_incorrect_guess',
       'unlock_achievement: make_correct_guess',
-      gameEvents[15],
+      gameEvents[14],
       'level_up: 1',
       'post_score: 1',
       'share: Navigator Clipboard API',

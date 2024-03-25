@@ -1,16 +1,24 @@
 import { expect, test } from '@playwright/test'
 
 import { ALPHABET } from '../src/lib/cipher'
+import { collectConsole } from './utils'
 
 const { BASE_URL = 'http://127.0.0.1:3000' } = process.env
 test.describe('cryptogram tests', () => {
+  test.beforeEach(({ page }, testInfo) => {
+    collectConsole({ page }, testInfo)
+  })
   test('should open the message modal and be able to type in a new message.', async ({
     page,
   }) => {
     await page.goto(
       '/?beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ'
     )
+    expect(
+      await page.getByRole('heading', { name: 'How to play' })
+    ).toBeVisible()
     await page.locator('.absolute').click()
+
     await page.getByLabel('Send an encrypted message').click()
     await page.locator('#share-message').click()
     await page.keyboard.type('to be or not to be')
@@ -27,7 +35,13 @@ test.describe('cryptogram tests', () => {
     await page.goto(
       '/?beta=true&code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ'
     )
+    expect(
+      await page.getByRole('heading', { name: 'How to play' })
+    ).toBeVisible()
     await page.locator('.absolute').click()
+
+    await page.waitForTimeout(1000)
+
     const expectedCountOfButtons = ALPHABET.length + 2
     expect(await page.locator('button').count()).toEqual(expectedCountOfButtons)
 

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('cryptogram tests', () => {
   test('should go to the Amazon book link', async ({ page }) => {
-    await page.goto('http://localhost:3000/?beta')
+    await page.goto('/?beta')
     await page.locator('.absolute').click()
     await page.getByLabel('Open Heart Modal').click()
     await page.getByRole('link', { name: 'Book cover' }).click()
