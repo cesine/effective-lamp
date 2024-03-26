@@ -1,6 +1,6 @@
 import { enUS } from 'date-fns/locale'
 
-export const MAX_CHALLENGES = 10
+export const MAX_INCORRECT_GUESSES = 10
 export const MAX_HINTS = 3
 export const ALERT_TIME_MS = 2000
 export const LONG_ALERT_TIME_MS = 10000

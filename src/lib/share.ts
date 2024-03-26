@@ -1,6 +1,6 @@
 import { UAParser } from 'ua-parser-js'
 
-import { MAX_CHALLENGES } from '../constants/settings'
+import { MAX_INCORRECT_GUESSES } from '../constants/settings'
 import { GAME_TITLE } from '../constants/strings'
 import { Guess } from './localStorage'
 import { message, solutionIndex } from './quotes'
@@ -31,7 +31,7 @@ export const shareStatus = (
   const textToShare =
     `I solved ${GAME_TITLE} ${message} ${solutionIndex} ${
       lost ? 'X' : incorrectGuesses.length
-    }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
+    }/${MAX_INCORRECT_GUESSES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode)) +
     `\n${link}`
 

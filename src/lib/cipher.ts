@@ -1,3 +1,5 @@
+import seedrandom from 'seedrandom'
+
 import { CharStatus } from './statuses'
 
 export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -53,26 +55,21 @@ function isOriginalPosition(shuffled: string[], original: string[]) {
   return false // No letters in their original positions
 }
 
-function seededRandom(seed: number) {
-  const x = Math.sin(seed) * 10000
-  return x - Math.floor(x)
-}
-
 export const newCipher = (seed: number) => {
   console.log('todays seed', seed)
   let whileCount = 0
+  let randomGenerator = seedrandom(`${seed}`)
 
   let randomKey: string[] = [...ALPHABET].sort(() =>
-    seededRandom(seed++) > 0.5 ? 1 : -1
+    randomGenerator() > 0.5 ? 1 : -1
   )
 
   while (whileCount < 10 && isOriginalPosition(randomKey, ALPHABET)) {
     whileCount++
     console.log('regenerating randomKey', randomKey)
+    randomGenerator = seedrandom(`${seed + whileCount}`)
     // eslint-disable-next-line no-loop-func
-    randomKey = [...ALPHABET].sort(() =>
-      seededRandom(seed++ + whileCount) > 0.5 ? 1 : -1
-    )
+    randomKey = [...ALPHABET].sort(() => (randomGenerator() > 0.5 ? 1 : -1))
     console.log('trying with next seed whileCount', whileCount, seed)
   }
 

@@ -15,17 +15,22 @@ test.describe('game lost', () => {
     await page.locator('.absolute').click()
 
     await page.getByRole('button', { name: 'A' }).first().click()
+    // 5 wrong guesses
     await page.keyboard.type('a')
     await page.keyboard.type('b')
     await page.keyboard.type('c')
     await page.keyboard.type('d')
     await page.keyboard.type('e')
+
+    // 4 wrong guesses (2 present)
     await page.keyboard.type('f')
     await page.keyboard.type('g')
-    await page.keyboard.type('j')
-    await page.keyboard.type('k')
-    await page.keyboard.type('l')
-    await page.keyboard.type('m')
+    await page.keyboard.type('h')
+    await page.keyboard.type('i')
+
+    // Let the UI settle
+    await page.waitForTimeout(1000)
+
     expect(await page.getByLabel('There is an message')).toHaveText(
       'You have used 9 guesses - you have 1 left.'
     )
@@ -40,31 +45,38 @@ test.describe('game lost', () => {
     await page.locator('.absolute').click()
 
     await page.getByRole('button', { name: 'A' }).first().click()
+    // 5 wrong guesses
     await page.keyboard.type('a')
     await page.keyboard.type('b')
     await page.keyboard.type('c')
     await page.keyboard.type('d')
     await page.keyboard.type('e')
+
+    // 5 wrong guesses (2 present)
     await page.keyboard.type('f')
     await page.keyboard.type('g')
+    await page.keyboard.type('h')
+    await page.keyboard.type('i')
     await page.keyboard.type('j')
+
+    // Let the UI settle
+    await page.waitForTimeout(1000)
+
+    // Make the 11th guess
     await page.keyboard.type('k')
-    await page.keyboard.type('l')
-    await page.keyboard.type('m')
-    await page.keyboard.type('n')
-    await page.keyboard.type('o')
-    await page.keyboard.type('p')
-    await page.keyboard.type('q')
-    await page.keyboard.type('r')
-    await page.keyboard.type('s')
+
+    // Let the UI settle
+    await page.waitForTimeout(100)
+
+    expect(await page.getByLabel('There is an message')).toHaveText(
+      'The quote was hi'
+    )
+
     expect(
       await page.getByRole('heading', { name: 'Statistics' })
     ).toBeVisible()
 
     await page.screenshot({ path: `game-lost-${Date.now()}.png` })
-    expect(await page.getByLabel('There is an message')).toHaveText(
-      'The quote was hi'
-    )
     await page.locator('.absolute').click()
   })
 })

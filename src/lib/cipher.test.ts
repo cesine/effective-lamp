@@ -20,7 +20,7 @@ describe('cipher', () => {
 
     it('should use the same cipher for the same seed', () => {
       const cipher = newCipher(8)
-      expect(cipher['A'].decrypted).toEqual('R')
+      expect(cipher['A'].decrypted).toEqual('D')
     })
 
     it('should not use the same cipher for a different seed', () => {

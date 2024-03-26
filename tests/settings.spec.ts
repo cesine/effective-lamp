@@ -7,9 +7,9 @@ test.describe('cryptogram tests', () => {
     )
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'L' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
     expect(await page.locator('.bg-green-500')).toBeVisible()
   })
 
@@ -23,9 +23,9 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Hard Mode').click()
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'L' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
     expect(await page.locator('.bg-green-500')).not.toBeVisible()
   })
 

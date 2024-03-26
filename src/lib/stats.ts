@@ -1,4 +1,4 @@
-import { MAX_CHALLENGES } from '../constants/settings'
+import { MAX_INCORRECT_GUESSES } from '../constants/settings'
 import { GAME_TITLE } from '../constants/strings'
 import {
   GameStats,
@@ -27,7 +27,7 @@ export const addStatsForCompletedGame = (
     character: GAME_TITLE,
   })
 
-  if (count >= MAX_CHALLENGES) {
+  if (count >= MAX_INCORRECT_GUESSES) {
     // A fail situation
     stats.currentStreak = 0
     stats.gamesFailed += 1
@@ -47,7 +47,7 @@ export const addStatsForCompletedGame = (
 }
 
 const defaultStats: GameStats = {
-  winDistribution: Array.from(new Array(MAX_CHALLENGES), () => 0),
+  winDistribution: Array.from(new Array(MAX_INCORRECT_GUESSES), () => 0),
   gamesFailed: 0,
   currentStreak: 0,
   bestStreak: 0,

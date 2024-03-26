@@ -6,6 +6,7 @@ test.describe('cryptogram tests', () => {
     isMobile,
   }) => {
     await page.goto('/')
+    expect(await page.getByLabel('Open Info Modal')).toBeVisible()
 
     // Mobile devices will use an intent instead of a link, so only test the link on desktop
     // Google doesnt like it if you open forms in an automated test

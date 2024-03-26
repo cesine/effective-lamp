@@ -23,17 +23,17 @@ test.describe('cryptogram tests', () => {
     await page.locator('.absolute').click()
     // await page.getByLabel('Share this link to preview').click()
 
-    await page.getByRole('button', { name: 'L' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).nth(1).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('O')
 
-    await page.getByRole('button', { name: 'L' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).nth(1).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'L' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
 
-    await page.getByRole('button', { name: 'K' }).nth(1).click()
+    await page.getByRole('button', { name: 'N' }).nth(1).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'K' }).nth(1)).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'N' }).nth(1)).toHaveText('H')
 
     await page.getByRole('button', { name: 'Share' }).click()
     await page.getByRole('button', { name: 'Transfer' }).click()
