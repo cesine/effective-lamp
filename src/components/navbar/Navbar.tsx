@@ -33,7 +33,7 @@ export const Navbar = ({
 }: Props) => {
   return (
     <div className="navbar">
-      <div className="navbar-content px-5 short:h-auto">
+      <div className="navbar-content bg-claret px-2 pb-8 pt-8 text-white short:h-auto">
         <div className="flex">
           <InformationCircleIcon
             aria-label="Open Info Modal"
@@ -101,6 +101,7 @@ export const Navbar = ({
           aria-label={GAME_TITLE}
           className="hidden truncate text-xl font-bold dark:text-white md:block"
         >
+          <img src="/favicon.ico" alt="logo" className="mr-2 inline h-12" />{' '}
           {GAME_TITLE}
         </h1>
 
@@ -110,9 +111,10 @@ export const Navbar = ({
             href="https://forms.gle/zRP8pAE1JrTEA5bWA"
             target="blank"
             rel="noopener noreferrer"
+            className="ml-3 flex flex-col items-center"
           >
             <BugAntIcon
-              className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"
+              className="h-6 w-6 cursor-pointer dark:stroke-white"
               onClick={() => {
                 window.gtag('event', 'unlock_achievement', {
                   achievement_id: 'click_send_a_bug_report',
@@ -120,14 +122,11 @@ export const Navbar = ({
               }}
               title="Click to send me a bug report"
             />
+            <span className="m-1 text-xs">Report</span>
           </a>
-          <ChatBubbleOvalLeftIcon
+          <span
             aria-label="Send an encrypted message"
-            className={`ml-3 h-6 w-6 dark:stroke-white ${
-              setIsSendMessageModalOpen
-                ? 'cursor-pointer'
-                : 'cursor-not-allowed opacity-50'
-            }`}
+            className="ml-3 flex flex-col items-center"
             onClick={() => {
               if (typeof setIsSendMessageModalOpen !== 'function') {
                 return
@@ -138,13 +137,15 @@ export const Navbar = ({
               setIsSendMessageModalOpen(true)
             }}
             title="Click to write an encrypted message"
-          />
-
-          <PuzzlePieceIcon
+          >
+            <ChatBubbleOvalLeftIcon
+              className={`h-6 w-6 dark:stroke-white ${setIsSendMessageModalOpen ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}
+            />
+            <span className="m-1 text-xs">Encrypt</span>
+          </span>
+          <span
             aria-label="Show Hint"
-            className={`ml-3 h-6 w-6 dark:stroke-white ${
-              setHint ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
-            }`}
+            className="ml-3 flex flex-col items-center"
             onClick={() => {
               if (typeof setHint !== 'function') {
                 return
@@ -155,7 +156,12 @@ export const Navbar = ({
               setHint(true)
             }}
             title="Click to insert the hint"
-          />
+          >
+            <PuzzlePieceIcon
+              className={`h-6 w-6 dark:stroke-white ${setHint ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}
+            />
+            <span className="m-1 text-xs">Hint</span>
+          </span>
 
           <ChartBarIcon
             aria-label="Open Stats"
@@ -175,6 +181,7 @@ export const Navbar = ({
             }}
             title="Show stats"
           />
+
           <CogIcon
             aria-label="Open Settings"
             className={`ml-3 h-6 w-6 dark:stroke-white ${
@@ -195,7 +202,6 @@ export const Navbar = ({
           />
         </div>
       </div>
-      <hr></hr>
     </div>
   )
 }

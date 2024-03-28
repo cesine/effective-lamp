@@ -45,23 +45,24 @@ export const Cell = ({
   const classesEncrypted = classnames(
     'xxshort:w-4 xxshort:h-4 short:text-2xl short:w-6 short:h-6 w-8 h-8 flex items-center justify-center mx-0.5 text-4xl font-thin rounded dark:text-white',
     {
-      'bg-white dark:bg-slate-900': !status,
+      'bg-white dark:bg-federal-blue': !status,
     }
   )
 
   const classesDecrypted = classnames(
     'xxshort:w-4 xxshort:h-4 short:text-2xl short:w-6 short:h-6 w-8 h-8 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-thin rounded dark:text-white',
     {
-      'hover:bg-slate-300 active:bg-slate-400 dark:border-slate-700': !status,
-      'absent shadowed bg-slate-400 dark:bg-slate-700 text-white border-slate-400 dark:border-slate-700':
+      'hover:bg-slate-500 active:bg-slate-400 dark:border-federal-blue-700':
+        !status,
+      'absent border-federal-blue-400 hover:bg-slate-500 active:bg-slate-400 dark:border-federal-blue-700':
         status === 'absent',
-      'correct shadowed bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white border-orange-500':
+      'correct shadowed bg-cyan-500 hover:bg-orange-600 active:bg-orange-700 text-white border-cyan-500':
         status === 'correct' && isHighContrast,
-      'present shadowed bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white border-cyan-500':
+      'present shadowed bg-orange-500 hover:bg-cyan-600 active:bg-cyan-700 text-white border-orange-500':
         status === 'present' && isHighContrast,
-      'correct shadowed bg-green-500 hover:bg-green-600 active:bg-green-700 text-white border-green-500':
+      'correct shadowed bg-green-700 hover:bg-green-600 active:bg-green-700 text-white border-green-700':
         status === 'correct' && !isHighContrast,
-      'present shadowed bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white border-yellow-500':
+      'present shadowed bg-dark-goldenrod hover:bg-yellow-500 active:bg-yellow-700 text-white border-dark-goldenrod':
         status === 'present' && !isHighContrast,
       'cell-fill-animation': isFilled,
       'cell-reveal': shouldReveal,

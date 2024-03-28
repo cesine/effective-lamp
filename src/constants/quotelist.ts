@@ -331,6 +331,30 @@ export const QUOTES = [
       '"Let us always meet each other with smile, for the smile is the beginning of love."',
   },
   {
+    author: 'Helen Keller',
+    quote:
+      '"The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart." ',
+  },
+  {
+    author: 'Audrey Hepburn',
+    quote: '“Nothing is impossible, the word itself says I’m possible.”',
+  },
+  {
+    author: 'Nora Ephron',
+    quote: '“Above all, be the heroine of your life, not the victim.”',
+  },
+  {
+    author: 'Maya Angelou',
+    quote:
+      '"Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope." ',
+  },
+  {
+    author: 'Elizabeth Gilbert',
+    quote:
+      '“A true soul mate is a mirror, the person who shows you everything that’s holding you back, the person who brings you to your own attention so you can change your life.”',
+  },
+
+  {
     author: 'Mignon McLaughlin',
     quote:
       '“The only courage that matters is the kind that gets you from one moment to the next”',
@@ -349,24 +373,7 @@ export const QUOTES = [
     author: 'Mother Theresa',
     quote: '"It\'s not how much we give but how much love we put into giving."',
   },
-  {
-    author: 'Jessica Harrelson',
-    quote: '"Spring adds new life and new beauty to all that is." ',
-  },
-  {
-    author: 'Margaret Atwood',
-    quote:
-      '"In the spring, at the end of the day, you should smell like dirt." ',
-  },
-  {
-    author: 'Anita Krizzan',
-    quote:
-      '"Spring will come and so will happiness. Hold on. Life will get warmer."',
-  },
-  {
-    author: 'Lilly Pulitzer',
-    quote: '"Despite the forecast, live like it\'s spring."',
-  },
+
   {
     author: 'Coco Chanel',
     quote:
@@ -388,10 +395,24 @@ export const QUOTES = [
       '“You have to remember that the hard days are what make you stronger. The bad days make you realize what a good day is. If you never had any bad days, you would never have that sense of accomplishment.”',
   },
   {
-    author: 'Dorothy Day',
-    quote:
-      '"The best things to do with the best things in life is to give them away."',
+    author: 'Jessica Harrelson',
+    quote: '"Spring adds new life and new beauty to all that is." ',
   },
+  {
+    author: 'Margaret Atwood',
+    quote:
+      '"In the spring, at the end of the day, you should smell like dirt." ',
+  },
+  {
+    author: 'Anita Krizzan',
+    quote:
+      '"Spring will come and so will happiness. Hold on. Life will get warmer."',
+  },
+  {
+    author: 'Lilly Pulitzer',
+    quote: '"Despite the forecast, live like it\'s spring."',
+  },
+
   {
     author: 'Linda Grayson',
     quote:
@@ -1656,26 +1677,8 @@ export const QUOTES = [
       '"To succeed in life, you need three things: a wishbone, a backbone and a funny bone.”',
   },
   {
-    author: 'Helen Keller',
+    author: 'Dorothy Day',
     quote:
-      '"The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart." ',
-  },
-  {
-    author: 'Audrey Hepburn',
-    quote: '“Nothing is impossible, the word itself says I’m possible.”',
-  },
-  {
-    author: 'Nora Ephron',
-    quote: '“Above all, be the heroine of your life, not the victim.”',
-  },
-  {
-    author: 'Maya Angelou',
-    quote:
-      '"Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope." ',
-  },
-  {
-    author: 'Elizabeth Gilbert',
-    quote:
-      '“A true soul mate is a mirror, the person who shows you everything that’s holding you back, the person who brings you to your own attention so you can change your life.”',
+      '"The best things to do with the best things in life is to give them away."',
   },
 ]

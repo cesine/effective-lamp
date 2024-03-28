@@ -103,7 +103,7 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
             </label>
             <a
               aria-label="Share this link to preview the encrypted message on another device"
-              className="mt-2 block cursor-pointer truncate text-left hover:bg-indigo-700 dark:stroke-white"
+              className="mt-2 block cursor-pointer truncate text-left hover:bg-claret-700 dark:stroke-white"
               href={shareLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -116,7 +116,7 @@ export const ShareMessageModal = ({ isOpen, handleClose }: Props) => {
             disabled={!isSaveButtonEnabled}
             onClick={handleSaveButton}
             type="button"
-            className="mt-2 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-left text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:border-gray-200
+            className="mt-2 inline-flex items-center justify-center rounded-md border border-transparent bg-claret-600 px-4 py-2 text-left text-base font-medium text-white shadow-sm hover:bg-claret-700 focus:outline-none focus:ring-2 focus:ring-claret-500 focus:ring-offset-2 disabled:border-gray-200
           disabled:bg-white disabled:text-gray-900 disabled:focus:outline-none disabled:dark:border-gray-600 disabled:dark:bg-gray-800 disabled:dark:text-gray-400 sm:text-sm"
           >
             {isSaveButtonEnabled && (

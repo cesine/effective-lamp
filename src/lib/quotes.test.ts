@@ -88,10 +88,9 @@ describe('solutionIndex', () => {
         ? console.log('quote index', index)
         : null
     )
-
     console.log('quote', quote)
     expect(getQuoteOfDay(259).quote).toEqual(
-      '"CHANGE THE WORLD BY BEING YOURSELF."'
+      '“THE ONLY ONE WHO GETS TO DECIDE YOUR WORTH IS YOU.”'
     )
   })
   test('loadGameStateFromQueryParam', () => {
