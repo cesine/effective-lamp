@@ -12,6 +12,19 @@ export type Cipher = {
   }
 }
 
+export function getRemainingLetters(cipher: Cipher): string[] {
+  return Object.keys(cipher)
+    .filter((key) => cipher[key].status !== 'correct')
+    .map((key) => cipher[key].decrypted)
+    .sort((a, b) => a.localeCompare(b))
+}
+
+export function getLetters(cipher: Cipher): string[] {
+  return Object.keys(cipher)
+    .map((key) => cipher[key].decrypted)
+    .sort((a, b) => a.localeCompare(b))
+}
+
 export function generateCryptogramHint(
   key: Cipher,
   encryptedLetters: string[],

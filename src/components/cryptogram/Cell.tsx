@@ -18,9 +18,9 @@ type Props = {
   position?: number
   onClick: (input: string, ariaLabel: string) => void
 }
-
-let userHasInteractedWithCell = false
 const isIphone = /iPhone/i.test(navigator.userAgent)
+let userHasInteractedWithCell = false
+let userHasDroppedALetter = false
 
 export const Cell = ({
   encryptedValue,
@@ -48,6 +48,9 @@ export const Cell = ({
       'bg-white dark:bg-federal-blue': !status,
     }
   )
+  const classesPunctuation = classnames(
+    'flex items-center justify-center mx-0.5 text-4xl font-thin dark:text-white'
+  )
 
   const classesDecrypted = classnames(
     'xxshort:w-4 xxshort:h-4 short:text-2xl short:w-6 short:h-6 w-8 h-8 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-thin rounded dark:text-white',
@@ -73,13 +76,36 @@ export const Cell = ({
     fontFamily: 'Courier New',
     animationDelay,
     minHeight: '1em',
+    minWidth: '1em',
+  }
+
+  const stylesPunctuation = {
+    fontFamily: 'Courier New',
+    animationDelay,
+    minHeight: '1em',
+    minWidth: '0.2em',
   }
 
   const stylesEncrypted = {
     ...stylesDecrypted,
-    marginBottom: '40px',
+    marginBottom: '0.5em',
   }
-  const hiddenInputRef: RefObject<HTMLInputElement> = createRef()
+
+  const allowDrop: React.DragEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault()
+  }
+
+  const onDrop: React.DragEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault()
+    var input = event.dataTransfer.getData('text')
+    onClick(input, encryptedValue)
+    if (!userHasDroppedALetter) {
+      userHasDroppedALetter = true
+      window.gtag('event', 'unlock_achievement', {
+        achievement_id: 'drop_on_cryptogam_cell',
+      })
+    }
+  }
 
   const cellOnClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     if (!userHasInteractedWithCell) {
@@ -98,14 +124,18 @@ export const Cell = ({
   }
 
   const notTabbable = shouldDisplayDecrypted ? {} : { tabIndex: -1 }
-
+  const hiddenInputRef: RefObject<HTMLInputElement> = createRef()
   return (
     <div className="inline-flex flex-col">
       <button
         aria-label={encryptedValue}
+        className={
+          shouldDisplayDecrypted ? classesDecrypted : classesPunctuation
+        }
         onClick={cellOnClick}
-        className={shouldDisplayDecrypted ? classesDecrypted : classesEncrypted}
-        style={stylesDecrypted}
+        onDragOver={allowDrop}
+        onDrop={onDrop}
+        style={shouldDisplayDecrypted ? stylesDecrypted : stylesPunctuation}
         {...notTabbable}
       >
         {shouldDisplayDecrypted ? decryptedValue : null}
@@ -119,8 +149,10 @@ export const Cell = ({
 
       <div
         aria-label={encryptedValue}
-        style={stylesEncrypted}
-        className={classesEncrypted}
+        style={shouldDisplayDecrypted ? stylesEncrypted : stylesPunctuation}
+        className={
+          shouldDisplayDecrypted ? classesEncrypted : classesPunctuation
+        }
       >
         {encryptedValue}
       </div>

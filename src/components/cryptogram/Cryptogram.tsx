@@ -63,7 +63,7 @@ export const Cryptogram = ({
   return (
     <div
       test-id="phrase"
-      className="mb-1 flex flex-wrap justify-center"
+      className="flex flex-wrap justify-center"
       style={stylePhrase}
     >
       {words.map(renderWord)}
