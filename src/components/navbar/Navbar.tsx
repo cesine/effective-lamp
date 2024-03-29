@@ -31,6 +31,8 @@ export const Navbar = ({
   setIsDatePickerModalOpen,
   setIsSettingsModalOpen,
 }: Props) => {
+  const imageUrl = new URL(window.location.href)
+  imageUrl.pathname = imageUrl.pathname.replace(/\/$/, '/favicon.ico')
   return (
     <div className="navbar">
       <div className="navbar-content bg-claret px-2 pb-8 pt-8 text-white short:h-auto">
@@ -101,7 +103,11 @@ export const Navbar = ({
           aria-label={GAME_TITLE}
           className="hidden truncate text-xl font-bold dark:text-white md:block"
         >
-          <img src="/favicon.ico" alt="logo" className="mr-2 inline h-12" />{' '}
+          <img
+            src={imageUrl.toString()}
+            alt="Isabelle's icon"
+            className="mr-2 inline h-12"
+          />{' '}
           {GAME_TITLE}
         </h1>
 
