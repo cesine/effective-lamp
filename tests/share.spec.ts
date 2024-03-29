@@ -15,17 +15,17 @@ test.describe('cryptogram tests', () => {
       .getByRole('button')
       .click()
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('O')
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('I')
 
-    await page.getByRole('button', { name: 'N' }).nth(1).click()
+    await page.getByRole('button', { name: 'N' }).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'N' }).nth(1)).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'N' })).toHaveText('H')
 
     // Winning dialog should show
     await page.getByRole('button', { name: 'Share' }).click()
@@ -80,7 +80,7 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Statistics').getByRole('button').first().click()
     // await page.getByRole('heading', { name: "Clueright's Cryptogram" }).click()
     await page.waitForSelector('button')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
-    expect(await page.getByRole('button', { name: 'N' }).nth(1)).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'N' })).toHaveText('H')
   })
 })

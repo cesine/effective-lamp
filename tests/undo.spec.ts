@@ -12,34 +12,26 @@ test.describe('undo tests', () => {
     await page.goto('/?beta=true')
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'A' }).first().click()
+    await page.getByRole('button').nth(2).click()
     await page.keyboard.type('t')
-    expect(await page.getByRole('button', { name: 'A' }).first()).toHaveText(
-      'T'
-    )
+    expect(await page.getByRole('button').nth(2)).toHaveText('T')
 
-    await page.getByRole('button', { name: 'B' }).first().click()
+    await page.getByRole('button').nth(3).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'B' }).first()).toHaveText(
-      'H'
-    )
+    expect(await page.getByRole('button').nth(3)).toHaveText('H')
 
     // Add a couple guesses
-    await page.getByRole('button', { name: 'C' }).first().click()
+    await page.getByRole('button').nth(3).click()
     await page.keyboard.type('E')
-    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText(
-      'E'
-    )
+    expect(await page.getByRole('button').nth(3)).toHaveText('E')
     await page.keyboard.type('P')
-    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText(
-      'P'
-    )
+    expect(await page.getByRole('button').nth(3)).toHaveText('P')
 
     // Undo the guesses
     await page.keyboard.press('Backspace')
-    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText('')
+    expect(await page.getByRole('button').nth(3)).toHaveText('')
     await page.keyboard.press('Backspace')
-    expect(await page.getByRole('button', { name: 'C' }).first()).toHaveText('')
+    expect(await page.getByRole('button').nth(3)).toHaveText('')
   })
 
   test('As a user I want to undo a guess by clicking on a cell', async ({
@@ -48,27 +40,23 @@ test.describe('undo tests', () => {
     await page.goto('/?beta=true')
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'A' }).first().click()
+    await page.getByRole('button').nth(2).click()
     await page.keyboard.type('t')
-    expect(await page.getByRole('button', { name: 'A' }).first()).toHaveText(
-      'T'
-    )
+    expect(await page.getByRole('button').nth(2)).toHaveText('T')
 
-    await page.getByRole('button', { name: 'B' }).first().click()
+    await page.getByRole('button').nth(3).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'B' }).first()).toHaveText(
-      'H'
-    )
+    expect(await page.getByRole('button').nth(3)).toHaveText('H')
 
-    await page.getByRole('button', { name: 'C' }).first().click()
+    await page.getByRole('button').nth(3).click()
     await page.keyboard.type('E')
 
-    await page.getByRole('button', { name: 'B' }).first().click()
+    await page.getByRole('button').nth(3).click()
     await page.keyboard.press('Backspace')
-    expect(await page.getByRole('button', { name: 'B' }).first()).toHaveText('')
+    expect(await page.getByRole('button').nth(3)).toHaveText('')
 
-    await page.getByRole('button', { name: 'A' }).first().click()
+    await page.getByRole('button').nth(2).click()
     await page.keyboard.press('Backspace')
-    expect(await page.getByRole('button', { name: 'A' }).first()).toHaveText('')
+    expect(await page.getByRole('button').nth(2)).toHaveText('')
   })
 })

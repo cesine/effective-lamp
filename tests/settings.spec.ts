@@ -7,10 +7,10 @@ test.describe('cryptogram tests', () => {
     )
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
-    expect(await page.locator('.bg-green-700')).toBeVisible()
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('I')
+    expect(await page.locator('.bg-green-700').count()).toEqual(2)
   })
 
   test('should be able to put it in hard mode', async ({ page }) => {
@@ -23,9 +23,9 @@ test.describe('cryptogram tests', () => {
     await page.getByLabel('Hard Mode').click()
     await page.locator('.absolute').click()
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('I')
     expect(await page.locator('.bg-green-700')).not.toBeVisible()
   })
 

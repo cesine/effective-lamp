@@ -16,8 +16,8 @@ test.describe('cryptogram tests', () => {
     const year = new Date().getFullYear()
     expect(await page.url()).not.toContain(`d=${year}`)
 
-    await page.locator('.xxshort\\:h-8').first().click()
+    await page.getByRole('button').nth(2).click()
     await page.keyboard.type('o')
-    expect(await page.locator('.xxshort\\:h-8').first()).toHaveText('O')
+    expect(await page.getByRole('button').nth(2)).toHaveText('O')
   })
 })

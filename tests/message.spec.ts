@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
 
-import { ALPHABET } from '../src/lib/cipher'
 import { collectConsole } from './utils'
 
 const { BASE_URL = 'http://127.0.0.1:3000' } = process.env
@@ -42,7 +41,7 @@ test.describe('cryptogram tests', () => {
 
     await page.waitForTimeout(1000)
 
-    const expectedCountOfButtons = ALPHABET.length + 2
+    const expectedCountOfButtons = 2
     expect(await page.locator('button').count()).toEqual(expectedCountOfButtons)
 
     await page.getByLabel('Open Archived Games').click()
@@ -53,9 +52,7 @@ test.describe('cryptogram tests', () => {
       expectedCountOfButtons
     )
     // It should be a longer (more realistic) puzzle
-    expect(await page.locator('button').count()).toBeGreaterThan(
-      ALPHABET.length + 10
-    )
+    expect(await page.locator('button').count()).toBeGreaterThan(10)
     expect(await page.url()).not.toContain(
       `code=eyJndWVzc2VzIjpbXSwiaW5kZXgiOjc5NSwibWVzc2FnZSI6IkFuIGVuY3J5cHRlZCBtZXNzYWdlIiwic29sdXRpb24iOnsiYXV0aG9yIjoiIiwicXVvdGUiOiJoaSJ9fQ`
     )

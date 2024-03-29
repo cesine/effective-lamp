@@ -23,17 +23,22 @@ test.describe('cryptogram tests', () => {
     await page.locator('.absolute').click()
     // await page.getByLabel('Share this link to preview').click()
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    // Click on the alphabet does nothing
+    await page.getByLabel('A', { exact: true }).click()
+
+    // Enter an incorrect guess
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('o')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('O')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('O')
 
-    await page.getByRole('button', { name: 'Q' }).nth(1).click()
+    // Enter a correct guess
+    await page.getByRole('button', { name: 'Q' }).click()
     await page.keyboard.type('i')
-    expect(await page.getByRole('button', { name: 'Q' }).nth(1)).toHaveText('I')
+    expect(await page.getByRole('button', { name: 'Q' })).toHaveText('I')
 
-    await page.getByRole('button', { name: 'N' }).nth(1).click()
+    await page.getByRole('button', { name: 'N' }).click()
     await page.keyboard.type('h')
-    expect(await page.getByRole('button', { name: 'N' }).nth(1)).toHaveText('H')
+    expect(await page.getByRole('button', { name: 'N' })).toHaveText('H')
 
     await page.getByRole('button', { name: 'Share' }).click()
     await page.getByRole('button', { name: 'Transfer' }).click()
@@ -83,7 +88,7 @@ test.describe('cryptogram tests', () => {
     console.log('gameEvents', gameEvents)
 
     expect(gameEvents[1]).toMatch(/level_start: Cryptogram \d+ hi/)
-    expect(gameEvents[14]).toMatch(/level_end: Cryptogram \d+ hi/)
+    expect(gameEvents[13]).toMatch(/level_end: Cryptogram \d+ hi/)
     expect(gameEvents).toEqual([
       'unlock_achievement: open_shared_encrypted_message',
       gameEvents[1],
@@ -96,10 +101,10 @@ test.describe('cryptogram tests', () => {
       'tutorial_complete: undefined',
       'unlock_achievement: click_send_a_message',
       'unlock_achievement: share_encrypted_message',
-      'unlock_achievement: click_alphabet_letter',
+      // 'unlock_achievement: click_alphabet_letter',
       'unlock_achievement: make_incorrect_guess',
       'unlock_achievement: make_correct_guess',
-      gameEvents[14],
+      gameEvents[13],
       'level_up: 1',
       'post_score: 1',
       'share: Navigator Clipboard API',
